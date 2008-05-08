@@ -1,0 +1,7 @@
+<h2>FiveRuns TuneUp Configuration</h2>
+<% form_tag '/tuneup/update' do  %>
+  <% @config.each do |key, value| %>
+    <label for='<%=h key %>'><%=h key.titleize %>:</label> <%= text_field_tag "config[#{key}]", value %><br/>
+  <% end %>
+  <%= submit_tag %>
+<% end %>
