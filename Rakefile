@@ -1,22 +1,16 @@
+unless File.file?(File.dirname(__FILE__) << "/../../../config/environment.rb")
+  abort "FiveRuns TuneUp tests can only be run when the plugin is installed in a Rails application"
+end
+
 require 'rake'
 require 'rake/testtask'
-require 'rake/rdoctask'
 
 desc 'Default: run unit tests.'
 task :default => :test
 
-desc 'Test the fiveruns_tuneup plugin.'
+desc 'Test the fiveruns-tuneup plugin.'
 Rake::TestTask.new(:test) do |t|
   t.libs << 'lib'
   t.pattern = 'test/**/*_test.rb'
   t.verbose = true
-end
-
-desc 'Generate documentation for the fiveruns_tuneup plugin.'
-Rake::RDocTask.new(:rdoc) do |rdoc|
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'FiverunsTuneup'
-  rdoc.options << '--line-numbers' << '--inline-source'
-  rdoc.rdoc_files.include('README')
-  rdoc.rdoc_files.include('lib/**/*.rb')
 end
