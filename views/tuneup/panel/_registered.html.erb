@@ -1,2 +1,16 @@
-<%# TODO %>
-Congrats, you are registered.
+<div id='fiveruns-tuneup-panel'>
+  <% if tuneup_collecting? %>
+    <div id='fiveruns-tuneup-data'>
+      <div id='fiveruns-tuneup-summary'>
+        <div id='fiveruns-tuneup-bar'></div>
+        10 steps / 123 ms
+      </div>
+      <div id='fiveruns-tuneup-details'>
+        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce mi. Aliquam pharetra laoreet tortor. Mauris nec quam. Aenean turpis magna, consectetuer nec, iaculis in, rhoncus sit amet, tortor. Mauris enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec sapien. Cras a massa. Donec velit eros, fringilla at, accumsan eu, mollis in, mi. Donec magna nunc, scelerisque eu, consequat quis, euismod at, neque. Ut eleifend. Morbi condimentum justo et lectus. Vivamus cursus pede in eros laoreet commodo.</p>
+         <p>Nunc et enim. Donec elementum. Aenean vestibulum pulvinar tortor. Pellentesque accumsan condimentum neque. Praesent congue interdum justo. Vestibulum pharetra arcu. Ut vehicula felis vitae est. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Pellentesque suscipit tincidunt dolor. Fusce varius felis eu odio.</p>
+      </div>
+      <div id='fiveruns-tuneup-shade'></div>
+    </div>
+  <% end %>
+  <%= render :partial => 'link' %>
+</div>

@@ -19,9 +19,22 @@ class TuneupController < ActionController::Base
     redirect_to :action => 'show'
   end
   
+  def on
+    collect true
+  end
+  
+  def off
+    collect false
+  end
+  
   #######
   private
   #######
+  
+  def collect(state)
+    Fiveruns::Tuneup.collecting = state
+    render(:update) { |p| p['fiveruns-tuneup-panel'].replace(render :partial => 'tuneup/panel/registered') }
+  end
 
   def find_config
     @config = TuneupConfig.new

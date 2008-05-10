@@ -15,4 +15,13 @@ module TuneupHelper
     "https://tuneup.fiveruns.com/signup"
   end
   
+  def tuneup_collection_link
+    state = tuneup_collecting? ? :off : :on
+    link_to_remote "Turn #{state.to_s.titleize}", :url => "/tuneup/#{state}"
+  end
+  
+  def tuneup_collecting?
+    Fiveruns::Tuneup.collecting
+  end
+  
 end

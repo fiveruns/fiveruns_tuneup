@@ -1,5 +1,5 @@
-/* Targeted CSS Reset (based on Eric Meyer's) */
-
+/* Targeted CSS Reset (based on Eric Meyer's)  */
+/*
 #fiveruns-tuneup, #fiveruns-tuneup div, #fiveruns-tuneup span,
 #fiveruns-tuneup h3, #fiveruns-tuneup h4, #fiveruns-tuneup h5,
 #fiveruns-tuneup h6, #fiveruns-tuneup p, #fiveruns-tuneup blockquote, #fiveruns-tuneup pre,
@@ -13,31 +13,32 @@
 #fiveruns-tuneup fieldset, #fiveruns-tuneup form, #fiveruns-tuneup label, #fiveruns-tuneup legend,
 #fiveruns-tuneup table, #fiveruns-tuneup caption, #fiveruns-tuneup tbody, #fiveruns-tuneup tfoot, #fiveruns-tuneup thead,
 #fiveruns-tuneup tr, #fiveruns-tuneup th, #fiveruns-tuneup td {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-weight: inherit;
-	font-style: inherit;
-	font-size: 100%;
-	line-height: 1;
-	font-family: inherit;
-	text-align: left;
-	vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  line-height: 1;
+  font-family: inherit;
+  text-align: left;
+  vertical-align: baseline;
 }
 #fiveruns-tuneup a img, #fiveruns-tuneup :link img, #fiveruns-tuneup :visited img {
-	border: 0;
+  border: 0;
 }
 #fiveruns-tuneup table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 #fiveruns-tuneup ol, #fiveruns-tuneup ul {
-	list-style: none;
+  list-style: none;
 }
 #fiveruns-tuneup q:before, #fiveruns-tuneup q:after,
 #fiveruns-tuneup blockquote:before, #fiveruns-tuneup blockquote:after {
-	content: "";
+  content: "";
 }
+*/
 
 /* Styling */
 #fiveruns-tuneup { 
@@ -45,9 +46,37 @@
   font-family: "Helvetica Neue", "Lucida Grande", Calibri, Helvetica, Verdana, sans-serif;
 }
 #fiveruns-tuneup h3 { font-weight: bold; font-size: 16px; line-height: 55px; color: black; vertical-align: middle; text-align: left; float: left;}
-#fiveruns-tuneup-content { margin-left: 70px; color: #000; height: 55px; vertical-align: middle; text-align: left; }
+#fiveruns-tuneup-content { margin-left: 80px; color: #000; height: 55px; vertical-align: middle; text-align: left; }
 #fiveruns-tuneup label { display: inline; font-size: 13px; font-weight: normal; color: #666; padding: 2px 2px; }
 #fiveruns-tuneup label, #fiveruns-tuneup button { margin: 0 6px 0 20px; }
-#fiveruns-tuneup form p { line-height: 55px; vertical-align: middle; padding: 0; }
+#fiveruns-tuneup-content p { height: 55px; line-height: 55px; vertical-align: middle; padding: 0; display: inline; }
 #fiveruns-tuneup .small { font-size: 10px; color: #666; padding: 0 8px 0 8px;}
-#fiveruns
+
+#fiveruns-tuneup-bar { float: right; margin: 4px; margin-left: 10px; height: 10px; background: red; width: 100px; }
+#fiveruns-tuneup-summary { position: absolute; top: 10px; right: 10px; padding: 9px; margin: 3px; text-align: center; z-index: 11000; color: #555; }
+#fiveruns-tuneup-data:hover #fiveruns-tuneup-summary {
+  top: 7px;
+  right: 7px;
+  border: 3px #829BAF solid;
+  border-bottom: 0px;
+  background: #f0f4fd;
+}
+#fiveruns-tuneup-details { display: none; position: absolute; top: 46px; right: 10px; padding: 9px; margin: 3px; text-align: right; z-index: 10999;}
+#fiveruns-tuneup-data:hover #fiveruns-tuneup-details {
+  display: block;
+  top: 43px;
+  right: 7px;
+  background: #f0f4fd;
+  border: 3px #829BAF solid;
+  width: 300px;
+}
+#fiveruns-tuneup-details p { line-height: 1; }
+#fiveruns-tuneup-shade { display: none; position: absolute; top: 55px; left: 0px; width: 100%; height: 100%; opacity: 0.9; background: #000; z-index: 10998; }
+#fiveruns-tuneup-data:hover #fiveruns-tuneup-shade { display: block; }
+/*
+#fiveruns-tuneup-data:hover
+  #fiveruns-tuneup-details { display: block; border: 3px #829BAF solid; background: #f0f4fd; }
+
+
+
+*/
