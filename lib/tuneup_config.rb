@@ -22,4 +22,8 @@ class TuneupConfig
     File.join(RAILS_ROOT, 'config', 'fiveruns_tuneup.yml')
   end
   
+  def state
+    data['api_key'] ? :registered : :unregistered
+  end
+  
 end

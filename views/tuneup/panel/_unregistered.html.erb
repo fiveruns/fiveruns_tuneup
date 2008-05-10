@@ -1,0 +1,17 @@
+<% form_tag tuneup_signin_url do %>
+  <p>
+    <label for='email'>Email</label>
+    <%= text_field_tag :email, nil, :size => 20 %>
+  
+    <label for='password'>Password</label>
+    <%= password_field_tag %>
+  
+    <%# TODO: Pretty button %>
+    <button><%= image_tag 'fiveruns-tuneup-signin.gif', :alt => 'Sign In' %></button>
+  
+    <span class='small'>&mdash;&nbsp;or&nbsp;&mdash;</span>
+  
+    <%= link_to "Sign Up for an Account", tuneup_signup_url %>
+  </p>
+  
+<% end %>

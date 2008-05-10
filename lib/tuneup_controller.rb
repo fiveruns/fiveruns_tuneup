@@ -3,12 +3,11 @@ require 'ostruct'
 class TuneupController < ActionController::Base
     
   before_filter :find_config, :except => :index
-    
-  def index
-    redirect_to :action => 'show'
-  end
   
   def show
+    render :update do |page|
+      page['fiveruns-tuneup-content'].replace_html(render :partial => "tuneup/panel/#{@config.state}")
+    end
   end
   
   def edit
