@@ -24,4 +24,33 @@ module TuneupHelper
     Fiveruns::Tuneup.collecting
   end
   
+  def tuneup_data
+    Fiveruns::Tuneup.data
+  end
+  
+  def tuneup_step_link(step)
+    if step.file
+      link_to step.name, "txmt://open?url=file://#{CGI.escape step.file}&line=#{step.line}"
+    else
+      step.name
+    end
+  end
+  
+  def tuneup_bars
+    bars = Fiveruns::Tuneup::Step.layers.map do |layer|
+      size = (Fiveruns::Tuneup.data.percentages_by_layer[layer] * 200).to_i
+      next if size == 0
+      content_tag(:li, layer.to_s[0, 1].capitalize,
+        :id => "fiveruns-tuneup-bar-#{layer}",
+        :style => "width:#{size}px" )
+    end
+    bars.compact.join
+  end
+  
+  def tuneup_step_bar(step)
+    size = (step.time / tuneup_data.time * 400).to_i
+    margin = 400 - size
+    content_tag(:div, '', :class => "bar #{step.layer}", :style => "width:#{size}px;margin-right:#{margin}px")
+  end
+  
 end

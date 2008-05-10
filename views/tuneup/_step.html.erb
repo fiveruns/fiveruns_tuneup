@@ -1,0 +1,9 @@
+<li>
+  <%= tuneup_step_bar(step) %>
+  <h4><span><%= (step.time * 1000).to_i %> ms</span><%= tuneup_step_link step %></h4>
+  <% if step.children.any? %>  
+    <ul>
+      <%= render :partial => 'step', :collection => step.children %>
+    </ul>
+  <% end %>
+</li>
