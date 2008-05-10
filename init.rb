@@ -5,3 +5,5 @@ Dispatcher.to_prepare :tuneup_route do
 end
 ActionView::Base.send(:include, TuneupHelper)
 ActionController::Base.view_paths << File.join(directory, 'views')
+
+Fiveruns::Tuneup.start
