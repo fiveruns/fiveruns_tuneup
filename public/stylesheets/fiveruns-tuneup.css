@@ -91,33 +91,38 @@
 #fiveruns-tuneup-details .bar.view { background-color: #38D023; }
 #fiveruns-tuneup-details .bar.controller { background-color: #3388D5; }
 
+#fiveruns-tuneup #fiveruns-tuneup-details li.fiveruns_tuneup_step { padding-left: 12px; }
+#fiveruns-tuneup #fiveruns-tuneup-details li.fiveruns_tuneup_step.with-children {  background: url(/images/fiveruns-tuneup-arrows.gif) top left no-repeat;}
+#fiveruns-tuneup #fiveruns-tuneup-details li.fiveruns_tuneup_step.with-children.tuneup-opened { background: url(/images/fiveruns-tuneup-arrows.gif) 0 -20px no-repeat; }
 
 #fiveruns-tuneup-details ul { margin: 0; padding: 0; }
-#fiveruns-tuneup-details ul span.time { margin-right: 10px; }
+#fiveruns-tuneup-details ul span.time { margin-right: 12px; }
 
-#fiveruns-tuneup-details ul ul { padding-left: 10px; background: #E4ECFF; }
-#fiveruns-tuneup-details ul ul span.time { margin-right: 20px; }
-#fiveruns-tuneup-details ul ul dd { margin-left: 400px; }
+#fiveruns-tuneup li .children { display: none; }
+
+#fiveruns-tuneup-details ul ul { background: #E4ECFF; }
+#fiveruns-tuneup-details ul ul span.time { margin-right: 22px; }
+#fiveruns-tuneup-details ul ul dd { margin-left: 398px; }
 
 
 #fiveruns-tuneup-details ul ul ul { background: #CFDEFF;}
-#fiveruns-tuneup-details ul ul ul span.time { margin-right: 30px; }
-#fiveruns-tuneup-details ul ul ul dd { margin-left: 390px; }
+#fiveruns-tuneup-details ul ul ul span.time { margin-right: 32px; }
+#fiveruns-tuneup-details ul ul ul dd { margin-left: 386px; }
 
 
 #fiveruns-tuneup-details ul ul ul ul { background: #BDD1FD;}
-#fiveruns-tuneup-details ul ul ul ul span.time { margin-right: 40px; }
-#fiveruns-tuneup-details ul ul ul ul dd { margin-left: 380px; }
+#fiveruns-tuneup-details ul ul ul ul span.time { margin-right: 42px; }
+#fiveruns-tuneup-details ul ul ul ul dd { margin-left: 374px; }
 
 
 #fiveruns-tuneup-details ul ul ul ul ul { background: #A4BDF3;}
-#fiveruns-tuneup-details ul ul ul ul ul span.time { margin-right: 50px; }
-#fiveruns-tuneup-details ul ul ul ul ul dd { margin-left: 370px; }
+#fiveruns-tuneup-details ul ul ul ul ul span.time { margin-right: 52px; }
+#fiveruns-tuneup-details ul ul ul ul ul dd { margin-left: 362px; }
 
 
 #fiveruns-tuneup-details ul ul ul ul ul ul { background: #83A1E4;}
-#fiveruns-tuneup-details ul ul ul ul ul ul span.time { margin-right: 60px; }
-#fiveruns-tuneup-details ul ul ul ul ul ul dd { margin-left: 360px; }
+#fiveruns-tuneup-details ul ul ul ul ul ul span.time { margin-right: 62px; }
+#fiveruns-tuneup-details ul ul ul ul ul ul dd { margin-left: 350px; }
 
 
 /* Threshold */

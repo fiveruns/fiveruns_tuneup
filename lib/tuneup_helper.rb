@@ -24,6 +24,15 @@ module TuneupHelper
     Fiveruns::Tuneup.recording?
   end
   
+  def tuneup_css_class_for_step(step)
+    returning [] do |classes|
+      if step.children.any?
+        classes << 'with-children'
+        classes << 'tuneup-opened' if step.depth == 1
+      end
+    end.join(' ')
+  end
+  
   def tuneup_collecting?
     Fiveruns::Tuneup.collecting
   end
@@ -33,11 +42,7 @@ module TuneupHelper
   end
   
   def tuneup_step_link(step)
-    if step.file && RUBY_PLATFORM.include?('darwin')
-      link_to tuneup_style_step_name(tuneup_truncate_step_name(step)), "txmt://open?url=file://#{CGI.escape step.file}&line=#{step.line}"
-    else
-      tuneup_style_step_name(tuneup_truncate_step_name(step))
-    end
+    link_to_function tuneup_style_step_name(tuneup_truncate_step_name(step)), "$('#{dom_id(step, :children)}').toggle();$('#{dom_id(step)}').toggleClassName('tuneup-opened');"
   end
   
   def tuneup_truncate_step_name(step)
