@@ -1,11 +1,11 @@
 <div id='fiveruns-tuneup-panel'>
-  <% if tuneup_collecting? %>
+  <% if !tuneup_data.blank? %>
     <div id='fiveruns-tuneup-data'>
       <div id='fiveruns-tuneup-summary'>
         <ul id='fiveruns-tuneup-bar'>
           <%= tuneup_bars %>
         </ul>
-        <%= pluralize(tuneup_data.size, 'step') %> / <%= (tuneup_data.time * 1000).to_i %> ms
+        <%= pluralize(tuneup_data.size, 'step') %> / <%= tuneup_data.time.to_i %> ms
       </div>
       <div id='fiveruns-tuneup-details'>
         <ul>

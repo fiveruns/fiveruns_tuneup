@@ -74,11 +74,11 @@
 #fiveruns-tuneup-details p { line-height: 1; }
 #fiveruns-tuneup-shade { display: none; position: absolute; top: 55px; left: 0px; width: 100%; height: 100%; opacity: 0.6; background: #fff; z-index: 10998; }
 #fiveruns-tuneup-data:hover #fiveruns-tuneup-shade { display: block; }
-#fiveruns-tuneup-details li { height: 30px; line-height: 30px; vertical-align: middle; }
+#fiveruns-tuneup-details li { }
 #fiveruns-tuneup-details .bar {
   float: right;
   margin-left: 20px;
-  height: 20px;
+  height: 15px;
   padding: 0;
   margin: 0;
   background-image: url(/images/fiveruns-tuneup-fade.png);

@@ -8,14 +8,14 @@ module Fiveruns
               Fiveruns::Tuneup.instrument base, InstanceMethods
             end
             module InstanceMethods
-              def write_fragment_with_fiveruns_manage(*args, &block)
-                Fiveruns::Tuneup.tally :frag_caches do
-                  write_fragment_without_fiveruns_manage(*args, &block)
+              def write_fragment_with_fiveruns_tuneup(*args, &block)
+                Fiveruns::Tuneup.step "Caching: write fragment", :controller do
+                  write_fragment_without_fiveruns_tuneup(*args, &block)
                 end
               end
-              def expire_fragment_with_fiveruns_manage(*args, &block)
-                Fiveruns::Tuneup.tally :frag_expires do
-                  expire_fragment_without_fiveruns_manage(*args, &block)
+              def expire_fragment_with_fiveruns_tuneup(*args, &block)
+                Fiveruns::Tuneup.step "Caching: expire fragment", :controller do
+                  expire_fragment_without_fiveruns_tuneup(*args, &block)
                 end
               end
             end

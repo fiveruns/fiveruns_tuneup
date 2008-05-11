@@ -1,12 +1,28 @@
+require File.dirname(__FILE__) << "/tuneup/step"
+
 module Fiveruns
   module Tuneup
     
     class << self
       
       attr_accessor :collecting
+      attr_accessor :running
+      
+      def run(allow=true)
+        @running = allow
+        Fiveruns::Tuneup.log :info, "Recording: #{recording?} (collecting: #{@collecting})"
+        clear if recording?
+        result = yield
+        @running = false
+        result
+      end
+      
+      def recording?
+        @running && @collecting
+      end
       
       def data
-        @data ||= RootStep.new
+        @data ||= Fiveruns::Tuneup::RootStep.new
       end
       
       def stack
@@ -22,14 +38,24 @@ module Fiveruns
         install_instrumentation
       end
       
-      def step(*args)
-        returning Step.new(*args, &block) do |s|
-          stack.last << s
-          if block_given?
+      def stopwatch
+        start = Time.now.to_f
+        yield
+        (Time.now.to_f - start) * 1000
+      end
+      
+      def step(name, layer=nil, &block)
+        if recording?
+          result = nil
+          returning ::Fiveruns::Tuneup::Step.new(name, layer, &block) do |s|
+            stack.last << s
             stack << s
-            yield
+            s.time = stopwatch { result = yield }
             stack.pop
           end
+          result
+        else
+          yield
         end
       end
 
@@ -65,6 +91,7 @@ module Fiveruns
           constant_name = path_to_constant_name(constant_path)
           if (constant = constant_name.constantize rescue nil)
             instrumentation = "Fiveruns::Tuneup::Instrumentation::#{constant_name}".constantize
+            log :info, "Instrumenting #{constant_name}"
             constant.__send__(:include, instrumentation)
           else
             log :debug, "#{constant_name} not found; skipping instrumentation."

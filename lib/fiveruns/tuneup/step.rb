@@ -3,18 +3,18 @@ module Fiveruns
     
     class RootStep
       
-      delegate :<<, :to => :children
+      delegate :<<, :blank?, :to => :children
       
       def self.layers
         [:model, :view, :controller]
       end
       
       def time
-        children.map(&:time).sum
+        children.map(&:time).sum || 0
       end
       
       def size
-        children.map(&:size).sum
+        children.map(&:size).sum || 0
       end
       
       def children
@@ -25,7 +25,9 @@ module Fiveruns
           map[layer] = if children.empty?
             0
           else
-            (children.map { |c| c.layer == layer ? c.time : 0}.sum / children.map(&:time).sum.to_f)
+            these = children.map { |c| c.layer == layer ? c.time : 0}.sum || 0
+            all = children.map(&:time).sum || 0
+            all == 0 ? 0 : (these / all.to_f)
           end
           map
         end
@@ -35,13 +37,17 @@ module Fiveruns
     
     class Step < RootStep
       
-      attr_reader :name, :layer, :time, :file, :line
-      def initialize(name, layer, time, file=nil, line=nil)
+      attr_reader :name, :layer, :file, :line
+      attr_writer :time
+      def initialize(name, layer=nil, file=nil, line=nil)
         @name = name
         @layer = layer
-        @time = time
         @file = file
         @line = line
+      end
+      
+      def time
+        @time || 0
       end
             
       def size

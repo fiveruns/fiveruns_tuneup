@@ -20,6 +20,10 @@ module TuneupHelper
     link_to_remote "Turn #{state.to_s.titleize}", :url => "/tuneup/#{state}"
   end
   
+  def tuneup_recording?
+    Fiveruns::Tuneup.recording?
+  end
+  
   def tuneup_collecting?
     Fiveruns::Tuneup.collecting
   end
