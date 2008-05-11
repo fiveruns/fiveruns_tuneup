@@ -51,10 +51,13 @@ module Fiveruns
         (Time.now.to_f - start) * 1000
       end
       
-      def step(name, layer=nil, &block)
+      def step(name, layer=nil, link=true, &block)
         if recording?
           result = nil
-          returning ::Fiveruns::Tuneup::Step.new(name, layer, &block) do |s|
+          caller_line = caller.detect { |l| l.include?(RAILS_ROOT) && l !~ /tuneup|vendor\/rails/ } if link
+          file, line = caller_line ? caller_line.split(':')[0, 2] : [nil, nil]
+          line = line.to_i if line
+          returning ::Fiveruns::Tuneup::Step.new(name, layer, file, line, &block) do |s|
             stack.last << s
             stack << s
             s.time = stopwatch { result = yield }

@@ -3,14 +3,23 @@ module Fiveruns
     
     class RootStep
       
-      delegate :<<, :blank?, :to => :children
-      
+      delegate :blank?, :to => :children
+            
       def self.layers
         [:model, :view, :controller]
       end
       
       def time
         children.map(&:time).sum || 0
+      end
+      
+      def depth
+        @depth ||= 0
+      end
+      
+      def <<(child)
+        child.depth = depth + 1
+        children << child
       end
       
       def size
@@ -49,7 +58,7 @@ module Fiveruns
     class Step < RootStep
       
       attr_reader :name, :layer, :file, :line
-      attr_writer :time
+      attr_writer :time, :depth
       def initialize(name, layer=nil, file=nil, line=nil)
         @name = name
         @layer = layer

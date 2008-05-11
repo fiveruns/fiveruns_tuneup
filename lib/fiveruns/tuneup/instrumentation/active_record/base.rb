@@ -4,8 +4,8 @@ module Fiveruns
       module ActiveRecord
         module Base
           
-          def self.record(event, model, &operation)
-            Fiveruns::Tuneup.step("Model #{event.to_s.titleize}: #{model}", :model, &operation)
+          def self.record(name, &operation)
+            Fiveruns::Tuneup.step(name, :model, &operation)
           end
           
           def self.included(base)
@@ -19,12 +19,12 @@ module Fiveruns
             #
             
             def find_with_fiveruns_tuneup(*args, &block)
-              Fiveruns::Tuneup::Instrumentation::ActiveRecord::Base.record :find,  self do
+              Fiveruns::Tuneup::Instrumentation::ActiveRecord::Base.record "Find #{self.name}" do
                 find_without_fiveruns_tuneup(*args, &block)
               end
             end
             def find_by_sql_with_fiveruns_tuneup(*args, &block)
-              Fiveruns::Tuneup::Instrumentation::ActiveRecord::Base.record :find_by_sql, self do
+              Fiveruns::Tuneup::Instrumentation::ActiveRecord::Base.record "Find #{self.name} by SQL" do
                 find_by_sql_without_fiveruns_tuneup(*args, &block)
               end
             end
@@ -34,7 +34,7 @@ module Fiveruns
             #
             
             def create_with_fiveruns_tuneup(*args, &block)
-              Fiveruns::Tuneup::Instrumentation::ActiveRecord::Base.record :create, self do
+              Fiveruns::Tuneup::Instrumentation::ActiveRecord::Base.record "Create #{self.name}" do
                 create_without_fiveruns_tuneup(*args, &block)
               end
             end
@@ -44,12 +44,12 @@ module Fiveruns
             #
             
             def update_with_fiveruns_tuneup(*args, &block)
-              Fiveruns::Tuneup::Instrumentation::ActiveRecord::Base.record :update, self do
+              Fiveruns::Tuneup::Instrumentation::ActiveRecord::Base.record "Update #{self.name}" do
                 update_without_fiveruns_tuneup(*args, &block)
               end
             end
             def update_all_with_fiveruns_tuneup(*args, &block)
-              Fiveruns::Tuneup::Instrumentation::ActiveRecord::Base.record :update, self do
+              Fiveruns::Tuneup::Instrumentation::ActiveRecord::Base.record "Update #{self.name}" do
                 update_all_without_fiveruns_tuneup(*args, &block)
               end
             end
@@ -59,22 +59,22 @@ module Fiveruns
             #
             
             def destroy_with_fiveruns_tuneup(*args, &block)
-              Fiveruns::Tuneup::Instrumentation::ActiveRecord::Base.record :delete, self do
+              Fiveruns::Tuneup::Instrumentation::ActiveRecord::Base.record "Delete #{self.name}" do
                 destroy_without_fiveruns_tuneup(*args, &block)
               end
             end
             def destroy_all_with_fiveruns_tuneup(*args, &block)
-              Fiveruns::Tuneup::Instrumentation::ActiveRecord::Base.record :delete, self do
+              Fiveruns::Tuneup::Instrumentation::ActiveRecord::Base.record "Delete #{self.name}" do
                 destroy_all_without_fiveruns_tuneup(*args, &block)
               end
             end
             def delete_with_fiveruns_tuneup(*args, &block)
-              Fiveruns::Tuneup::Instrumentation::ActiveRecord::Base.record :delete, self do
+              Fiveruns::Tuneup::Instrumentation::ActiveRecord::Base.record "Delete #{self.name}" do
                 delete_without_fiveruns_tuneup(*args, &block)
               end
             end
             def delete_all_with_fiveruns_tuneup(*args, &block)
-              Fiveruns::Tuneup::Instrumentation::ActiveRecord::Base.record :delete, self do
+              Fiveruns::Tuneup::Instrumentation::ActiveRecord::Base.record "Delete #{self.name}" do
                 delete_all_without_fiveruns_tuneup(*args, &block)
               end
             end
@@ -86,17 +86,17 @@ module Fiveruns
             #
             
             def update_with_fiveruns_tuneup(*args, &block)
-              Fiveruns::Tuneup::Instrumentation::ActiveRecord::Base.record :update, self.class do
+              Fiveruns::Tuneup::Instrumentation::ActiveRecord::Base.record "Update #{self.class.name}" do
                 update_without_fiveruns_tuneup(*args, &block)
               end
             end
             def save_with_fiveruns_tuneup(*args, &block)
-              Fiveruns::Tuneup::Instrumentation::ActiveRecord::Base.record :update, self.class do
+              Fiveruns::Tuneup::Instrumentation::ActiveRecord::Base.record "Update #{self.class.name}" do
                 save_without_fiveruns_tuneup(*args, &block)
               end
             end
             def save_with_fiveruns_tuneup!(*args, &block)
-              Fiveruns::Tuneup::Instrumentation::ActiveRecord::Base.record :update, self.class do
+              Fiveruns::Tuneup::Instrumentation::ActiveRecord::Base.record "Update #{self.class.name}" do
                 save_without_fiveruns_tuneup!(*args, &block)
               end
             end
@@ -106,7 +106,7 @@ module Fiveruns
             #
             
             def destroy_with_fiveruns_tuneup(*args, &block)
-              Fiveruns::Tuneup::Instrumentation::ActiveRecord::Base.record :delete, self.class do
+              Fiveruns::Tuneup::Instrumentation::ActiveRecord::Base.record "Delete #{self.class.name}" do
                 destroy_without_fiveruns_tuneup(*args, &block)
               end
             end

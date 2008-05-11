@@ -9,12 +9,12 @@ module Fiveruns
             end
             module InstanceMethods
               def write_fragment_with_fiveruns_tuneup(*args, &block)
-                Fiveruns::Tuneup.step "Caching: write fragment", :controller do
+                Fiveruns::Tuneup.step "Cache fragment", :controller do
                   write_fragment_without_fiveruns_tuneup(*args, &block)
                 end
               end
               def expire_fragment_with_fiveruns_tuneup(*args, &block)
-                Fiveruns::Tuneup.step "Caching: expire fragment", :controller do
+                Fiveruns::Tuneup.step "Expire fragment cache", :controller do
                   expire_fragment_without_fiveruns_tuneup(*args, &block)
                 end
               end

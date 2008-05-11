@@ -14,22 +14,6 @@
   background: none;
   text-transform: none;
 }
-/*
-#fiveruns-tuneup a img, #fiveruns-tuneup :link img, #fiveruns-tuneup :visited img {
-  border: 0;
-}
-#fiveruns-tuneup table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-#fiveruns-tuneup ol, #fiveruns-tuneup ul {
-  list-style: none;
-}
-#fiveruns-tuneup q:before, #fiveruns-tuneup q:after,
-#fiveruns-tuneup blockquote:before, #fiveruns-tuneup blockquote:after {
-  content: "";
-}
-*/
 
 /* Styling */
 #fiveruns-tuneup { 
@@ -40,7 +24,7 @@
 #fiveruns-tuneup-content { margin-left: 80px; color: #000; height: 55px; vertical-align: middle; text-align: left; }
 #fiveruns-tuneup label { display: inline; font-size: 13px; font-weight: normal; color: #666; padding: 2px 2px; }
 #fiveruns-tuneup label, #fiveruns-tuneup button { margin: 0 6px 0 20px; }
-#fiveruns-tuneup #fiveruns-tuneup-content p { height: 55px; line-height: 55px; vertical-align: middle; padding: 0; display: inline; }
+#fiveruns-tuneup #fiveruns-tuneup-content p.full { height: 55px; line-height: 55px; vertical-align: middle; padding: 0; display: inline; }
 #fiveruns-tuneup .small { font-size: 10px; color: #666; padding: 0 8px 0 8px;}
 
 #fiveruns-tuneup-bar { float: right; margin: 0 4px; margin-left: 10px; height: 15px; list-style: none; }
@@ -71,15 +55,31 @@
   border: 3px #829BAF solid;
   min-width: 300px;
 }
-#fiveruns-tuneup-details p { line-height: 1; }
 #fiveruns-tuneup-shade { display: none; position: absolute; top: 55px; left: 0px; width: 100%; height: 100%; opacity: 0.6; background: #fff; z-index: 10998; }
 #fiveruns-tuneup-data:hover #fiveruns-tuneup-shade { display: block; }
-#fiveruns-tuneup-details li { line-height: 30px; vertical-align: middle; }
-#fiveruns-tuneup-details .bar {
-  float: right;
-  margin-left: 20px;
+
+#fiveruns-tuneup-details ul dl { margin: 0; padding: 0; }
+#fiveruns-tuneup-details ul dt { float: left; width: 400px; overflow: hidden; height: 20px; margin: 0 10px 0 0; padding: 0; color: #555; font-size: 12px; text-transform: none; font-weight: inherit;}
+#fiveruns-tuneup-details ul dt p { }
+#fiveruns-tuneup-details ul dt strong { color: #000; }
+#fiveruns-tuneup-details ul dt span.time { float: right; text-transform: none; font-size: 11px; font-weight: normal; }
+
+#fiveruns-tuneup-details ul dd {
+  margin-left: 410px;
+}
+#fiveruns-tuneup-details ul dt a, #fiveruns-tuneup-details ul dt a:active, #fiveruns-tuneup-details ul dt a:visited {
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  text-decoration: none;
+  text-align: left;
+  position: inherit;
+}
+
+#fiveruns-tuneup-details ul dd .bar {
   height: 20px;
-  line-height: 30px; vertical-align: middle; 
+  line-height: 20px;
+  vertical-align: middle; 
   padding: 0;
   margin: 0;
   background-image: url(/images/fiveruns-tuneup-fade.png);
@@ -87,20 +87,41 @@
   background-repeat: repeat-x;
   border: 1px #fff solid;
 }
-#fiveruns-tuneup-details ul { margin: 0; padding: 0; }
-#fiveruns-tuneup-details ul ul { background: #E4ECFF; }
-#fiveruns-tuneup-details ul ul ul { background: #CFDEFF;}
-#fiveruns-tuneup-details ul ul ul ul { background: #BDD1FD;}
-#fiveruns-tuneup-details ul ul ul ul ul { background: #A4BDF3;}
-#fiveruns-tuneup-details ul ul ul ul ul ul { background: #83A1E4;}
-
-#fiveruns-tuneup h4 { font-size: 12px; color: #666; display: inline; }
-#fiveruns-tuneup h4 span { float: right; text-transform: none; margin-left: 20px; }
-
-/* TODO: Depth threshold */
-
-.tuneup-step-name, .tuneup-step-time { color: #555; font-size: 12px; }
-
 #fiveruns-tuneup-details .bar.model { background-color: #FF9800; }
 #fiveruns-tuneup-details .bar.view { background-color: #38D023; }
 #fiveruns-tuneup-details .bar.controller { background-color: #3388D5; }
+
+
+#fiveruns-tuneup-details ul { margin: 0; padding: 0; }
+#fiveruns-tuneup-details ul span.time { margin-right: 10px; }
+
+#fiveruns-tuneup-details ul ul { padding-left: 10px; background: #E4ECFF; }
+#fiveruns-tuneup-details ul ul span.time { margin-right: 20px; }
+#fiveruns-tuneup-details ul ul dd { margin-left: 400px; }
+
+
+#fiveruns-tuneup-details ul ul ul { background: #CFDEFF;}
+#fiveruns-tuneup-details ul ul ul span.time { margin-right: 30px; }
+#fiveruns-tuneup-details ul ul ul dd { margin-left: 390px; }
+
+
+#fiveruns-tuneup-details ul ul ul ul { background: #BDD1FD;}
+#fiveruns-tuneup-details ul ul ul ul span.time { margin-right: 40px; }
+#fiveruns-tuneup-details ul ul ul ul dd { margin-left: 380px; }
+
+
+#fiveruns-tuneup-details ul ul ul ul ul { background: #A4BDF3;}
+#fiveruns-tuneup-details ul ul ul ul ul span.time { margin-right: 50px; }
+#fiveruns-tuneup-details ul ul ul ul ul dd { margin-left: 370px; }
+
+
+#fiveruns-tuneup-details ul ul ul ul ul ul { background: #83A1E4;}
+#fiveruns-tuneup-details ul ul ul ul ul ul span.time { margin-right: 60px; }
+#fiveruns-tuneup-details ul ul ul ul ul ul dd { margin-left: 360px; }
+
+
+/* Threshold */
+#fiveruns-tuneup-details ul ul ul ul ul ul ul { display: none; }
+
+
+

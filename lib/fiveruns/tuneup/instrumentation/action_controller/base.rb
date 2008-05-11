@@ -10,7 +10,7 @@ module Fiveruns
             def process_with_fiveruns_tuneup(request, *args, &block)
               Fiveruns::Tuneup.run(self.class != TuneupController) do
                 action = (request.parameters['action'] || 'index').to_s
-                Fiveruns::Tuneup.step "Action: #{self.class.name}##{action}", :controller do
+                Fiveruns::Tuneup.step "#{action.capitalize} action in #{self.class.name}", :controller, false do
                   process_without_fiveruns_tuneup(request, *args, &block) 
                 end
               end

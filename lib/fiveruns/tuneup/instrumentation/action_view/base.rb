@@ -26,14 +26,14 @@ module Fiveruns
           module InstanceMethods
             def render_file_with_fiveruns_tuneup(path, *args, &block)
               name = Fiveruns::Tuneup::Instrumentation::ActionView::Base.normalize_path(path)
-              Fiveruns::Tuneup.step "Render: #{name}", :view do
+              Fiveruns::Tuneup.step "Render file #{name}", :view do
                 render_file_without_fiveruns_tuneup(path, *args, &block)
               end
             end
             def update_page_with_fiveruns_tuneup(*args, &block)
-              path = block.to_s.split('/').last.split(':').first rescue '(:update)'
+              path = block.to_s.split('/').last.split(':').first rescue ''
               name = Fiveruns::Tuneup::Instrumentation::ActionView::Base.normalize_path(path)
-              Fiveruns::Tuneup.step "Render: #{name}", :view do
+              Fiveruns::Tuneup.step "Render page update #{name}", :view do
                 update_page_without_fiveruns_tuneup(*args, &block)
               end
             end
@@ -42,23 +42,23 @@ module Fiveruns
               options = args.first || {}
               path = case options
               when String
-                "Render: #{options}"
+                "Render #{options}"
               when :update
-                name = block.to_s.split('/').last.split(':').first rescue '(:update)'
-                "Render: #{name}"
+                name = block.to_s.split('/').last.split(':').first rescue ''
+                "Render page update #{name}"
               when Hash
                 if options[:file]
-                  "Render: #{options[:file]}"
+                  "Render #{options[:file]}"
                 elsif options[:partial]
                   # Don't record this as it causes duplicate records
                   record = false
                 elsif options[:inline]
-                  "Render: (:inline)"
+                  "Render inline"
                 elsif options[:text]
-                  "Render: (:text)"
+                  "Render text"
                 end
               end
-              path ||= 'Render: (unknown)'
+              path ||= 'Render'
               
               if record
                 Fiveruns::Tuneup.step path, :view do

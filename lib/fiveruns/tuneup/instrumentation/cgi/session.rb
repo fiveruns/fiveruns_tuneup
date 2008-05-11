@@ -8,17 +8,17 @@ module Fiveruns
           end
           module InstanceMethods
             def initialize_with_fiveruns_tuneup(*args, &block)
-              Fiveruns::Tuneup.step "Session: create" do
+              Fiveruns::Tuneup.step "Create session" do
                 initialize_without_fiveruns_tuneup(*args, &block)
               end
             end
             def close_with_fiveruns_tuneup(*args, &block)
-              Fiveruns::Tuneup.step "Session:close" do
+              Fiveruns::Tuneup.step "Close session" do
                 close_without_fiveruns_tuneup(*args, &block)
               end
             end
             def delete_with_fiveruns_tuneup(*args, &block)
-              Fiveruns::Tuneup.step "Session: delete" do
+              Fiveruns::Tuneup.step "Delete session" do
                 delete_without_fiveruns_tuneup(*args, &block)
               end
             end

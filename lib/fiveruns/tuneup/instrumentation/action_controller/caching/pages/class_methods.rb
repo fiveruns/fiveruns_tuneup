@@ -10,12 +10,12 @@ module Fiveruns
               end
               module InstanceMethods
                 def cache_page_with_fiveruns_tuneup(*args, &block)
-                  Fiveruns::Tuneup.step "Caching: cache page", :controller do
+                  Fiveruns::Tuneup.step "Cache page", :controller do
                     cache_page_without_fiveruns_tuneup(*args, &block)
                   end
                 end
                 def expire_page_with_fiveruns_tuneup(*args, &block)
-                  Fiveruns::Tuneup.step "Caching: expire page", :controller do
+                  Fiveruns::Tuneup.step "Expire cached page", :controller do
                     expire_page_without_fiveruns_tuneup(*args, &block)
                   end
                 end

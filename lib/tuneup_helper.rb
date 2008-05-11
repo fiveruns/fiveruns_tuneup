@@ -33,11 +33,16 @@ module TuneupHelper
   end
   
   def tuneup_step_link(step)
-    if step.file
-      link_to step.name, "txmt://open?url=file://#{CGI.escape step.file}&line=#{step.line}"
+    if step.file && RUBY_PLATFORM.include?('darwin')
+      link_to tuneup_style_step_name(tuneup_truncate_step_name(step)), "txmt://open?url=file://#{CGI.escape step.file}&line=#{step.line}"
     else
-      step.name
+      tuneup_style_step_name(tuneup_truncate_step_name(step))
     end
+  end
+  
+  def tuneup_truncate_step_name(step)
+    chars = 50 - (step.depth * 2)
+    tuneup_truncate(step.name, chars)
   end
   
   def tuneup_bars
@@ -55,6 +60,29 @@ module TuneupHelper
     size = (step.time / tuneup_data.time * 400).to_i
     margin = 400 - size
     content_tag(:div, '', :class => "bar #{step.layer}", :style => "width:#{size}px;margin-right:#{margin}px")
+  end
+  
+  def tuneup_style_step_name(name)
+    case name
+    when /^(\S+) action in (\S+Controller)$/
+      "<strong>#{h $1}</strong> action in <strong>#{h $2}</strong>"
+    when /^(Find|Create|Delete|Update) ([A-Z]\S*)(.*?)$/
+      "#{h $1} <strong>#{h $2}</strong>#{h $3}"
+    when /^(Render.*?)(\S+)$/
+      "#{h $1}<strong>#{h $2}</strong>"
+    else
+      h(name)
+    end
+  end
+  
+  def tuneup_truncate(text, max=32)
+    if text.size > max
+      component = (max - 3) / 2
+      remainder = (max - 3) % 2
+      text.sub(/^(.{#{component}}).*?(.{#{component + remainder}})$/s, '\1...\2')
+    else
+      text
+    end
   end
   
 end
