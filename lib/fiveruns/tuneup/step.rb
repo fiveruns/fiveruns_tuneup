@@ -20,13 +20,24 @@ module Fiveruns
       def children
         @children ||= []
       end
+      
+      def leaves
+        @leaves ||= begin
+          if children.blank?
+            [self]
+          else
+            children.map(&:leaves).flatten
+          end
+        end
+      end
+      
       def percentages_by_layer
         @percentages_by_layer ||= self.class.layers.inject({}) do |map, layer|
-          map[layer] = if children.empty?
+          map[layer] = if leaves.empty?
             0
           else
-            these = children.map { |c| c.layer == layer ? c.time : 0}.sum || 0
-            all = children.map(&:time).sum || 0
+            these = leaves.map { |c| c.layer == layer ? c.time : 0}.sum || 0
+            all = leaves.map(&:time).sum || 0
             all == 0 ? 0 : (these / all.to_f)
           end
           map

@@ -5,7 +5,7 @@ module Fiveruns
         module Base
           
           def self.record(event, model, &operation)
-            Fiveruns::Tuneup.step("#{model}: #{event}", :model, &operation)
+            Fiveruns::Tuneup.step("Model #{event.to_s.titleize}: #{model}", :model, &operation)
           end
           
           def self.included(base)
@@ -24,7 +24,7 @@ module Fiveruns
               end
             end
             def find_by_sql_with_fiveruns_tuneup(*args, &block)
-              Fiveruns::Tuneup::Instrumentation::ActiveRecord::Base.record :find, self do
+              Fiveruns::Tuneup::Instrumentation::ActiveRecord::Base.record :find_by_sql, self do
                 find_by_sql_without_fiveruns_tuneup(*args, &block)
               end
             end

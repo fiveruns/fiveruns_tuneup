@@ -5,16 +5,23 @@ module Fiveruns
     
     class << self
       
-      attr_accessor :collecting
+      attr_writer :collecting
       attr_accessor :running
       
       def run(allow=true)
         @running = allow
-        Fiveruns::Tuneup.log :info, "Recording: #{recording?} (collecting: #{@collecting})"
         clear if recording?
         result = yield
         @running = false
         result
+      end
+      
+      def collecting
+        if defined?(@collecting)
+          @collecting
+        else
+          @collecting = true
+        end
       end
       
       def recording?
