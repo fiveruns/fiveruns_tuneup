@@ -6,13 +6,11 @@ module TuneupHelper
   end
   
   def tuneup_signin_url
-    # TODO: Collector URL during collector development, staging, etc
-    "https://tuneup-collector.fiveruns.com/session/new"
+    "#{Fiveruns::Tuneup.collector_url}/users"
   end
   
   def tuneup_signup_url
-    # TODO: Registration URL during development, staging, etc
-    "https://tuneup.fiveruns.com/signup"
+    "#{Fiveruns::Tuneup.frontend_url}/signup"
   end
   
   def tuneup_collection_link

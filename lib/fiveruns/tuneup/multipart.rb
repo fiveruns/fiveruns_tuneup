@@ -5,7 +5,7 @@ module Fiveruns
 
   module Tuneup
 
-    class Upload
+    class Multipart
     
       BOUNDARY_ROOT = 'B0UND~F0R~UPL0AD'
     

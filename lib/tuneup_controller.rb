@@ -18,7 +18,15 @@ class TuneupController < ActionController::Base
   end
   
   def upload
-    
+    uploaded = upload_last_run
+    render :update do |page|
+      # FIXME: Replace stubs
+      if uploaded
+        page.alert "STUB: Uploaded run"
+      else
+        page.alert "STUB: Could not upload run"
+      end
+    end
   end
   
   def on
@@ -40,6 +48,34 @@ class TuneupController < ActionController::Base
 
   def find_config
     @config = TuneupConfig.new
+  end
+  
+  #
+  # HTTP
+  #
+  
+  def upload_last_run
+    http = Net::HTTP.new(upload_uri.host, upload_uri.port)
+    resp = nil
+    File.open(Fiveruns::Tuneup.run_files.last, 'rb') do |file|
+      multipart = Fiveruns::Tuneup::Multipart.new(file, 'api_key' => @config['api_key'] )
+      Fiveruns::Tuneup.log :debug, multipart.to_s
+      resp = http.post(upload_uri.request_uri, multipart.to_s, "Content-Type" => multipart.content_type)
+    end
+    case resp.code
+    when 200..299
+      true
+    else
+      Fiveruns::Tuneup.log :error, resp.body
+      false
+    end
+  rescue Exception => e
+    Fiveruns::Tuneup.log :error, "Could not upload: #{e.message} #{e.backtrace[0,4].inspect}"
+    false
+  end
+  
+  def upload_uri
+    @upload_uri ||= URI.parse("#{Fiveruns::Tuneup.collector_url}/runs")
   end
   
 end

@@ -1,5 +1,8 @@
 require File.dirname(__FILE__) << "/tuneup/step"
 
+require 'yaml'
+require 'zlib'
+
 module Fiveruns
   module Tuneup
     
@@ -32,7 +35,7 @@ module Fiveruns
           @stack = [Fiveruns::Tuneup::RootStep.new]
         elsif !@running
           # Plugin displaying the data
-          if data = load_last_run
+          if data = last_run
             @stack = [data]
           else
             clear_stack
@@ -62,6 +65,8 @@ module Fiveruns
         log :info, "Starting..."
         reset!
         install_instrumentation
+        log :debug, "Using collector at #{collector_url}"
+        log :debug, "Using frontend at #{frontend_url}"
       end
       
       def stopwatch
@@ -113,6 +118,36 @@ module Fiveruns
         @run_dir ||= File.join(RAILS_ROOT, 'tmp', 'fiveruns_tuneup', 'runs')
       end
       
+      def last_run
+        filename = run_files.last
+        load_from_file(filename) if filename
+      end
+      
+      def load_from_file(filename)
+        decompressed = Zlib::Inflate.inflate(File.open(filename, 'rb') { |f| f.read })        
+        YAML.load(decompressed)
+      end
+      
+      def run_files
+        Dir[File.join(run_dir, '*.yml.gz')]
+      end
+      
+      def collector_url
+        @collector_url ||= begin
+          url = ENV['TUNEUP_COLLECTOR'] || 'http://tuneup-collector.fiveruns.com'
+          url = "http://#{url}" unless url =~ /^http/
+          url
+        end
+      end
+      
+      def frontend_url
+        @frontend_url ||= begin
+          url = ENV['TUNEUP_FRONTEND'] || 'https://tuneup.fiveruns.com'
+          url = "http://#{url}" unless url =~ /^http/
+          url
+        end
+      end
+      
       #######
       private
       #######
@@ -124,7 +159,6 @@ module Fiveruns
           constant_name = path_to_constant_name(constant_path)
           if (constant = constant_name.constantize rescue nil)
             instrumentation = "Fiveruns::Tuneup::Instrumentation::#{constant_name}".constantize
-            log :info, "Instrumenting #{constant_name}"
             constant.__send__(:include, instrumentation)
           else
             log :debug, "#{constant_name} not found; skipping instrumentation."
@@ -139,16 +173,12 @@ module Fiveruns
       
       def persist(data)
         FileUtils.mkdir_p run_dir
-        File.open(File.join(run_dir, "#{now}.dat"), 'wb') { |f| f.write Marshal.dump(data) }
+        compressed = Zlib::Deflate.deflate(data.to_yaml)        
+        File.open(File.join(run_dir, "#{now}.yml.gz"), 'wb') { |f| f.write compressed }
       end
       
       def now
         Time.now.to_f
-      end
-      
-      def load_last_run
-        filename = Dir[File.join(run_dir, '*.dat')].last
-        Marshal.load(File.open(filename, 'rb') { |f| f.read }) if filename
       end
       
     end
