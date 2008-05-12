@@ -82,7 +82,11 @@ module TuneupHelper
     if text.size > max
       component = (max - 3) / 2
       remainder = (max - 3) % 2
-      text.sub(/^(.{#{component}}).*?(.{#{component + remainder}})$/s, '\1...\2')
+      begin
+        text.sub(/^(.{#{component}}).*?(.{#{component + remainder}})$/s, '\1...\2')
+      rescue
+        text
+      end
     else
       text
     end

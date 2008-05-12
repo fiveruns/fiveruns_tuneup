@@ -10,3 +10,4 @@ Dir[File.dirname(__FILE__) << "/public/*"].each do |location|
     FileUtils.send(method, file, destination)
   end
 end
+TuneupConfig.new.save!
