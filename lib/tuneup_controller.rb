@@ -55,22 +55,23 @@ class TuneupController < ActionController::Base
   #
   
   def upload_last_run
+    p upload_uri
     http = Net::HTTP.new(upload_uri.host, upload_uri.port)
     resp = nil
     File.open(Fiveruns::Tuneup.run_files.last, 'rb') do |file|
       multipart = Fiveruns::Tuneup::Multipart.new(file, 'api_key' => @config['api_key'] )
-      Fiveruns::Tuneup.log :debug, multipart.to_s
+     # Fiveruns::Tuneup.log :debug, multipart.to_s
       resp = http.post(upload_uri.request_uri, multipart.to_s, "Content-Type" => multipart.content_type)
     end
-    case resp.code
+    case resp.code.to_i
     when 200..299
-      true
+      return true
     else
-      Fiveruns::Tuneup.log :error, resp.body
-      false
+      Fiveruns::Tuneup.log :error, resp.inspect #resp.body
+      return false
     end
   rescue Exception => e
-    Fiveruns::Tuneup.log :error, "Could not upload: #{e.message} #{e.backtrace[0,4].inspect}"
+    Fiveruns::Tuneup.log :error, "Could not upload: #{e.message} #{e.backtrace.inspect}"
     false
   end
   
