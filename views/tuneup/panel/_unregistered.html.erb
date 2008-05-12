@@ -1,4 +1,4 @@
-<% form_tag tuneup_signin_url do %>
+<% form_remote_tag :url => '/tuneup/signin' do %>
   <p class='full'>
     <label for='email'>Email</label>
     <%= text_field_tag :email, nil, :size => 20 %>

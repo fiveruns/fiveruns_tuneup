@@ -96,4 +96,10 @@ module TuneupHelper
     %[window.open("#{Fiveruns::Tuneup.frontend_url}/runs/#{token}", 'fiveruns_tuneup');]
   end
   
+  def tuneup_reload_panel
+    update_page do |page|
+      page['fiveruns-tuneup-content'].replace_html(render(:partial => "tuneup/panel/#{@config.state}"))
+    end
+  end
+  
 end
