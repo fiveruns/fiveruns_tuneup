@@ -6,7 +6,7 @@
       </ul>
       <%= pluralize(tuneup_data.size, 'step') %> / <%= tuneup_data.time.to_i %> ms
     </div>
-    <%= link_to_remote "Save this Run", :url => '/tuneup/create', :html => {:id => 'fiveruns-tuneup-save-link'} %>
+    <%= link_to_remote "Upload this Run", :url => '/tuneup/upload', :html => {:id => 'fiveruns-tuneup-save-link'} %>
   </div>
   <div id='fiveruns-tuneup-details'>
     <ul>

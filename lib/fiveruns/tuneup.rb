@@ -7,11 +7,14 @@ module Fiveruns
       
       attr_writer :collecting
       attr_accessor :running
+      attr_accessor :stack
       
       def run(allow=true)
         @running = allow
-        clear if recording?
-        result = yield
+        result = nil
+        record do
+          result = yield
+        end
         @running = false
         result
       end
@@ -24,24 +27,40 @@ module Fiveruns
         end
       end
       
+      def record
+        if recording?
+          @stack = [Fiveruns::Tuneup::RootStep.new]
+        elsif !@running
+          # Plugin displaying the data
+          if data = load_last_run
+            @stack = [data]
+          else
+            clear_stack
+          end
+        end
+        yield
+        persist @stack.shift if recording?
+        clear_stack
+      end
+      
       def recording?
         @running && @collecting
       end
       
-      def data
-        @data ||= Fiveruns::Tuneup::RootStep.new
+      # Remove all runs from this session
+      def reset!
+        FileUtils.rm_rf run_dir
+      rescue
+        # Nothing to remove, ignore
       end
       
-      def stack
-        @stack ||= [data]
-      end
-      
-      def clear
-        @data = @stack = nil
+      def clear_stack
+        @stack = []
       end
       
       def start
         log :info, "Starting..."
+        reset!
         install_instrumentation
       end
       
@@ -90,6 +109,10 @@ module Fiveruns
         RAILS_DEFAULT_LOGGER.send(level, "FiveRuns TuneUp (v#{Fiveruns::Tuneup::Version::STRING}): #{text}")
       end
       
+      def run_dir
+        @run_dir ||= File.join(RAILS_ROOT, 'tmp', 'fiveruns_tuneup', 'runs')
+      end
+      
       #######
       private
       #######
@@ -112,6 +135,20 @@ module Fiveruns
       def path_to_constant_name(path)
         parts = path.split(File::SEPARATOR)
         parts.map(&:camelize).join('::').sub('Cgi', 'CGI')
+      end
+      
+      def persist(data)
+        FileUtils.mkdir_p run_dir
+        File.open(File.join(run_dir, "#{now}.dat"), 'wb') { |f| f.write Marshal.dump(data) }
+      end
+      
+      def now
+        Time.now.to_f
+      end
+      
+      def load_last_run
+        filename = Dir[File.join(run_dir, '*.dat')].last
+        Marshal.load(File.open(filename, 'rb') { |f| f.read }) if filename
       end
       
     end

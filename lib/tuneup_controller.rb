@@ -1,4 +1,5 @@
 require 'ostruct'
+require 'open-uri'
 
 class TuneupController < ActionController::Base
     
@@ -10,13 +11,14 @@ class TuneupController < ActionController::Base
     end
   end
   
-  def edit
-  end
-  
   def update
     @config.update(params[:config])
     @config.save!
     redirect_to :action => 'show'
+  end
+  
+  def upload
+    
   end
   
   def on

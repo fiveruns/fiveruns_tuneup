@@ -38,7 +38,7 @@ module TuneupHelper
   end
   
   def tuneup_data
-    Fiveruns::Tuneup.data
+    Fiveruns::Tuneup.stack.first
   end
   
   def tuneup_step_link(step)
@@ -52,7 +52,7 @@ module TuneupHelper
   
   def tuneup_bars
     bars = Fiveruns::Tuneup::Step.layers.map do |layer|
-      size = (Fiveruns::Tuneup.data.percentages_by_layer[layer] * 200).to_i
+      size = (tuneup_data.percentages_by_layer[layer] * 200).to_i
       next if size == 0
       content_tag(:li, layer.to_s[0, 1].capitalize,
         :id => "fiveruns-tuneup-bar-#{layer}",
