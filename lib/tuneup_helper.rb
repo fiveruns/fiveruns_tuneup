@@ -92,4 +92,8 @@ module TuneupHelper
     end
   end
   
+  def tuneup_open_run(token)
+    %[window.open("#{Fiveruns::Tuneup.frontend_url}/runs/#{token}", 'fiveruns_tuneup');]
+  end
+  
 end

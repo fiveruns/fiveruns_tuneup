@@ -7,7 +7,7 @@ class TuneupController < ActionController::Base
   
   def show
     render :update do |page|
-      page['fiveruns-tuneup-content'].replace_html(render :partial => "tuneup/panel/#{@config.state}")
+      page['fiveruns-tuneup-content'].replace_html(render(:partial => "tuneup/panel/#{@config.state}"))
     end
   end
   
@@ -18,13 +18,13 @@ class TuneupController < ActionController::Base
   end
   
   def upload
-    uploaded = upload_last_run
+    token = upload_last_run
     render :update do |page|
-      # FIXME: Replace stubs
-      if uploaded
-        page.alert "STUB: Uploaded run"
+      if token
+        page << tuneup_open_run(token)
       else
-        page.alert "STUB: Could not upload run"
+        # FIXME: Replace stubs
+        page.alert("STUB: Could not upload run")
       end
     end
   end
@@ -43,7 +43,7 @@ class TuneupController < ActionController::Base
   
   def collect(state)
     Fiveruns::Tuneup.collecting = state
-    render(:update) { |p| p['fiveruns-tuneup-panel'].replace(render :partial => 'tuneup/panel/registered') }
+    render(:update) { |p| p['fiveruns-tuneup-panel'].replace(render(:partial => 'tuneup/panel/registered')) }
   end
 
   def find_config
@@ -55,7 +55,6 @@ class TuneupController < ActionController::Base
   #
   
   def upload_last_run
-    p upload_uri
     http = Net::HTTP.new(upload_uri.host, upload_uri.port)
     resp = nil
     File.open(Fiveruns::Tuneup.run_files.last, 'rb') do |file|
@@ -64,17 +63,17 @@ class TuneupController < ActionController::Base
       resp = http.post(upload_uri.request_uri, multipart.to_s, "Content-Type" => multipart.content_type)
     end
     case resp.code.to_i
-    when 200..299
-      return true
+    when 201
+      return resp.body.strip rescue nil
     else
-      Fiveruns::Tuneup.log :error, resp.inspect #resp.body
+      Fiveruns::Tuneup.log :error, "Recieved bad response from service (#{resp.inspect})"
       return false
     end
   rescue Exception => e
-    Fiveruns::Tuneup.log :error, "Could not upload: #{e.message} #{e.backtrace.inspect}"
+    Fiveruns::Tuneup.log :error, "Could not upload: #{e.message}"
     false
   end
-  
+    
   def upload_uri
     @upload_uri ||= URI.parse("#{Fiveruns::Tuneup.collector_url}/runs")
   end
