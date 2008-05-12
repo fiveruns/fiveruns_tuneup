@@ -1,22 +1,4 @@
 <div id='fiveruns-tuneup-panel'>
-  <% if !tuneup_data.blank? && tuneup_collecting? %>
-    <div id='fiveruns-tuneup-data'>
-      <div id='fiveruns-tuneup-top'>
-        <div id='fiveruns-tuneup-summary'>
-          <ul id='fiveruns-tuneup-bar'>
-            <%= tuneup_bars %>
-          </ul>
-          <%= pluralize(tuneup_data.size, 'step') %> / <%= tuneup_data.time.to_i %> ms
-        </div>
-        <%= link_to_remote "Save this Run", :url => '/tuneup/create', :html => {:id => 'fiveruns-tuneup-save-link'} %>
-      </div>
-      <div id='fiveruns-tuneup-details'>
-        <ul>
-          <%= render :partial => 'step', :collection => tuneup_data.children %>
-        </ul>
-      </div>
-      <div id='fiveruns-tuneup-shade'></div>
-    </div>
-  <% end %>
+  <%= render(:partial => 'data') if !tuneup_data.blank? && tuneup_collecting? %>
   <%= render :partial => 'link' %>
 </div>
