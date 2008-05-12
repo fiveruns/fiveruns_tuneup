@@ -137,5 +137,14 @@
 /* Threshold */
 #fiveruns-tuneup-details ul ul ul ul ul ul ul { display: none; }
 
+#fiveruns-tuneup-flash { display: none; text-align: left; font-size: 12px; padding: 10px; color: #000; border-top: 1px #CCC solid; border-bottom: 1px #CCC solid; }
+#fiveruns-tuneup-flash emph { color: #666; font-style: italic; }
+#fiveruns-tuneup-flash p { font-family: sans-serif; padding: 2px; margin: 0; }
+#fiveruns-tuneup-flash h4 { padding: 0; padding-left: 20px; font-size: 14px; font-weight: bold; margin: 0.5em 0; font-family: sans-serif; background: none; color: #000; border: 0; }
+#fiveruns-tuneup-flash.tuneup-show { display: block; }
+#fiveruns-tuneup-flash.tuneup-error {  background: #FDFCDB; }
+#fiveruns-tuneup-flash.tuneup-error h4 { background:  url(/images/fiveruns-tuneup-warning.gif) 0 50% no-repeat; }
+#fiveruns-tuneup-flash.tuneup-notice { padding-left: 0; background: #E4FFDE; }
+
 
 

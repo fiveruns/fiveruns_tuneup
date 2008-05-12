@@ -27,8 +27,9 @@ class TuneupController < ActionController::Base
       if api_key
         page << tuneup_reload_panel
       else
-        # FIXME: Replace stub
-        page.alert("STUB: Could not access FiveRuns TuneUp account")
+        page << tuneup_show_flash(:error,
+                  :header => "TuneUp encountered an error",
+                  :message => "Could not access your FiveRuns TuneUp account.")
       end
     end
   end
@@ -37,10 +38,14 @@ class TuneupController < ActionController::Base
     token = upload_last_run
     render :update do |page|
       if token
-        page << tuneup_open_run(token)
+        link = link_to_function("here", tuneup_open_run(token))
+        page << tuneup_show_flash(:notice,
+                  :header => 'Run Uploaded to TuneUp',
+                  :message => "View your run #{link}.")
       else
-        # FIXME: Replace stubs
-        page.alert("STUB: Could not upload run")
+        page << tuneup_show_flash(:error,
+                  :header => "TuneUp encountered an error",
+                  :message => "Could not upload run to your FiveRuns TuneUp account.")
       end
     end
   end
