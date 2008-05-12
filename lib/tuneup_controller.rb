@@ -101,7 +101,7 @@ class TuneupController < ActionController::Base
       data = "email=#{CGI.escape(params[:email])}&password=#{CGI.escape(params[:password])}"
       resp = http.post(api_key_uri.path, data, "Content-Type" => "application/x-www-form-urlencoded")
       case resp.code.to_i
-      when 200
+      when 200..299
         resp.body.strip rescue nil
       else
         Fiveruns::Tuneup.log :error, "Recieved bad response from service (#{resp.inspect})"
