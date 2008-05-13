@@ -15,8 +15,8 @@ module Fiveruns
       attr_writer :collecting
       attr_accessor :running
       
-      def run(allow=true)
-        @running = allow
+      def run(controller, request)
+        @running = (!controller.is_a?(TuneupController) && !request.xhr?)
         result = nil
         log :info, "RECORDING: #{recording? ? :true : :false}"
         record do
