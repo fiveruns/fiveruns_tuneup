@@ -1,10 +1,5 @@
-module TuneupHelper
+module TuneupHelper #:nodoc:
 
-  # Insert in +<head>+ to include the FiveRuns TuneUp panel on application pages
-  def tuneup
-    javascript_include_tag('prototype', 'fiveruns-tuneup') + stylesheet_link_tag('fiveruns-tuneup')
-  end
-  
   def tuneup_signin_url
     "#{Fiveruns::Tuneup.collector_url}/users"
   end
