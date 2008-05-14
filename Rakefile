@@ -1,16 +1,22 @@
-unless File.file?(File.dirname(__FILE__) << "/../../../config/environment.rb")
-  abort "FiveRuns TuneUp tests can only be run when the plugin is installed in a Rails application"
-end
+require File.dirname(__FILE__) << "/lib/fiveruns/tuneup/version"
 
-require 'rake'
-require 'rake/testtask'
+load 'build_tasks/setup.rb'
 
-desc 'Default: run unit tests.'
-task :default => :test
+PROJ.name = 'fiveruns_tuneup'
+PROJ.authors = ['Bruce Williams', 'Brian Dainton']
+PROJ.email = 'dev@fiveruns.com'
+PROJ.url = 'http://fiveruns.rubyforge.org/fiveruns_tuneup'
+PROJ.rubyforge_name = 'fiveruns'
 
-desc 'Test the fiveruns-tuneup plugin.'
-Rake::TestTask.new(:test) do |t|
-  t.libs << 'lib'
-  t.pattern = 'test/**/*_test.rb'
-  t.verbose = true
-end
+PROJ.libs = %w[]
+PROJ.ruby_opts = []
+PROJ.test_opts = []
+
+PROJ.description = "FiveRuns TuneUp plugin for http://tuneup.fiveruns.com"
+PROJ.summary = "FiveRuns TuneUp Plugin"
+
+PROJ.version = Fiveruns::Tuneup::Version::STRING
+
+task 'gem:package' => 'manifest:assert'
+
+# EOF

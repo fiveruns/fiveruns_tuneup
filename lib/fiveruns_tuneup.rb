@@ -1,0 +1,1 @@
+Dependencies.load_paths.unshift File.dirname(__FILE__)
