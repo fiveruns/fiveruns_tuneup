@@ -12,9 +12,7 @@ module Fiveruns
                 action = (request.parameters['action'] || 'index').to_s
                 Fiveruns::Tuneup.step "#{action.capitalize} action in #{self.class.name}", :controller, false do
                   returning process_without_fiveruns_tuneup(request, response, *args, &block) do |result|
-                    if !request.xhr? && response.content_type == 'text/html'
-                      Fiveruns::Tuneup.add_asset_tags_to(response.body)
-                    end
+                    Fiveruns::Tuneup.add_asset_tags_to(response.body) if !request.xhr?
                   end
                 end
               end
