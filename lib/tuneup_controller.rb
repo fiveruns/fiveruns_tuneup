@@ -50,6 +50,11 @@ class TuneupController < ActionController::Base
     end
   end
   
+  def asset
+    filename = File.basename(params[:file])
+    send_file File.join(File.dirname(__FILE__) << "/../assets/#{filename}")
+  end
+  
   def on
     collect true
   end

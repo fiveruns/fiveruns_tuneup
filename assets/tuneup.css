@@ -29,7 +29,7 @@
 
 #fiveruns-tuneup-bar { float: right; margin: 0 4px; margin-left: 10px; height: 15px; list-style: none; }
 #fiveruns-tuneup-bar li { float:left; height: 20px; color: #fff; font-weight: bold; line-height: 20px; vertical-align: middle; padding: 0 4px;
-  background-image: url(/images/fiveruns-tuneup-fade.png);
+  background-image: url(/tuneup/asset?file=fade.png);
   background-position: bottom left;
   background-repeat: repeat-x;
   border: 1px #fff solid;
@@ -39,7 +39,7 @@
 #fiveruns-tuneup-bar-controller { background-color: #3388D5; }
 
 #fiveruns-tuneup-top { position: absolute; top: 3px; right: 10px; padding: 0; margin: 0;  z-index: 11000; }
-#fiveruns-tuneup-top #fiveruns-tuneup-save-link { line-height: 45px; vertical-align: bottom; margin: 9px; text-align: center; font-weight: bold; padding-left: 20px; background: url(/images/fiveruns-tuneup-pointer.gif) 0 50% no-repeat; }
+#fiveruns-tuneup-top #fiveruns-tuneup-save-link { line-height: 45px; vertical-align: bottom; margin: 9px; text-align: center; font-weight: bold; padding-left: 20px; background: url(/tuneup/asset?file=pointer.gif) 0 50% no-repeat; }
 #fiveruns-tuneup-summary { float: right; padding: 9px; margin: 3px; text-align: center; color: #555; }
 #fiveruns-tuneup-data:hover #fiveruns-tuneup-save-link { margin: 6px; }
 #fiveruns-tuneup-data:hover #fiveruns-tuneup-top {
@@ -87,7 +87,7 @@
   vertical-align: middle; 
   padding: 0;
   margin: 0;
-  background-image: url(/images/fiveruns-tuneup-fade.png);
+  background-image: url(/tuneup/asset?file=fade.png);
   background-position: bottom left;
   background-repeat: repeat-x;
   border: 1px #fff solid;
@@ -97,8 +97,8 @@
 #fiveruns-tuneup-details .bar.controller { background-color: #3388D5; }
 
 #fiveruns-tuneup #fiveruns-tuneup-details li.fiveruns_tuneup_step { padding-left: 12px; }
-#fiveruns-tuneup #fiveruns-tuneup-details li.fiveruns_tuneup_step.with-children {  background: url(/images/fiveruns-tuneup-arrows.gif) top left no-repeat;}
-#fiveruns-tuneup #fiveruns-tuneup-details li.fiveruns_tuneup_step.with-children.tuneup-opened { background: url(/images/fiveruns-tuneup-arrows.gif) 0 -20px no-repeat; }
+#fiveruns-tuneup #fiveruns-tuneup-details li.fiveruns_tuneup_step.with-children {  background: url(/tuneup/asset?file=arrows.gif) top left no-repeat;}
+#fiveruns-tuneup #fiveruns-tuneup-details li.fiveruns_tuneup_step.with-children.tuneup-opened { background: url(/tuneup/asset?file=arrows.gif) 0 -20px no-repeat; }
 
 #fiveruns-tuneup-details ul { margin: 0; padding: 0; }
 #fiveruns-tuneup-details ul span.time { margin-right: 12px; }
@@ -143,7 +143,7 @@
 #fiveruns-tuneup-flash h4 { padding: 0; padding-left: 20px; font-size: 14px; font-weight: bold; margin: 0.5em 0; font-family: sans-serif; background: none; color: #000; border: 0; }
 #fiveruns-tuneup-flash.tuneup-show { display: block; }
 #fiveruns-tuneup-flash.tuneup-error {  background: #FDFCDB; }
-#fiveruns-tuneup-flash.tuneup-error h4 { background:  url(/images/fiveruns-tuneup-warning.gif) 0 50% no-repeat; }
+#fiveruns-tuneup-flash.tuneup-error h4 { background:  url(/tuneup/asset?file=warning.gif) 0 50% no-repeat; }
 #fiveruns-tuneup-flash.tuneup-notice { padding-left: 0; background: #E4FFDE; }
 
 
