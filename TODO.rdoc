@@ -1,6 +1,0 @@
-= TODO
-
-== 2008-05-13
-
-* Remove 'tuneup_' prefix from helpers, now that only the asset helper is being mixed-in to ActionView::Base
-* [DONE 2008-05-13] Don't record XHR runs (since we're not displaying them right now)
