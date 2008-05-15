@@ -18,7 +18,6 @@ module Fiveruns
       def run(controller, request)
         @running = (!controller.is_a?(TuneupController) && !request.xhr?)
         result = nil
-        log :info, "RECORDING: #{recording? ? :true : :false}"
         record do
           result = yield
         end
