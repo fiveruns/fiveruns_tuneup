@@ -4,6 +4,7 @@ module Fiveruns
     class RootStep
       
       delegate :blank?, :to => :children
+      alias_method :id, :object_id # Avoid record identitication warnings
             
       def self.layers
         [:model, :view, :controller]
