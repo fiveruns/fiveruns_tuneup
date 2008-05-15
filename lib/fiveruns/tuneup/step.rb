@@ -4,6 +4,7 @@ module Fiveruns
     class RootStep
       
       delegate :blank?, :to => :children
+      alias_method :id, :object_id # Kill record_identifier warnings
             
       def self.layers
         [:model, :view, :controller]
@@ -12,7 +13,7 @@ module Fiveruns
       def time
         children.map(&:time).sum || 0
       end
-      
+            
       def depth
         @depth ||= 0
       end
