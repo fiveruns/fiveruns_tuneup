@@ -51,6 +51,13 @@ module Fiveruns
         clear_stack
       end
       
+      def add_asset_tags_to(body)
+        body.sub!(/<\/head>/i, %(
+          <link rel='stylesheet' media='screen' href='/stylesheets/fiveruns-tuneup.css' type='text/css'/>
+          <script type='text/javascript' src='/javascripts/fiveruns-tuneup.js'></script>
+        </head>))
+      end
+      
       def recording?
         @running && @collecting
       end
