@@ -43,21 +43,18 @@ module TuneupHelper #:nodoc:
     tuneup_truncate(step.name, chars)
   end
   
-  def tuneup_bars
+  def tuneup_bar(step=tuneup_data, options={})
     bars = Fiveruns::Tuneup::Step.layers.map do |layer|
-      size = (tuneup_data.percentages_by_layer[layer] * 200).to_i
+      size = (step.percentages_by_layer[layer] * 200).to_i
       next if size == 0
       content_tag(:li, layer.to_s[0, 1].capitalize,
-        :id => "fiveruns-tuneup-bar-#{layer}",
+        :class => "tuneup-layer-#{layer}",
         :style => "width:#{size}px" )
     end
-    bars.compact.join
+    content_tag(:ul, bars.compact.join, options.merge(:class => 'tuneup-bar'))
   end
   
   def tuneup_step_bar(step)
-    size = (step.time / tuneup_data.time * 400).to_i
-    margin = 400 - size
-    content_tag(:div, '', :class => "bar #{step.layer}", :style => "width:#{size}px;margin-right:#{margin}px")
   end
   
   def tuneup_style_step_name(name)

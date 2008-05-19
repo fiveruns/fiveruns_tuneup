@@ -3,15 +3,32 @@ module Fiveruns
     
     module AssetTags
       
-      def add_asset_tags_to(body)
-        return body unless body
-        body.sub!(/<\/head>/i, %(
-        <!-- START FIVERUNS TUNEUP ASSETS -->
-        <link rel='stylesheet' media='screen' href='/tuneup/asset?file=tuneup.css' type='text/css'/>
-        #{insert_prototype unless body.include?('prototype.js')}
-        <script type='text/javascript' src='/tuneup/asset?file=tuneup.js'></script>
-        <!-- END FIVERUNS TUNEUP ASSETS -->       
-        </head>))
+      def style_asset
+        @style_asset ||= read_asset('tuneup.css')
+      end
+      
+      def js_asset
+        @js_asset ||= read_asset('tuneup.js')
+      end
+      
+      def add_asset_tags_to(response)
+        return unless response.body
+        before, after = response.body.split(/<\/head>/i, 2)
+        if after
+          insertion = %(
+          <!-- START FIVERUNS TUNEUP ASSETS -->
+          <style type='text/css'>#{style_asset}</style>
+          #{insert_prototype unless response.body.include?('prototype.js')}
+          <script type='text/javascript'>//<!--\n#{js_asset}\n// --></script>
+          <!-- END FIVERUNS TUNEUP ASSETS -->
+          )
+          response.headers["Content-Length"] += insertion.size
+          response.body.replace(before << insertion << '</head>' << after)
+        end
+      end
+      
+      def read_asset(filename)
+        File.read(File.dirname(__FILE__) << "/../../../assets/#{filename}").strip
       end
       
       def insert_prototype

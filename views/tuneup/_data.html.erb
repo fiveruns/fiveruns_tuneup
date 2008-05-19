@@ -1,9 +1,7 @@
 <div id='fiveruns-tuneup-data'>
   <div id='fiveruns-tuneup-top'>
     <div id='fiveruns-tuneup-summary'>
-      <ul id='fiveruns-tuneup-bar'>
-        <%= tuneup_bars %>
-      </ul>
+      <%= tuneup_bar(tuneup_data, :id => 'tuneup-root-bar') %>
       <%= pluralize(tuneup_data.size, 'step') %> / <%= tuneup_data.time.to_i %> ms
     </div>
     <%= link_to_remote "Upload this Run", :url => '/tuneup/upload', :html => {:id => 'fiveruns-tuneup-save-link'} %>

@@ -14,7 +14,7 @@ module Fiveruns
                   process_without_fiveruns_tuneup(request, response, *args, &block)
                 end
                 if !request.xhr? && response.content_type == 'text/html'
-                  Fiveruns::Tuneup.add_asset_tags_to(response.body)
+                  Fiveruns::Tuneup.add_asset_tags_to(response)
                 end
                 result
               end

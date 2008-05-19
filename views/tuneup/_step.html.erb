@@ -1,7 +1,7 @@
 <% content_tag_for :li, step, :class => tuneup_css_class_for_step(step) do %>
   <dl>
     <dt><p><span class='time'><%= '%.2f' % step.time %> ms</span><%= tuneup_step_link step %></p></dt>
-    <dd><%= tuneup_step_bar(step) %></dd>
+    <dd><%= tuneup_bar(step) %></dd>
   </dl>
   <% if step.children.any? %>  
     <ul id='<%= dom_id step, :children %>'<% if step.depth > 1 %> style='display:none'<% end %>>

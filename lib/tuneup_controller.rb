@@ -52,6 +52,9 @@ class TuneupController < ActionController::Base
   
   def asset
     filename = File.basename(params[:file])
+    if filename =~ /css$/
+      response.content_type = 'text/css'
+    end
     send_file File.join(File.dirname(__FILE__) << "/../assets/#{filename}")
   end
   

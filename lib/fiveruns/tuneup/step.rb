@@ -44,7 +44,11 @@ module Fiveruns
       def percentages_by_layer
         @percentages_by_layer ||= self.class.layers.inject({}) do |map, layer|
           map[layer] = if leaves.empty?
-            0
+            if respond_to?(:layer, true) && self.layer == layer
+              1.0
+            else
+              0
+            end
           else
             these = leaves.map { |c| c.layer == layer ? c.time : 0}.sum || 0
             all = leaves.map(&:time).sum || 0
