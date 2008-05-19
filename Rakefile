@@ -1,22 +1,15 @@
+require 'rubygems'
+require 'echoe'
+
 require File.dirname(__FILE__) << "/lib/fiveruns/tuneup/version"
 
-load 'build_tasks/setup.rb'
-
-PROJ.name = 'fiveruns_tuneup'
-PROJ.authors = ['Bruce Williams', 'Brian Dainton']
-PROJ.email = 'dev@fiveruns.com'
-PROJ.url = 'http://fiveruns.rubyforge.org/fiveruns_tuneup'
-PROJ.rubyforge_name = 'fiveruns'
-
-PROJ.libs = %w[]
-PROJ.ruby_opts = []
-PROJ.test_opts = []
-
-PROJ.description = "FiveRuns TuneUp plugin for http://tuneup.fiveruns.com"
-PROJ.summary = "FiveRuns TuneUp Plugin"
-
-PROJ.version = Fiveruns::Tuneup::Version::STRING
-
-task 'gem:package' => 'manifest:assert'
-
-# EOF
+Echoe.new 'fiveruns_tuneup' do |p|
+  p.version = Fiveruns::Tuneup::Version::STRING
+  p.author = "FiveRuns Development Team"
+  p.email  = 'dev@fiveruns.com'
+  p.project = 'fiveruns'
+  p.summary = "Instrumentation for the FiveRuns TuneUp product."
+  p.url = "http://github.com/fiveruns/fiveruns_tuneup"
+  p.dependencies = %w(activesupport)
+  p.include_rakefile = true
+end
