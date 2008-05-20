@@ -12,6 +12,7 @@ module Fiveruns
       include Fiveruns::Tuneup::AssetTags
       include Fiveruns::Tuneup::Runs
       include Fiveruns::Tuneup::Instrumentation::Utilities
+      include Fiveruns::Tuneup::Environment
       
       attr_writer :collecting
       attr_accessor :running
@@ -37,6 +38,7 @@ module Fiveruns
       def record
         if recording?
           @stack = [Fiveruns::Tuneup::RootStep.new]
+          @environment = environment
         elsif !@running
           # Plugin displaying the data
           data = last_run
@@ -47,7 +49,7 @@ module Fiveruns
           end
         end
         yield
-        persist @stack.shift if recording?
+        persist(@environment, @stack.shift) if recording?
         clear_stack
       end
       

@@ -31,7 +31,8 @@ module TuneupHelper #:nodoc:
   end
   
   def tuneup_data
-    Fiveruns::Tuneup.stack.first
+    most_recent_data = Fiveruns::Tuneup.stack.first
+    most_recent_data.blank? ? most_recent_data : most_recent_data['stack']
   end
   
   def tuneup_step_link(step)
