@@ -44,18 +44,18 @@
 #fiveruns-tuneup-top #fiveruns-tuneup-save-link { line-height: 45px; vertical-align: bottom; margin: 9px; text-align: center; font-weight: bold; padding-left: 20px; background: url(/tuneup/asset?file=pointer.gif) 0 50% no-repeat; }
 #fiveruns-tuneup-summary { float: right; padding: 9px; margin: 3px; text-align: center; color: #555; }
 
-#fiveruns-tuneup-data #fiveruns-tuneup-save-link { margin: 6px; } /* h */
-#fiveruns-tuneup-data #fiveruns-tuneup-top { /* h */
+#fiveruns-tuneup-data:hover #fiveruns-tuneup-save-link { margin: 6px; } /* h */
+#fiveruns-tuneup-data:hover #fiveruns-tuneup-top { /* h */
   top: 0px;
   right: 7px;
 }
-#fiveruns-tuneup-data #fiveruns-tuneup-summary { /* h */
+#fiveruns-tuneup-data:hover #fiveruns-tuneup-summary { /* h */
   border: 3px #829BAF solid;
   border-bottom: 0px;
   background: #f0f4fd;
 }
 #fiveruns-tuneup-details { display: none; position: absolute; top: 46px; right: 10px; padding: 9px; margin: 3px; text-align: left; z-index: 10999;}
-#fiveruns-tuneup-data #fiveruns-tuneup-details { /* h */
+#fiveruns-tuneup-data:hover #fiveruns-tuneup-details { /* h */
   display: block;
   top: 36px;
   right: 7px;
