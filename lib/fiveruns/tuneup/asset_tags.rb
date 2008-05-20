@@ -4,11 +4,11 @@ module Fiveruns
     module AssetTags
       
       def style_asset
-        @style_asset ||= read_asset('tuneup.css')
+        read_asset('tuneup.css')
       end
       
       def js_asset
-        @js_asset ||= read_asset('tuneup.js')
+        read_asset('tuneup.js')
       end
       
       def add_asset_tags_to(response)

@@ -44,8 +44,9 @@ module TuneupHelper #:nodoc:
   end
   
   def tuneup_bar(step=tuneup_data, options={})
+    width = options.delete(:width) || 200
     bars = Fiveruns::Tuneup::Step.layers.map do |layer|
-      size = (step.percentages_by_layer[layer] * 200).to_i
+      size = (step.percentages_by_layer[layer] * width).to_i
       next if size == 0
       content_tag(:li, layer.to_s[0, 1].capitalize,
         :class => "tuneup-layer-#{layer}",
