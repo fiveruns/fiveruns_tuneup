@@ -9,21 +9,21 @@ module Fiveruns
           (Time.now.to_f - start) * 1000
         end
 
-        def step(name, layer=nil, link=true, &block)
+        def step(name, layer=nil, link=true, sql=nil, &block)
           if recording?
             result = nil
             caller_line = caller.detect { |l| l.include?(RAILS_ROOT) && l !~ /tuneup|vendor\/rails/ } if link
             file, line = caller_line ? caller_line.split(':')[0, 2] : [nil, nil]
             line = line.to_i if line
-            returning ::Fiveruns::Tuneup::Step.new(name, layer, file, line, &block) do |s|
+            returning ::Fiveruns::Tuneup::Step.new(name, layer, file, line, sql, &block) do |s|
               stack.last << s
               stack << s
-              s.time = stopwatch { result = yield }
+              s.time = stopwatch { result = yield(sql) }
               stack.pop
             end
             result
           else
-            yield
+            yield(sql)
           end
         end
 

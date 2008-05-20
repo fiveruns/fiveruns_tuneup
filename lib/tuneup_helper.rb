@@ -35,7 +35,13 @@ module TuneupHelper #:nodoc:
   end
   
   def tuneup_step_link(step)
-    link_to_function tuneup_style_step_name(tuneup_truncate_step_name(step)), "$('#{dom_id(step, :children)}').toggle();$('#{dom_id(step)}').toggleClassName('tuneup-opened');"
+    link = link_to_function(tuneup_style_step_name(tuneup_truncate_step_name(step)), "$('#{dom_id(step, :children)}').toggle();$('#{dom_id(step)}').toggleClassName('tuneup-opened');")
+    link << sql_link(step)
+  end
+  
+  def sql_link(step)
+    return '' unless step.sql
+    link_to_function(image_tag('/tuneup/asset?file=magnify.png', :alt => 'Query'), :class => 'tuneup-sql') { |p| p[dom_id(step, :sql)].toggle }
   end
   
   def tuneup_truncate_step_name(step)

@@ -4,8 +4,8 @@ module Fiveruns
       module ActiveRecord
         module Base
           
-          def self.record(name, &operation)
-            Fiveruns::Tuneup.step(name, :model, &operation)
+          def self.record(name, sql=nil, &operation)
+            Fiveruns::Tuneup.step(name, :model, true, sql, &operation)
           end
           
           def self.included(base)
@@ -23,9 +23,9 @@ module Fiveruns
                 find_without_fiveruns_tuneup(*args, &block)
               end
             end
-            def find_by_sql_with_fiveruns_tuneup(*args, &block)
-              Fiveruns::Tuneup::Instrumentation::ActiveRecord::Base.record "Find #{self.name} by SQL" do
-                find_by_sql_without_fiveruns_tuneup(*args, &block)
+            def find_by_sql_with_fiveruns_tuneup(conditions, &block)
+              Fiveruns::Tuneup::Instrumentation::ActiveRecord::Base.record "Find #{self.name} by SQL", sanitize_sql(conditions) do |sql|
+                find_by_sql_without_fiveruns_tuneup(sql, &block)
               end
             end
             

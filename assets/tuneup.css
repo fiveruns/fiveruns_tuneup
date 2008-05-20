@@ -148,3 +148,6 @@
 
 #fiveruns-tuneup-details .tuneup-bar { width: 400px; height: 20px; padding: 0; margin: 0 !important; overflow: hidden; }
 #fiveruns-tuneup-details .tuneup-bar li { height: 18px; padding: 0; margin: 0  !important; }
+
+#fiveruns-tuneup-details a.tuneup-sql { color: 001999; margin-left: 10px; }
+#fiveruns-tuneup-details a img { border: 0; }
