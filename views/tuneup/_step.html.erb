@@ -3,25 +3,7 @@
     <dt><p><span class='time'><%= '%.2f' % step.time %> ms</span><%= tuneup_step_link step %></p></dt>
     <dd><%= tuneup_bar(step, :width => (380 * (step.time / tuneup_data.time))) %></dd>
   </dl>
-  <% if step.sql %>
-    <form id='<%= dom_id(step, :sql) %>' style='display:none;'>
-      <textarea cols='100' rows='<%= step.sql.split("\n").size %>'><%= step.sql %></textarea>
-      <% if step.explain %>
-      <table>
-        <tr>
-          <% step.explain.first.each do |field| %>
-            <th><%=h field %></th>
-          <% end %>
-        </tr>
-        <tr>
-          <% step.explain.last.each do |value| %>
-            <td><%=h value%></td>
-          <% end %>
-        </tr>
-      </table>
-      <% end %>
-    </form>
-  <% end %>
+  <%= render :partial => 'sql', :object => step.sql, :locals => {:name => dom_id(step, :sql)} if step.sql %>
   <% if step.children.any? %>  
     <ul id='<%= dom_id step, :children %>'<% if step.depth > 1 %> class='fiveruns_tuneup_children' style='display:none'<% end %>>
       <%= render :partial => 'step', :collection => step.children %>

@@ -4,15 +4,20 @@ module Fiveruns
       module ActiveRecord
         module Base
           
-          def self.record(name, sql=nil, connection=nil, &operation)
-            explain_data = explain(sql, connection) if sql && connection
-            Fiveruns::Tuneup.step(name, :model, true, sql, explain_data, &operation)
+          def self.record(name, raw_sql=nil, connection=nil, &operation)
+            sql = Fiveruns::Tuneup::Step::SQL.new(raw_sql, connection) if raw_sql
+            Fiveruns::Tuneup.step(name, :model, true, sql, &operation)
           end
           
           def self.explain(sql, connection)
             return nil unless sql =~ /^select /i
             result = connection.execute("explain #{sql}")
-            [result.fetch_fields.map(&:name), result.fetch_row]
+            rows = []
+            result.each { |row| rows << row }
+            [result.fetch_fields.map(&:name), rows]
+            result.free
+          rescue Exception
+            Fiveruns::Tuneup.log :warn, "Could not use EXPLAIN"
           end
           
           def self.included(base)
@@ -32,7 +37,7 @@ module Fiveruns
             end
             def find_by_sql_with_fiveruns_tuneup(conditions, &block)
               Fiveruns::Tuneup::Instrumentation::ActiveRecord::Base.record "Find #{self.name} by SQL", sanitize_sql(conditions), connection do |sql|
-                find_by_sql_without_fiveruns_tuneup(sql, &block)
+                find_by_sql_without_fiveruns_tuneup(sql.query, &block)
               end
             end
             

@@ -1,0 +1,19 @@
+<form id='<%= name %>' style='display:none;'>
+  <textarea cols='100' rows='<%= sql.query.split("\n").size %>'><%= sql.query %></textarea>
+  <% if sql.explain %>
+  <table>
+    <tr>
+      <% sql.explain.fields.each do |field| %>
+        <th><%=h field %></th>
+      <% end %>
+    </tr>
+    <% sql.explain.rows.each do |row| %>
+      <tr>
+        <% row.each do |value| %>
+          <td><%=h value%></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+  <% end %>
+</form>

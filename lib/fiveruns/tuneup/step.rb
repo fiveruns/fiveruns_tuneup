@@ -62,15 +62,14 @@ module Fiveruns
     
     class Step < RootStep
       
-      attr_reader :name, :layer, :file, :line, :sql, :explain
+      attr_reader :name, :layer, :file, :line, :sql
       attr_writer :time, :depth
-      def initialize(name, layer=nil, file=nil, line=nil, sql=nil, explain=nil)
+      def initialize(name, layer=nil, file=nil, line=nil, sql=nil)
         @name = name
         @layer = layer
         @file = file
         @line = line
         @sql = sql
-        @explain = explain
       end
       
       def time
@@ -79,6 +78,62 @@ module Fiveruns
             
       def size
         children.map(&:size).sum + 1
+      end
+      
+      class SQL
+        
+        attr_reader :query, :explain
+        
+        def initialize(sql, connection)
+          @query = sql
+          @explain = explain_from(connection)
+        end
+        
+        #######
+        private
+        #######
+        
+        def explain_from(connection)
+          explain = Explain.new(@query, connection)
+          explain if explain.valid?
+        end
+        
+        class Explain
+          
+          attr_reader :fields, :rows
+          
+          def initialize(sql, connection)
+            result = connection.execute("explain #{sql}")
+            @fields = fetch_fields_from(result)
+            @rows = fetch_rows_from(result)
+            result.free
+            @valid = true
+          rescue Exception
+            @valid = false
+          end
+          
+          def valid?
+            @valid
+          end
+
+          #######
+          private
+          #######
+
+          def fetch_fields_from(result)
+            result.fetch_fields.map(&:name)
+          end
+
+          def fetch_rows_from(result)
+            returning [] do |rows|
+              result.each do |row|
+                rows << row
+              end
+            end
+          end
+          
+        end
+
       end
 
     end
