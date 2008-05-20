@@ -61,7 +61,7 @@ module Fiveruns
       
       def start
         log :info, "Starting..."
-        reset!
+        reset! unless ENV['FIVERUNS_TUNEUP_RETAIN']
         install_instrumentation
         log :debug, "Using collector at #{collector_url}"
         log :debug, "Using frontend at #{frontend_url}"
