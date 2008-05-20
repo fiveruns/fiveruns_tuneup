@@ -24,10 +24,14 @@ module Fiveruns
       private
       #######
       
-      def persist(data)
+      def persist(environment, data)
         FileUtils.mkdir_p run_dir
-        compressed = Zlib::Deflate.deflate(data.to_yaml)        
+        compressed = Zlib::Deflate.deflate(package_for(environment, data).to_yaml)
         File.open(File.join(run_dir, "#{now}.yml.gz"), 'wb') { |f| f.write compressed }
+      end
+      
+      def package_for(environment, data)
+        {'environment' => environment, 'stack' => data}
       end
       
       def now
