@@ -41,7 +41,7 @@ module TuneupHelper #:nodoc:
   
   def sql_link(step)
     return '' unless step.sql
-    link_to_function(image_tag('/tuneup/asset?file=magnify.png', :alt => 'Query'), :class => 'tuneup-sql') { |p| p[dom_id(step, :sql)].toggle }
+    link_to_function(image_tag('/images/tuneup/magnify.png', :alt => 'Query'), :class => 'tuneup-sql') { |p| p[dom_id(step, :sql)].toggle }
   end
   
   def tuneup_truncate_step_name(step)
