@@ -3,9 +3,7 @@ require 'ostruct'
 require 'open-uri'
 
 class TuneupController < ActionController::Base
-    
-  before_filter :find_config, :except => :index
-  
+      
   def show
     render :update do |page|
       page << tuneup_reload_panel
