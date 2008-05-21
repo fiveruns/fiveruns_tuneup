@@ -70,7 +70,7 @@ class TuneupController < ActionController::Base
   
   def collect(state)
     Fiveruns::Tuneup.collecting = state
-    render(:update) { |p| p['fiveruns-tuneup-panel'].replace(render(:partial => 'tuneup/panel/registered')) }
+    render(:update) { |p| p['tuneup-panel'].replace(render(:partial => 'tuneup/panel/registered')) }
   end
 
   def find_config

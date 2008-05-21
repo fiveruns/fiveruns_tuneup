@@ -1,15 +1,15 @@
-<div id='fiveruns-tuneup-data'>
-  <div id='fiveruns-tuneup-top'>
-    <div id='fiveruns-tuneup-summary'>
+<div id='tuneup-data'>
+  <div id='tuneup-top'>
+    <div id='tuneup-summary'>
       <%= tuneup_bar(tuneup_data, :id => 'tuneup-root-bar') %>
       <%= pluralize(tuneup_data.size, 'step') %> / <%= tuneup_data.time.to_i %> ms
     </div>
-    <%= link_to_remote "Upload this Run", :url => '/tuneup/upload', :html => {:id => 'fiveruns-tuneup-save-link'} %>
+    <%= link_to_remote "Upload this Run", :url => '/tuneup/upload', :html => {:id => 'tuneup-save-link'} %>
   </div>
-  <div id='fiveruns-tuneup-details'>
+  <div id='tuneup-details'>
     <ul>
       <%= render :partial => 'step', :collection => tuneup_data.children %>
     </ul>
   </div>
-  <div id='fiveruns-tuneup-shade'></div>
+  <div id='tuneup-shade'></div>
 </div>

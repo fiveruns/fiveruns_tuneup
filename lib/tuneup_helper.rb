@@ -103,20 +103,20 @@ module TuneupHelper #:nodoc:
   
   def tuneup_reload_panel
     update_page do |page|
-      page['fiveruns-tuneup-flash'].removeClassName('tuneup-show');
-      page['fiveruns-tuneup-content'].replace_html(render(:partial => "tuneup/panel/#{@config.state}"))
+      page['tuneup-flash'].removeClassName('tuneup-show');
+      page['tuneup-content'].replace_html(render(:partial => "tuneup/panel/#{@config.state}"))
     end
   end
   
   def tuneup_show_flash(type, locals)
     types = [:error, :notice].reject { |t| t == type }
     update_page do |page|
-      page['fiveruns-tuneup-flash'].replace_html(render(:partial => 'flash', :locals => locals.merge(:type => type)))
-      page['fiveruns-tuneup-flash'].addClassName('tuneup-show');
+      page['tuneup-flash'].replace_html(render(:partial => 'flash', :locals => locals.merge(:type => type)))
+      page['tuneup-flash'].addClassName('tuneup-show');
       types.each do |other_type|
-        page['fiveruns-tuneup-flash'].removeClassName("tuneup-#{other_type}")
+        page['tuneup-flash'].removeClassName("tuneup-#{other_type}")
       end
-      page['fiveruns-tuneup-flash'].addClassName("tuneup-#{type}");
+      page['tuneup-flash'].addClassName("tuneup-#{type}");
     end
   end
   
