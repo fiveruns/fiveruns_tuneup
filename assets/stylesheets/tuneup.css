@@ -22,15 +22,33 @@ version: 2.5.1
 #tuneup body {font:13px/1.231 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small;}
 #tuneup table {font-size:inherit;font:100%;}
 #tuneup pre,#tuneup code,#tuneup kbd,#tuneup samp,#tuneup tt{font-family:monospace;*font-size:108%;line-height:100%;}
+
+#tuneup-flash div,#tuneup-flash dl,#tuneup-flash dt,#tuneup-flash dd,#tuneup-flash ul,#tuneup-flash ol,#tuneup-flash #tuneup-flash li,#tuneup-flash h1,#tuneup-flash h2,#tuneup-flash h3,#tuneup-flash h4,#tuneup-flash h5,#tuneup-flash h6,#tuneup-flash pre,#tuneup-flash code,#tuneup-flash form,#tuneup-flash fieldset,#tuneup-flash #tuneup-flash legend,#tuneup-flash input,#tuneup-flash textarea,#tuneup-flash p,#tuneup-flash blockquote,#tuneup-flash th,#tuneup-flash td{margin:0;padding:0;}
+#tuneup-flash table{border-collapse:collapse;border-spacing:0;}
+#tuneup-flash fieldset,#tuneup-flash img{border:0;}
+#tuneup-flash address,#tuneup-flash caption,#tuneup-flash cite,#tuneup-flash code,#tuneup-flash dfn,#tuneup-flash em,#tuneup-flash strong,#tuneup-flash th,#tuneup-flash var{font-style:normal;font-weight:normal;}
+#tuneup-flash li{list-style:none;}
+#tuneup-flash caption,#tuneup-flash th{text-align:left;}
+#tuneup-flash h1,#tuneup-flash h2,#tuneup-flash h3,#tuneup-flash h4,#tuneup-flash h5,#tuneup-flash h6{font-size:100%;font-weight:normal;}
+#tuneup-flash q:before,#tuneup-flash q:after{content:'';}
+#tuneup-flash abbr,#tuneup-flash acronym {border:0;font-variant:normal;}
+#tuneup-flash sup {vertical-align:text-top;}
+#tuneup-flash sub {vertical-align:text-bottom;}
+#tuneup-flash input,#tuneup-flash textarea,#tuneup-flash select{font-family:inherit;font-size:inherit;font-weight:inherit;}
+#tuneup-flash input,#tuneup-flash textarea,#tuneup-flash select{*font-size:100%;}
+#tuneup-flash legend{color:#000;}
+#tuneup-flash body {font:13px/1.231 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small;}
+#tuneup-flash table {font-size:inherit;font:100%;}
+#tuneup-flash pre,#tuneup-flash code,#tuneup-flash kbd,#tuneup-flash samp,#tuneup-flash tt{font-family:monospace;*font-size:108%;line-height:100%;}
 /* END YUI RESET */
 
 /* Styling */
-#tuneup { height: 55px; background: #f0f4fd; padding: 0 0 0 10px; font-family: "Helvetica Neue", "Lucida Grande", Calibri, Helvetica, Verdana, sans-serif; }
+#tuneup { height: 55px; color: #ddd; background: #000 url(/images/tuneup/head.png) top left repeat-x; padding: 0 0 0 10px; font-family: "Helvetica Neue", "Lucida Grande", Calibri, Helvetica, Verdana, sans-serif; }
 #tuneup #tuneup-content { margin-left: 80px; color: #000; height: 55px; vertical-align: middle; text-align: left; }
 #tuneup #tuneup-root-bar { float: right; }
+#tuneup a, #tuneup a:visited { color: #fff; }
 
-
-#tuneup h3 { font-weight: bold; font-size: 16px; line-height: 55px; color: black; vertical-align: middle; text-align: left; float: left;}
+#tuneup h3 { font-weight: bold; font-size: 16px; line-height: 55px; color: #fff; vertical-align: middle; text-align: left; float: left;}
 #tuneup label { display: inline; font-size: 13px; font-weight: normal; color: #666; padding: 2px 2px; }
 #tuneup label, #tuneup button { margin: 0 6px 0 20px; }
 
@@ -43,7 +61,6 @@ version: 2.5.1
   background-image: url(/images/tuneup/fade.png);
   background-position: bottom left;
   background-repeat: repeat-x;
-  border: 1px #fff solid;
 }
 #tuneup .tuneup-layer-model { background-color: #FF9800; border-right: none; }
 #tuneup .tuneup-layer-view { background-color: #38D023; border-right: none; }
@@ -51,34 +68,26 @@ version: 2.5.1
 
 #tuneup #tuneup-top { position: absolute; top: 3px; right: 10px; padding: 0; margin: 0;  z-index: 11000; }
 #tuneup #tuneup-top #tuneup-save-link { line-height: 45px; vertical-align: bottom; margin: 9px; text-align: center; font-weight: bold; padding-left: 20px; background: url(/images/tuneup/pointer.gif) 0 50% no-repeat; }
-#tuneup #tuneup-summary { float: right; padding: 9px; margin: 3px; text-align: center; color: #555; }
+#tuneup #tuneup-summary { float: right; padding: 9px; margin: 3px; text-align: center; color: #ddd; }
 
-#tuneup #tuneup-data:hover #tuneup-save-link { margin: 6px; } /* h */
 #tuneup #tuneup-data:hover #tuneup-top { /* h */
-  top: 0px;
-  right: 7px;
+
 }
 #tuneup #tuneup-data:hover #tuneup-summary { /* h */
-  border: 3px #829BAF solid;
   border-bottom: 0px;
-  background: #f0f4fd;
+  background: #000;
 }
-#tuneup #tuneup-details { display: none; position: absolute; top: 46px; right: 10px; padding: 9px; margin: 3px; text-align: left; z-index: 10999;}
+#tuneup #tuneup-details { display: none; position: absolute; top: 38px; right: 13px; padding: 9px; text-align: left; z-index: 10999;}
 #tuneup #tuneup-data:hover #tuneup-details { /* h */
   display: block;
-  top: 36px;
-  right: 7px;
-  background: #f0f4fd;
-  border: 3px #829BAF solid;
+  background: #000;
   min-width: 300px;
 }
-#tuneup #tuneup-shade { display: none; position: absolute; top: 55px; left: 0px; width: 100%; height: 100%; opacity: 0.6; background: #fff; z-index: 10998; }
-#tuneup #tuneup-data:hover #tuneup-shade { display: block; }
 
 #tuneup #tuneup-details ul dl { margin: 0; padding: 0;}
-#tuneup #tuneup-details ul dt { float: left; overflow: hidden; height: 20px; margin: 0 10px 0 0; padding: 0; color: #555; font-size: 12px; text-transform: none; font-weight: inherit;}
+#tuneup #tuneup-details ul dt { float: left; overflow: hidden; height: 20px; margin: 0 10px 0 0; padding: 0; color: #ddd; font-size: 12px; text-transform: none; font-weight: inherit;}
 #tuneup #tuneup-details ul dt p { }
-#tuneup #tuneup-details ul dt strong { color: #000; }
+#tuneup #tuneup-details ul dt strong { color: #fff; font-weight: bold; }
 #tuneup #tuneup-details ul dt span.time { float: right; text-transform: none; font-size: 11px; font-weight: normal; margin-right: 0px; }
 
 #tuneup #tuneup-details ul dt a, #tuneup-details ul dt a:active, #tuneup-details ul dt a:visited {
@@ -108,30 +117,30 @@ version: 2.5.1
 }
 #tuneup #tuneup-details ul dt { width: 500px; clear: left; }
 
-#tuneup #tuneup-details ul ul.fiveruns_tuneup_children { background: #E4ECFF; }
+#tuneup #tuneup-details ul ul.fiveruns_tuneup_children { background: #111; }
 #tuneup #tuneup-details ul ul dd { margin-left: 498px; }
 #tuneup #tuneup-details ul ul dt { width: 488px; }
 
-#tuneup #tuneup-details ul ul ul.fiveruns_tuneup_children { background: #CFDEFF;}
+#tuneup #tuneup-details ul ul ul.fiveruns_tuneup_children { background: #222;}
 #tuneup #tuneup-details ul ul ul dd { margin-left: 486px; }
 #tuneup #tuneup-details ul ul ul dt { width: 476px; }
 
 
-#tuneup #tuneup-details ul ul ul ul.fiveruns_tuneup_children { background: #BDD1FD;}
+#tuneup #tuneup-details ul ul ul ul.fiveruns_tuneup_children { background: #333;}
 #tuneup #tuneup-details ul ul ul ul dd { margin-left: 474px; }
 #tuneup #tuneup-details ul ul ul ul dt { width: 464px; }
 
 
-#tuneup #tuneup-details ul ul ul ul ul.fiveruns_tuneup_children { background: #A4BDF3;}
+#tuneup #tuneup-details ul ul ul ul ul.fiveruns_tuneup_children { background: #444;}
 #tuneup #tuneup-details ul ul ul ul ul dd { margin-left: 462px; }
 #tuneup #tuneup-details ul ul ul ul ul dt { width: 452px; }
 
 
-#tuneup #tuneup-details ul ul ul ul ul ul.fiveruns_tuneup_children { background: #83A1E4;}
+#tuneup #tuneup-details ul ul ul ul ul ul.fiveruns_tuneup_children { background: #555;}
 #tuneup #tuneup-details ul ul ul ul ul ul dd { margin-left: 450px; }
 #tuneup #tuneup-details ul ul ul ul ul ul dt { width: 448px; }
 
-#tuneup #tuneup-details ul ul ul ul ul ul ul.fiveruns_tuneup_children { background: #7496DF;}
+#tuneup #tuneup-details ul ul ul ul ul ul ul.fiveruns_tuneup_children { background: #666;}
 #tuneup #tuneup-details ul ul ul ul ul ul ul dd { margin-left: 438px; }
 #tuneup #tuneup-details ul ul ul ul ul ul ul dt { width: 280px; }
 
@@ -145,14 +154,14 @@ version: 2.5.1
 /* Threshold */
 /* #tuneup-details ul ul ul ul ul ul ul ul dl { display: none; } */
 
-#tuneup #tuneup-flash { display: none; text-align: left; font-size: 12px; padding: 10px; color: #000; border-top: 1px #CCC solid; border-bottom: 1px #CCC solid; }
-#tuneup #tuneup-flash emph { color: #666; font-style: italic; }
-#tuneup #tuneup-flash p { font-family: sans-serif; padding: px; margin: 0; }
-#tuneup #tuneup-flash h4 { padding: 0; padding-left: 20px; font-size: 14px; font-weight: bold; margin: 0.5em 0; font-family: sans-serif; background: none; color: #000; border: 0; }
-#tuneup #tuneup-flash.tuneup-show { display: block; }
-#tuneup #tuneup-flash.tuneup-error {  background: #FDFCDB; }
-#tuneup #tuneup-flash.tuneup-error h4 { background:  url(/images/tuneup/warning.gif) 0 50% no-repeat; }
-#tuneup #tuneup-flash.tuneup-notice { padding-left: 0; background: #E4FFDE; }
+#tuneup-flash { display: none; text-align: left; font-size: 12px; padding: 5px; color: #000; border-bottom: 1px #000 solid; }
+#tuneup-flash emph { color: #666; font-style: italic; }
+#tuneup-flash p { font-family: sans-serif; margin: 0; }
+#tuneup-flash p { padding: 0; padding-left: 20px; font-family: sans-serif; background: none; color: #000; border: 0; }
+#tuneup-flash.tuneup-show { display: block; }
+#tuneup-flash.tuneup-error {  background: #FDFCDB; }
+#tuneup-flash.tuneup-error p { background:  url(/images/tuneup/warning.gif) 0 50% no-repeat; }
+#tuneup-flash.tuneup-notice { padding-left: 0; background: #E4FFDE; }
 
 #tuneup #tuneup-details .tuneup-bar { width: 400px; height: 20px; padding: 0; margin: 0 !important; overflow: hidden; }
 #tuneup #tuneup-details .tuneup-bar li { height: 18px; padding: 0; margin: 0  !important; }
@@ -162,4 +171,9 @@ version: 2.5.1
 
 #tuneup .tuneup-halo { display: none; }
 #tuneup .tuneup-step-info:hover .tuneup-halo { display: inline; }
+
+#tuneup textarea { background: none; overflow: hidden; color: #fff; font-size: 12px; font-family: sans-serif; padding: 4px; border: 0; font-style: italic; }
+#tuneup table { border: 0; margin-top: 4px; } /* sql */
+#tuneup th { background: #000; padding: 4px; color: #fff; font-size: 12px; text-align: left; border: 0; font-weight: bold; border: 1px #333 solid; border-left: 0; border-top: 0; }
+#tuneup td { background: none; padding: 4px; color: #ddd; font-size: 12px; text-align: left; border: 0; }
 
