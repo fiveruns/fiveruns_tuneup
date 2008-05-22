@@ -60,9 +60,10 @@ module TuneupHelper #:nodoc:
         size = (percent * width).to_i
       end
       size = 1 if size.zero?
-      content_tag(:li, (size >= 7 ? layer.to_s[0, 1].capitalize : ''),
+      content_tag(:li, (size >= 10 ? layer.to_s[0, 1].capitalize : ''),
         :class => "tuneup-layer-#{layer}",
-        :style => "width:#{size}px" )
+        :style => "width:#{size}px",
+        :title => layer.to_s.titleize)
     end
     content_tag(:ul, bars.compact.join, options.merge(:class => 'tuneup-bar'))
   end
