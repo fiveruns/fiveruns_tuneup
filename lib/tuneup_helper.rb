@@ -42,7 +42,7 @@ module TuneupHelper #:nodoc:
   
   def sql_link(step)
     return '' unless step.sql
-    link_to_function(image_tag('/images/tuneup/magnify.png', :alt => 'Query'), :class => 'tuneup-sql') { |p| p[dom_id(step, :sql)].toggle }
+    link_to_function(image_tag('/images/tuneup/magnify.png', :alt => 'Query'), :class => 'tuneup-sql tuneup-halo', :title => 'View Query') { |p| p[dom_id(step, :sql)].toggle }
   end
   
   def tuneup_truncate_step_name(step)
@@ -65,9 +65,6 @@ module TuneupHelper #:nodoc:
         :style => "width:#{size}px" )
     end
     content_tag(:ul, bars.compact.join, options.merge(:class => 'tuneup-bar'))
-  end
-  
-  def tuneup_step_bar(step)
   end
   
   def tuneup_style_step_name(name)
@@ -120,4 +117,9 @@ module TuneupHelper #:nodoc:
     end
   end
   
+  def link_to_edit_step(step)
+    return nil unless step.file && step.line && RUBY_PLATFORM.include?('darwin')
+    link_to(image_tag('/images/tuneup/edit.png', :alt => 'Edit'), "txmt://open?url=file://#{CGI.escape step.file}&line=#{step.line}", :class => 'tuneup-edit tuneup-halo', :title => 'Open in TextMate')
+  end
+    
 end

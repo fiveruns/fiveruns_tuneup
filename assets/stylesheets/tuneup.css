@@ -81,7 +81,6 @@ version: 2.5.1
 #tuneup #tuneup-details ul dt strong { color: #000; }
 #tuneup #tuneup-details ul dt span.time { float: right; text-transform: none; font-size: 11px; font-weight: normal; margin-right: 0px; }
 
-
 #tuneup #tuneup-details ul dt a, #tuneup-details ul dt a:active, #tuneup-details ul dt a:visited {
   color: inherit;
   font-size: inherit;
@@ -160,3 +159,7 @@ version: 2.5.1
 
 #tuneup #tuneup-details a.tuneup-sql { color: 001999; margin-left: 10px; }
 #tuneup #tuneup-details a img { border: 0; }
+
+#tuneup .tuneup-halo { display: none; }
+#tuneup .tuneup-step-info:hover .tuneup-halo { display: inline; }
+
