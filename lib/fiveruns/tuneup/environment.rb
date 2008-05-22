@@ -4,6 +4,7 @@ module Fiveruns
       
       def environment
         {
+          'application_name' => application_name,
           'rails_env' => rails_env,
           'rails_version' => rails_version
         }
@@ -15,7 +16,12 @@ module Fiveruns
       
       def rails_version
         ::Rails::VERSION::STRING rescue 'unknown Rails version'
-#        "#{::Rails::VERSION::MAJOR}.#{::Rails::VERSION::MINOR}.#{::Rails::VERSION::TINY}"
+      end
+      
+      def application_name
+        app_name = RAILS_ROOT.split('/').last
+        return app_name unless app_name == 'current'             
+        File.join(RAILS_ROOT, '..').split('/').last
       end
       
     end
