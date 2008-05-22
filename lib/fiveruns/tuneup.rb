@@ -1,5 +1,6 @@
 require File.dirname(__FILE__) << "/tuneup/step"
 
+require 'digest/sha1'
 require 'yaml'
 require 'zlib'
 
@@ -16,11 +17,12 @@ module Fiveruns
       
       attr_writer :collecting
       attr_accessor :running
+      attr_accessor :current_run_id
       
       def run(controller, request)
         @running = (!controller.is_a?(TuneupController) && !request.xhr?)
         result = nil
-        record do
+        record controller, request do
           result = yield
         end
         @running = false
@@ -35,21 +37,30 @@ module Fiveruns
         end
       end
       
-      def record
+      def record(controller, request)
         if recording?
           @stack = [Fiveruns::Tuneup::RootStep.new]
           @environment = environment
+          self.current_run_id = generate_run_id(request.url)
+          yield
+          log :info, "Persisting for #{request.url} using stub #{stub(request.url)}"
+          persist(self.current_run_id, @environment, @stack.shift)
+          self.current_run_id = nil
         elsif !@running
           # Plugin displaying the data
-          data = last_run
-          if data
+          # TODO: Support targeted selection (for historical run)
+          last_id = last_run_id_for(request.parameters['uri'])
+          log :info, "Retrieved last run id of #{last_id} for #{request.parameters['uri']} using stub #{stub(request.parameters['uri'])}"
+          if last_id && (data = retrieve_run(last_id))
             @stack = [data]
           else
+            log :debug, "No stack found"
             clear_stack
           end
+          yield
+        else
+          yield
         end
-        yield
-        persist(@environment, @stack.shift) if recording?
         clear_stack
       end
       

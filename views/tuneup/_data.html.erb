@@ -4,7 +4,7 @@
       <%= tuneup_bar(tuneup_data, :id => 'tuneup-root-bar') %>
       <%= pluralize(tuneup_data.size, 'step') %> / <%= tuneup_data.time.to_i %> ms
     </div>
-    <%= link_to_remote "Upload this Run", :url => '/tuneup/upload', :html => {:id => 'tuneup-save-link'} %>
+    <%= link_to_remote "Upload this Run", :url => "/tuneup/upload?uri=#{CGI.escape(params[:uri])}", :html => {:id => 'tuneup-save-link'} %>
   </div>
   <div id='tuneup-details'>
     <ul>

@@ -33,7 +33,7 @@ class TuneupController < ActionController::Base
   end
   
   def upload
-    token = upload_last_run
+    token = upload_run
     render :update do |page|
       if token
         link = link_to_function("here", tuneup_open_run(token))
@@ -81,11 +81,14 @@ class TuneupController < ActionController::Base
   # HTTP
   #
   
-  def upload_last_run
+  def upload_run
     safely do
       http = Net::HTTP.new(upload_uri.host, upload_uri.port)
       resp = nil
-      File.open(Fiveruns::Tuneup.run_files.last, 'rb') do |file|
+      # TODO: Support targeted upload
+      filename = Fiveruns::Tuneup.last_filename_for_run_uri(params[:uri])
+      Fiveruns::Tuneup.log :debug, "Uploading #{filename} for URI #{params[:uri]}"
+      File.open(filename, 'rb') do |file|
         multipart = Fiveruns::Tuneup::Multipart.new(file, 'api_key' => @config['api_key'] )
        # Fiveruns::Tuneup.log :debug, multipart.to_s
         resp = http.post(upload_uri.request_uri, multipart.to_s, "Content-Type" => multipart.content_type)
