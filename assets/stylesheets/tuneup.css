@@ -102,9 +102,9 @@ version: 2.5.1
 
 #tuneup .tuneup-bar li { text-align: center; }
 
-#tuneup #tuneup-details li.fiveruns_tuneup_step { padding-left: 12px; }
-#tuneup #tuneup-details li.fiveruns_tuneup_step.with-children {  background: url(/images/tuneup/arrows.gif) top left no-repeat;}
-#tuneup #tuneup-details li.fiveruns_tuneup_step.with-children.tuneup-opened { background: url(/images/tuneup/arrows.gif) 0 -20px no-repeat; }
+#tuneup #tuneup-details li.fiveruns_tuneup_step { padding-left: 4px; background: url(/images/tuneup/pip.gif) 4px 0 no-repeat; }
+#tuneup #tuneup-details li.fiveruns_tuneup_step.with-children {  background: url(/images/tuneup/arrows.gif) 4px 0 no-repeat;}
+#tuneup #tuneup-details li.fiveruns_tuneup_step.with-children.tuneup-opened { background: url(/images/tuneup/arrows.gif) 4px -20px no-repeat; }
 
 #tuneup #tuneup-details ul { margin: 0; padding: 0; }
 #tuneup #tuneup-details ul span.time { margin-right: 12px; }
@@ -112,44 +112,44 @@ version: 2.5.1
 #tuneup li .children { display: none; }
 
 #tuneup #tuneup-details ul dd {
-  margin: 0 0 0 510px;
+  margin: 0 0 0 410px;
   height: 20px;
   padding: 0;
 }
-#tuneup #tuneup-details ul dt { width: 500px; clear: left; }
+#tuneup #tuneup-details ul dt { padding-left: 16px; width: 400px; clear: left; }
 
 #tuneup #tuneup-details ul ul.fiveruns_tuneup_children { background: #111; }
-#tuneup #tuneup-details ul ul dd { margin-left: 498px; }
-#tuneup #tuneup-details ul ul dt { width: 488px; }
+#tuneup #tuneup-details ul ul dd { margin-left: 406px; }
+#tuneup #tuneup-details ul ul dt { width: 396px; }
 
 #tuneup #tuneup-details ul ul ul.fiveruns_tuneup_children { background: #222;}
-#tuneup #tuneup-details ul ul ul dd { margin-left: 486px; }
-#tuneup #tuneup-details ul ul ul dt { width: 476px; }
+#tuneup #tuneup-details ul ul ul dd { margin-left: 402px; }
+#tuneup #tuneup-details ul ul ul dt { width: 392px; }
 
 
 #tuneup #tuneup-details ul ul ul ul.fiveruns_tuneup_children { background: #333;}
-#tuneup #tuneup-details ul ul ul ul dd { margin-left: 474px; }
-#tuneup #tuneup-details ul ul ul ul dt { width: 464px; }
+#tuneup #tuneup-details ul ul ul ul dd { margin-left: 398px; }
+#tuneup #tuneup-details ul ul ul ul dt { width: 388px; }
 
 
 #tuneup #tuneup-details ul ul ul ul ul.fiveruns_tuneup_children { background: #444;}
-#tuneup #tuneup-details ul ul ul ul ul dd { margin-left: 462px; }
-#tuneup #tuneup-details ul ul ul ul ul dt { width: 452px; }
+#tuneup #tuneup-details ul ul ul ul ul dd { margin-left: 394px; }
+#tuneup #tuneup-details ul ul ul ul ul dt { width: 384px; }
 
 
 #tuneup #tuneup-details ul ul ul ul ul ul.fiveruns_tuneup_children { background: #555;}
-#tuneup #tuneup-details ul ul ul ul ul ul dd { margin-left: 450px; }
-#tuneup #tuneup-details ul ul ul ul ul ul dt { width: 448px; }
+#tuneup #tuneup-details ul ul ul ul ul ul dd { margin-left: 390px; }
+#tuneup #tuneup-details ul ul ul ul ul ul dt { width: 380px; }
 
 #tuneup #tuneup-details ul ul ul ul ul ul ul.fiveruns_tuneup_children { background: #666;}
-#tuneup #tuneup-details ul ul ul ul ul ul ul dd { margin-left: 438px; }
-#tuneup #tuneup-details ul ul ul ul ul ul ul dt { width: 280px; }
+#tuneup #tuneup-details ul ul ul ul ul ul ul dd { margin-left: 386px; }
+#tuneup #tuneup-details ul ul ul ul ul ul ul dt { width: 376px; }
 
-#tuneup #tuneup-details ul ul ul ul ul ul ul ul dd { margin-left: 426px; }
-#tuneup #tuneup-details ul ul ul ul ul ul ul ul dt { width: 268px; }
+#tuneup #tuneup-details ul ul ul ul ul ul ul ul dd { margin-left: 382px; }
+#tuneup #tuneup-details ul ul ul ul ul ul ul ul dt { width: 372px; }
 
-#tuneup #tuneup-details ul ul ul ul ul ul ul ul ul dd { margin-left: 414px; }
-#tuneup #tuneup-details ul ul ul ul ul ul ul ul ul dt { width: 256px; }
+#tuneup #tuneup-details ul ul ul ul ul ul ul ul ul dd { margin-left: 378px; }
+#tuneup #tuneup-details ul ul ul ul ul ul ul ul ul dt { width: 368px; }
 
 #tuneup-flash { display: none; text-align: left; font-size: 12px; padding: 5px; color: #000; border-bottom: 1px #000 solid; }
 #tuneup-flash emph { color: #666; font-style: italic; }

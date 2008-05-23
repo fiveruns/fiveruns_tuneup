@@ -36,7 +36,12 @@ module TuneupHelper #:nodoc:
   end
   
   def tuneup_step_link(step)
-    link = link_to_function(tuneup_style_step_name(tuneup_truncate_step_name(step)), "$('#{dom_id(step, :children)}').toggle();$('#{dom_id(step)}').toggleClassName('tuneup-opened');")
+    name = tuneup_style_step_name(tuneup_truncate_step_name(step))
+    link = if step.children.any?
+      link_to_function(name, "$('#{dom_id(step, :children)}').toggle();$('#{dom_id(step)}').toggleClassName('tuneup-opened');")
+    else
+      name
+    end
     link << sql_link(step)
   end
   
