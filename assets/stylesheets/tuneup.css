@@ -68,7 +68,7 @@ version: 2.5.1
 
 #tuneup #tuneup-top { position: absolute; top: 0px; right: 10px; padding: 0; margin: 0;  z-index: 11000; }
 #tuneup #tuneup-top #tuneup-save-link { line-height: 45px; vertical-align: bottom; margin: 9px; text-align: center; font-weight: bold; padding-left: 20px; background: url(/images/tuneup/pointer.gif) 0 50% no-repeat; }
-#tuneup #tuneup-summary { float: right; padding: 9px; padding-bottom: 12px; margin: 3px; text-align: center; color: #ddd; -moz-border-radius: 6px; }
+#tuneup #tuneup-summary { float: right; padding: 9px; padding-bottom: 28px; margin: 3px; text-align: center; color: #ddd; -moz-border-radius: 6px; }
 
 #tuneup #tuneup-data:hover #tuneup-top { /* h */
 
@@ -77,7 +77,7 @@ version: 2.5.1
   border-bottom: 0px;
   background: #000;
 }
-#tuneup #tuneup-details { display: none; position: absolute; top: 38px; right: 13px; padding: 9px; text-align: left; z-index: 10999;}
+#tuneup #tuneup-details { display: none; position: absolute; top: 46px; right: 13px; padding: 9px; text-align: left; z-index: 10999;}
 #tuneup #tuneup-data:hover #tuneup-details { /* h */
   display: block;
   background: #000;
@@ -169,7 +169,7 @@ version: 2.5.1
 #tuneup .tuneup-halo { display: none; }
 #tuneup .tuneup-step-info:hover .tuneup-halo { display: inline; }
 
-#tuneup textarea { background: none; overflow: hidden; color: #fff; font-size: 12px; font-family: sans-serif; padding: 4px; border: 0; font-family: monospace; }
+#tuneup textarea { background: none; overflow: auto; color: #fff; font-size: 12px; font-family: sans-serif; padding: 4px; border: 0; font-family: monospace; }
 #tuneup table { border: 0; margin-top: 4px; background: #111; } /* sql */
 #tuneup th { background: #000; padding: 4px; color: #fff; font-size: 12px; text-align: left; border: 0; font-weight: bold; border: 1px #333 solid; border-left: 0; border-top: 0; }
 #tuneup td { background: #111; padding: 4px; color: #ddd; font-size: 12px; text-align: left; border: 0; }
