@@ -49,15 +49,19 @@ module Fiveruns
         elsif !@running
           # Plugin displaying the data
           # TODO: Support targeted selection (for historical run)
-          last_id = last_run_id_for(request.parameters['uri'])
-          log :info, "Retrieved last run id of #{last_id} for #{request.parameters['uri']} using stub #{stub(request.parameters['uri'])}"
-          if last_id && (data = retrieve_run(last_id))
-            @stack = [data]
+          if request.parameters['uri']
+            last_id = last_run_id_for(request.parameters['uri'])
+            log :info, "Retrieved last run id of #{last_id} for #{request.parameters['uri']} using stub #{stub(request.parameters['uri'])}"
+            if last_id && (data = retrieve_run(last_id))
+              @stack = [data]
+            else
+              log :debug, "No stack found"
+              clear_stack
+            end
           else
-            log :debug, "No stack found"
             clear_stack
           end
-          yield
+          yield            
         else
           yield
         end
