@@ -3,7 +3,7 @@ Event.observe(window, 'load', function() {
     var pos = Element.getStyle(e, 'position');
     if(pos == 'absolute' || pos == 'fixed') {
      var top = parseFloat(Element.getStyle(e, 'top') || 0);
-     e.style.top = (top + 55) + 'px'; 
+     e.style.top = (top + 61) + 'px'; 
     }
   })
   new Insertion.Top(document.body, "<div id='tuneup'><h3>TuneUp</h3><div id='tuneup-content'></div></div><div id='tuneup-flash'></div>");
