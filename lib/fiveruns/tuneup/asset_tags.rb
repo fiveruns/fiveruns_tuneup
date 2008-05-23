@@ -11,6 +11,11 @@ module Fiveruns
           <!-- START FIVERUNS TUNEUP ASSETS -->
           <link rel='stylesheet' type='text/css' href='/stylesheets/tuneup/tuneup.css'/>
           #{insert_prototype unless response.body.include?('prototype.js')}
+          <script type='text/javascript'>
+            var TuneUp = {
+              frontend_url: "#{Fiveruns::Tuneup.frontend_url}";
+            };
+          </script>
           <script type='text/javascript' src='/javascripts/tuneup/tuneup.js'></script>
           <!-- END FIVERUNS TUNEUP ASSETS -->
           )
