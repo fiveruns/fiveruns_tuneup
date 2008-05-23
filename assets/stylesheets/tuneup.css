@@ -77,7 +77,7 @@ version: 2.5.1
   border-bottom: 0px;
   background: #000;
 }
-#tuneup #tuneup-details { display: none; position: absolute; top: 44px; right: 13px; padding: 9px; text-align: left; z-index: 10999;}
+#tuneup #tuneup-details { display: none; position: absolute; top: 38px; right: 13px; padding: 9px; text-align: left; z-index: 10999;}
 #tuneup #tuneup-data:hover #tuneup-details { /* h */
   display: block;
   background: #000;
@@ -170,7 +170,7 @@ version: 2.5.1
 #tuneup .tuneup-step-info:hover .tuneup-halo { display: inline; }
 
 #tuneup textarea { background: none; overflow: hidden; color: #fff; font-size: 12px; font-family: sans-serif; padding: 4px; border: 0; font-family: monospace; }
-#tuneup table { border: 0; margin-top: 4px; } /* sql */
+#tuneup table { border: 0; margin-top: 4px; background: #111; } /* sql */
 #tuneup th { background: #000; padding: 4px; color: #fff; font-size: 12px; text-align: left; border: 0; font-weight: bold; border: 1px #333 solid; border-left: 0; border-top: 0; }
-#tuneup td { background: none; padding: 4px; color: #ddd; font-size: 12px; text-align: left; border: 0; }
+#tuneup td { background: #111; padding: 4px; color: #ddd; font-size: 12px; text-align: left; border: 0; }
 
