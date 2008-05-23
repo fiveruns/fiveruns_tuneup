@@ -9,17 +9,6 @@ module Fiveruns
             Fiveruns::Tuneup.step(name, :model, true, sql, &operation)
           end
           
-          def self.explain(sql, connection)
-            return nil unless sql =~ /^select /i
-            result = connection.execute("explain #{sql}")
-            rows = []
-            result.each { |row| rows << row }
-            [result.fetch_fields.map(&:name), rows]
-            result.free
-          rescue Exception
-            Fiveruns::Tuneup.log :warn, "Could not use EXPLAIN"
-          end
-          
           def self.included(base)
             Fiveruns::Tuneup.instrument base, InstanceMethods, ClassMethods
           end

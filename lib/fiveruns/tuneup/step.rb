@@ -94,6 +94,8 @@ module Fiveruns
         #######
         
         def explain_from(connection)
+          return nil unless @query =~ /^select\b/i
+          return nil unless connection.adapter_name == 'MySQL'
           explain = Explain.new(@query, connection)
           explain if explain.valid?
         end
