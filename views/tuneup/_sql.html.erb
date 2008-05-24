@@ -1,4 +1,4 @@
-<form id='<%= name %>' style='display:none;'>
+<form id='<%= dom_id(step, :sql) %>' style='display:none;'>
   <textarea cols='100' rows='<%= sql.query.split("\n").size %>'><%= sql.query %></textarea>
   <% if sql.explain %>
   <table>
@@ -9,8 +9,12 @@
     </tr>
     <% sql.explain.rows.each do |row| %>
       <tr>
-        <% row.each do |value| %>
-          <td><%=h value%></td>
+        <% row.each_with_index do |value, index| %>
+          <% if index == sql.explain.table_offset %>
+            <td><%= link_to_function value, "$('#{dom_id(step, "schema-#{value}")}').toggle();" %></td>
+          <% else %>
+            <td><%=h value%></td>
+          <% end %>
         <% end %>
       </tr>
     <% end %>

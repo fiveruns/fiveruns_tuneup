@@ -45,11 +45,11 @@ module Fiveruns
         File.join(stub(url), timestamp.to_s)
       end
       
-      def persist(run_id, environment, data)
+      def persist(run_id, environment, schemas, data)
         log :info, "Persisting #{run_id}"
         filename = filename_for(run_id)
         FileUtils.mkdir_p File.dirname(filename)
-        compressed = Zlib::Deflate.deflate(package_for(environment, data).to_yaml)
+        compressed = Zlib::Deflate.deflate(package_for(run_id, environment, schemas, data).to_yaml)
         File.open(filename, 'wb') { |f| f.write compressed }
       end
       
@@ -61,8 +61,8 @@ module Fiveruns
         Digest::SHA1.hexdigest(url)
       end
       
-      def package_for(environment, data)
-        {'environment' => environment, 'stack' => data}
+      def package_for(run_id, environment, schemas, data)
+        {'id' => run_id, 'environment' => environment, 'schemas' => schemas, 'stack' => data}
       end
       
     end

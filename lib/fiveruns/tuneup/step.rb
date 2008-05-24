@@ -10,6 +10,10 @@ module Fiveruns
         [:model, :view, :controller]
       end
       
+      def schemas
+        @schemas ||= {}
+      end
+      
       def time
         children.map(&:time).sum || 0
       end
@@ -63,10 +67,10 @@ module Fiveruns
     class Step < RootStep
       
       attr_reader :name, :layer, :file, :line, :sql
-      attr_writer :time, :depth
+      attr_writer :time, :depth, :table_name
       def initialize(name, layer=nil, file=nil, line=nil, sql=nil)
         @name = name
-        @layer = layer
+        @layer = layers
         @file = file
         @line = line
         @sql = sql
@@ -109,13 +113,18 @@ module Fiveruns
             @fields = fetch_fields_from(result)
             @rows = fetch_rows_from(result)
             result.free
+            add_schemas(connection)
             @valid = true
-          rescue Exception
-            @valid = false
+        #  rescue Exception
+        #    @valid = false
           end
           
           def valid?
             @valid
+          end
+          
+          def table_offset
+            @table_offset ||= @fields.index('table')
           end
 
           #######
@@ -132,6 +141,17 @@ module Fiveruns
                 rows << row
               end
             end
+          end
+          
+          def add_schemas(connection)
+            tables.each do |table|
+              Fiveruns::Tuneup.add_schema_for(table, connection)
+            end
+          end
+          
+          def tables
+            return [] unless table_offset
+            @rows.map { |row| row[table_offset] }.compact
           end
           
         end

@@ -7,6 +7,9 @@
     <%= link_to_remote "Upload this Run", :url => "/tuneup/upload?uri=#{CGI.escape(params[:uri])}", :html => {:id => 'tuneup-save-link'} %>
   </div>
   <div id='tuneup-details'>
+    <div id='tuneup-schema'>
+      XXXXXXXXXXX
+    </div>
     <ul>
       <%= render :partial => 'step', :collection => tuneup_data.children %>
     </ul>

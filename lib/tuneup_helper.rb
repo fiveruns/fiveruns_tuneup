@@ -35,6 +35,10 @@ module TuneupHelper #:nodoc:
     most_recent_data.blank? ? most_recent_data : most_recent_data['stack']
   end
   
+  def tuneup_schemas
+    Fiveruns::Tuneup.stack.first['schemas']
+  end
+  
   def tuneup_step_link(step)
     name = tuneup_style_step_name(tuneup_truncate_step_name(step))
     link = if step.children.any?
@@ -42,11 +46,15 @@ module TuneupHelper #:nodoc:
     else
       name
     end
-    link << sql_link(step)
+    link << additional_step_links(step)
+  end
+  
+  def additional_step_links(step)
+    return '' unless step.sql
+    sql_link(step)
   end
   
   def sql_link(step)
-    return '' unless step.sql
     link_to_function(image_tag('/images/tuneup/magnify.png', :alt => 'Query'), :class => 'tuneup-sql tuneup-halo', :title => 'View Query') { |p| p[dom_id(step, :sql)].toggle }
   end
   

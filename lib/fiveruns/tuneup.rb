@@ -14,6 +14,7 @@ module Fiveruns
       include Fiveruns::Tuneup::Runs
       include Fiveruns::Tuneup::Instrumentation::Utilities
       include Fiveruns::Tuneup::Environment
+      include Fiveruns::Tuneup::Schema
       
       attr_writer :collecting
       attr_accessor :running
@@ -44,7 +45,7 @@ module Fiveruns
           self.current_run_id = generate_run_id(request.url)
           yield
           log :info, "Persisting for #{request.url} using stub #{stub(request.url)}"
-          persist(self.current_run_id, @environment, @stack.shift)
+          persist(self.current_run_id, @environment, schemas, @stack.shift)
           self.current_run_id = nil
         elsif !@running
           # Plugin displaying the data
