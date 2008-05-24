@@ -65,7 +65,7 @@ module TuneupHelper #:nodoc:
   end
   
   def link_to_schema(text, table, html_options={})
-    link_to_function(text, "TuneUp.switchSchema('#{table}')", html_options.merge(:title => "Show Schema"))
+    link_to_function(text, "TuneUp.switchSchema('#{table}')", html_options.merge(:title => "View Schema"))
   end
   
   def tuneup_truncate_step_name(step)
