@@ -9,3 +9,14 @@ Event.observe(window, 'load', function() {
   new Insertion.Top(document.body, "<div id='tuneup'><a id='tuneup-logo' href='" + TuneUp.frontend_url + "'><img src='/images/tuneup/logo.gif' alt='TuneUp'/></a><div id='tuneup-content'></div></div><div id='tuneup-flash'></div>");
   new Ajax.Request('/tuneup?uri=' + encodeURIComponent(document.location.href), {asynchronous:true, evalScripts:true});
 });
+
+TuneUp.switchSchema = function(table) {
+  var element = $('tuneup-schema-table-' + table);
+  var operation = element.visible() ? 'hide' : 'show';
+  $$('#tuneup-schema .tuneup-schema-table').each(function(s) { s.hide(); })
+  element[operation]();
+  Position.clone('tuneup-details', 'tuneup-schema', { setLeft: false, setTop: true, setWidth: false, setHeight: true });
+  var h = parseFloat(Element.getStyle('tuneup-schema', 'height'));
+  $('tuneup-schema').style.height = h - 18 + 'px';
+  $('tuneup-schema')[operation]();
+}

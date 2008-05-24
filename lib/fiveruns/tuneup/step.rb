@@ -67,10 +67,11 @@ module Fiveruns
     class Step < RootStep
       
       attr_reader :name, :layer, :file, :line, :sql
-      attr_writer :time, :depth, :table_name
+      attr_accessor :table_name
+      attr_writer :time, :depth
       def initialize(name, layer=nil, file=nil, line=nil, sql=nil)
         @name = name
-        @layer = layers
+        @layer = layer
         @file = file
         @line = line
         @sql = sql

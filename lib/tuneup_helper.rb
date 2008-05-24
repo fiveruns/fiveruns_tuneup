@@ -50,12 +50,22 @@ module TuneupHelper #:nodoc:
   end
   
   def additional_step_links(step)
-    return '' unless step.sql
-    sql_link(step)
+    returning '' do |text|
+      text << schema_link(step) if step.table_name
+      text << sql_link(step) if step.sql
+    end
+  end
+  
+  def schema_link(step)
+    link_to_schema(image_tag('/images/tuneup/schema.png', :alt => 'Schema'), step.table_name,  :class => 'tuneup-schema tuneup-halo')
   end
   
   def sql_link(step)
     link_to_function(image_tag('/images/tuneup/magnify.png', :alt => 'Query'), :class => 'tuneup-sql tuneup-halo', :title => 'View Query') { |p| p[dom_id(step, :sql)].toggle }
+  end
+  
+  def link_to_schema(text, table, html_options={})
+    link_to_function(text, "TuneUp.switchSchema('#{table}')", html_options.merge(:title => "Show Schema"))
   end
   
   def tuneup_truncate_step_name(step)
