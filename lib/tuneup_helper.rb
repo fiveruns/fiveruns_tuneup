@@ -51,8 +51,8 @@ module TuneupHelper #:nodoc:
   
   def additional_step_links(step)
     returning '' do |text|
-      text << schema_link(step) if step.table_name
       text << sql_link(step) if step.sql
+      text << schema_link(step) if step.table_name
     end
   end
   
