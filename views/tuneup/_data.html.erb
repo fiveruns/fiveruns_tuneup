@@ -6,23 +6,7 @@
     </div>
     <%= link_to_remote "Upload this Run", :url => "/tuneup/upload?uri=#{CGI.escape(params[:uri])}", :html => {:id => 'tuneup-save-link'} %>
   </div>
-  <div id='tuneup-schema' style='display:none;'>
-    <% Fiveruns::Tuneup.schemas.each do |table, schema| %>
-      <div id='tuneup-schema-table-<%= table %>' class='tuneup-schema-table' style='display:none;'>
-        <h3>Schema for &ldquo;<%= table %>&rdquo;</h3>
-        <table>
-          <tr>
-            <th>Name</th><th>Type</th>
-          </tr>
-          <% schema[:columns].each do |column| %>
-            <tr>
-              <td><%=h column[:name] %></td><td><%=h column[:sql_type] %></td>
-            </tr>
-          <% end %>
-        </table>
-      </div>
-    <% end %>
-  </div>
+  <%= render :partial => 'schema' %>
   <div id='tuneup-details'>
     <ul>
       <%= render :partial => 'step', :collection => tuneup_data.children %>
