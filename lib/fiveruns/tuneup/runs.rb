@@ -21,10 +21,6 @@ module Fiveruns
         YAML.load(decompressed)
       end
       
-      def run_files
-        Dir[File.join(run_dir, '*.yml.gz')]
-      end
-      
       def last_filename_for_run_uri(uri)
         filename_for(last_run_id_for(uri))
       end
@@ -33,6 +29,12 @@ module Fiveruns
       private
       #######
       
+      def trend_for(run_id)
+        Dir[File.join(run_dir, File.dirname(run_id), "*.gz")].map do |filename|
+          Integer(File.basename(filename, '.yml.gz').split('_').last)
+        end
+      end
+      
       def last_run_id_for(url)
         last_file = Dir[File.join(run_dir, stub(url), '*.gz')].last
         if last_file
@@ -40,9 +42,10 @@ module Fiveruns
         end
       end
       
-      def generate_run_id(url)
+      # Use Run ID, current timestamp, and total time (in microseconds)
+      def generate_run_id(url, time)
         timestamp = '%d' % (Time.now.to_f * 1000)
-        File.join(stub(url), timestamp.to_s)
+        File.join(stub(url), timestamp.to_s << "_#{(time * 1000).to_i}")
       end
       
       def persist(run_id, environment, schemas, data)

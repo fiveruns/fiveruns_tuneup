@@ -1,4 +1,6 @@
 module TuneupHelper #:nodoc:
+  
+  include BumpsparkHelper
 
   def tuneup_signin_url
     "#{Fiveruns::Tuneup.collector_url}/users"
@@ -37,6 +39,18 @@ module TuneupHelper #:nodoc:
   
   def tuneup_schemas
     Fiveruns::Tuneup.stack.first['schemas']
+  end
+  
+  def trend
+    numbers= if Fiveruns::Tuneup.trend.size > 50
+      Fiveruns::Tuneup.trend[-50..-1]
+    else
+      Fiveruns::Tuneup.trend
+    end
+    return unless numbers.size > 1
+    tag(:img,
+      :src => build_data_url("image/png",bumpspark(numbers)), :alt => '',
+      :title => "Trend over last #{pluralize(numbers.size, 'run')}")
   end
   
   def tuneup_step_link(step)
