@@ -3,10 +3,24 @@ module Fiveruns
     module Instrumentation
       module Utilities
         
+        def stack
+          @stack ||= []
+        end
+
+        def exclusion_stack
+          @exclusion_stack ||= [0]
+        end
+        
         def stopwatch
           start = Time.now.to_f
           yield
           (Time.now.to_f - start) * 1000
+        end
+        
+        def exclude
+          result = nil
+          exclusion_stack[-1] += stopwatch { result = yield }
+          result
         end
 
         def step(name, layer=nil, link=true, sql=nil, table_name=nil, &block)
@@ -15,17 +29,29 @@ module Fiveruns
             caller_line = caller.detect { |l| l.include?(RAILS_ROOT) && l !~ /tuneup|vendor\/rails/ } if link
             file, line = caller_line ? caller_line.split(':')[0, 2] : [nil, nil]
             line = line.to_i if line
-            returning ::Fiveruns::Tuneup::Step.new(name, layer, file, line, sql, &block) do |s|
-              s.table_name = table_name
-              stack.last << s
-              stack << s
-              s.time = stopwatch { result = yield(sql) }
+            returning ::Fiveruns::Tuneup::Step.new(name, layer, file, line, sql, &block) do |step|
+              step.table_name = table_name
+              stack.last << step
+              stack << step
+              handle_exclusions_in step do
+                step.time = stopwatch { result = yield(sql) }
+              end
               stack.pop
             end
             result
           else
             yield(sql)
           end
+        end
+        
+        # Handle removal of excluded time from total for this step, and
+        # bubble the value up for removal from the parent step
+        def handle_exclusions_in(step)
+          exclusion_stack << 0
+          yield # Must set +step.time+
+          time_to_exclude = exclusion_stack.pop
+          step.time -= time_to_exclude
+          exclusion_stack[-1] += time_to_exclude unless exclusion_stack.blank?
         end
 
         def instrument(target, *mods)

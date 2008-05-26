@@ -74,10 +74,6 @@ module Fiveruns
         @running && @collecting
       end
       
-      def stack
-        @stack ||= []
-      end
-      
       def start
         log :info, "Starting..."
         install_instrumentation
@@ -94,7 +90,8 @@ module Fiveruns
       #######
       
       def clear_stack
-        @stack = []
+        @stack = nil
+        @exclusion_stack = nil
       end
       
     end
