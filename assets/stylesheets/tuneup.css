@@ -62,9 +62,10 @@ version: 2.5.1
   background-position: bottom left;
   background-repeat: repeat-x;
 }
-#tuneup .tuneup-layer-model { background-color: #FF9800; border-right: none; }
-#tuneup .tuneup-layer-view { background-color: #38D023; border-right: none; }
+#tuneup .tuneup-layer-model { background-color: #FF9800; }
+#tuneup .tuneup-layer-view { background-color: #38D023; }
 #tuneup .tuneup-layer-controller { background-color: #3388D5; }
+#tuneup .tuneup-layer-unknown { background-color: #CCCCCC; }
 
 #tuneup #tuneup-top { position: absolute; top: 0px; right: 10px; padding: 0; margin: 0;  z-index: 11000; }
 #tuneup #tuneup-top #tuneup-save-link { line-height: 45px; vertical-align: bottom; margin: 9px; text-align: center; font-weight: bold; padding-left: 20px; background: url(/images/tuneup/pointer.gif) 0 50% no-repeat; }

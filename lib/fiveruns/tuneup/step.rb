@@ -7,7 +7,7 @@ module Fiveruns
       alias_method :id, :object_id # Avoid record identitication warnings
             
       def self.layers
-        [:model, :view, :controller]
+        [:model, :view, :controller, :unknown]
       end
       
       def schemas
@@ -46,26 +46,33 @@ module Fiveruns
       end
       
       def percentages_by_layer
-        @percentages_by_layer ||= self.class.layers.inject({}) do |map, layer|
-          map[layer] = if leaves.empty?
-            if respond_to?(:layer, true) && self.layer == layer
-              1.0
+        @percentages_by_layer ||= begin
+          percentages = self.class.layers.inject({}) do |map, layer|
+            map[layer] = if children.empty?
+              if respond_to?(:layer, true) && self.layer == layer
+                1.0
+              else
+                0
+              end
             else
-              0
+              these = children.map { |c| c.layer == layer ? c.time : 0}.sum || 0
+              all = self.time
+              # if respond_to?(:layer) && self.layer == layer
+              #    these += (time - (children.map(&:time).sum || 0))
+              #  end
+              if all == 0
+                0 # shouldn't occur
+              else
+                (these / all.to_f)
+              end
             end
-          else
-            these = leaves.map { |c| c.layer == layer ? c.time : 0}.sum || 0
-            all = self.time
-            if respond_to?(:layer) && self.layer == layer
-              these += (time - (leaves.map(&:time).sum || 0))
-            end
-            if all == 0
-              0 # shouldn't occur
-            else
-              (these / all.to_f)
-            end
+            map
           end
-          map
+          total = self.time
+          known = children.map(&:time).sum || 0
+          unknown = total - known
+          percentages[:unknown] = (unknown / total.to_f)
+          percentages
         end
       end
       
