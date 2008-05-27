@@ -55,11 +55,8 @@ module Fiveruns
                 0
               end
             else
-              these = children.map { |c| c.layer == layer ? c.time : 0}.sum || 0
+              these = leaves.map { |c| c.layer == layer ? c.time : 0}.sum || 0
               all = self.time
-              # if respond_to?(:layer) && self.layer == layer
-              #    these += (time - (children.map(&:time).sum || 0))
-              #  end
               if all == 0
                 0 # shouldn't occur
               else
@@ -68,9 +65,9 @@ module Fiveruns
             end
             map
           end
-          if !children.blank?
+          if !leaves.blank?
             total = self.time
-            known = children.map(&:time).sum || 0
+            known = leaves.map(&:time).sum || 0
             other = total - known
             percentages[:other] = (other / total.to_f)
           end

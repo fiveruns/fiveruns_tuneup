@@ -6,10 +6,10 @@ module Fiveruns
           
           def self.record(model, name, raw_sql=nil, &operation)
             sql = nil
-            # Fiveruns::Tuneup.exclude do
-            #   sql = Fiveruns::Tuneup::Step::SQL.new(raw_sql, model.connection) if raw_sql
-            #   Fiveruns::Tuneup.add_schema_for(model.table_name, model.connection)
-            # end
+            Fiveruns::Tuneup.exclude do
+              sql = Fiveruns::Tuneup::Step::SQL.new(raw_sql, model.connection) if raw_sql
+              Fiveruns::Tuneup.add_schema_for(model.table_name, model.connection)
+            end
             Fiveruns::Tuneup.step(name, :model, true, sql, model.table_name, &operation)
           end
           
