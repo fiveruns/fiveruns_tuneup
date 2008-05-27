@@ -55,8 +55,15 @@ module Fiveruns
             end
           else
             these = leaves.map { |c| c.layer == layer ? c.time : 0}.sum || 0
-            all = leaves.map(&:time).sum || 0
-            all == 0 ? 0 : (these / all.to_f)
+            all = self.time
+            if respond_to?(:layer) && self.layer == layer
+              these += (time - (leaves.map(&:time).sum || 0))
+            end
+            if all == 0
+              0 # shouldn't occur
+            else
+              (these / all.to_f)
+            end
           end
           map
         end

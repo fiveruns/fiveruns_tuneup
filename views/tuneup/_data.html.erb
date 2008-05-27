@@ -1,7 +1,7 @@
 <div id='tuneup-data'>
   <div id='tuneup-top'>
     <div id='tuneup-summary'>
-      <%= tuneup_bar(tuneup_data, :id => 'tuneup-root-bar') %>
+      <%= tuneup_bar(tuneup_data.children.first, :id => 'tuneup-root-bar') %>
       <%= trend %> <%= tuneup_data.time.to_i %> ms 
     </div>
     <%= link_to_remote "Upload this Run", :url => "/tuneup/upload?uri=#{CGI.escape(params[:uri])}", :html => {:id => 'tuneup-save-link'} %>

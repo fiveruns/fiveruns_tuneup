@@ -6,10 +6,10 @@ module Fiveruns
           
           def self.record(model, name, raw_sql=nil, &operation)
             sql = nil
-            Fiveruns::Tuneup.exclude do
-              sql = Fiveruns::Tuneup::Step::SQL.new(raw_sql, model.connection) if raw_sql
-              Fiveruns::Tuneup.add_schema_for(model.table_name, model.connection)
-            end
+            # Fiveruns::Tuneup.exclude do
+            #   sql = Fiveruns::Tuneup::Step::SQL.new(raw_sql, model.connection) if raw_sql
+            #   Fiveruns::Tuneup.add_schema_for(model.table_name, model.connection)
+            # end
             Fiveruns::Tuneup.step(name, :model, true, sql, model.table_name, &operation)
           end
           
@@ -29,8 +29,8 @@ module Fiveruns
               end
             end
             def find_by_sql_with_fiveruns_tuneup(conditions, &block)
-              Fiveruns::Tuneup::Instrumentation::ActiveRecord::Base.record self, "Find #{self.name} by SQL", sanitize_sql(conditions) do |sql|
-                find_by_sql_without_fiveruns_tuneup(sql.query, &block)
+              Fiveruns::Tuneup::Instrumentation::ActiveRecord::Base.record self, "Find #{self.name} by SQL", sanitize_sql(conditions) do
+                find_by_sql_without_fiveruns_tuneup(conditions, &block)
               end
             end
             
