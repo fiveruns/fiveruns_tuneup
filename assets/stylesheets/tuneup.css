@@ -49,7 +49,7 @@ version: 2.5.1
 #tuneup a, #tuneup a:visited, #tuneup a:active { color: #fff; text-decoration: underline; font-size: 12px; border: 0; }
 
 #tuneup #tuneup-logo { float: left;}
-#tuneup label { display: inline; font-size: 13px; font-weight: normal; color: #666; padding: 2px 2px; }
+#tuneup label { display: inline; font-size: 13px; font-weight: normal; color: #CCC; padding: 2px 2px; }
 #tuneup label, #tuneup button { margin: 0 6px 0 20px; }
 
 #tuneup #tuneup-content p.full { height: 50px; line-height: 50px; vertical-align: middle; padding: 0; }
@@ -179,3 +179,5 @@ version: 2.5.1
 #tuneup #tuneup-schema th { background: #111; color: #fff; border: 0 }
 #tuneup #tuneup-schema td { background: #000; font-family: monospace; color: #ddd; padding: 1px; font-size: 11px; }
 #tuneup #tuneup-trend { float: right; width: 100px; }
+
+#tuneup button { background: none; border: 0; margin: 0; padding: 0; height: 50px; line-height: 50px; vertical-align: middle; }
