@@ -7,7 +7,7 @@ module Fiveruns
       alias_method :id, :object_id # Avoid record identitication warnings
             
       def self.layers
-        [:model, :view, :controller, :unknown]
+        [:model, :view, :controller, :other]
       end
       
       def schemas
@@ -71,8 +71,8 @@ module Fiveruns
           if !children.blank?
             total = self.time
             known = children.map(&:time).sum || 0
-            unknown = total - known
-            percentages[:unknown] = (unknown / total.to_f)
+            other = total - known
+            percentages[:other] = (other / total.to_f)
           end
           percentages
         end

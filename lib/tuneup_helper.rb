@@ -97,7 +97,7 @@ module TuneupHelper #:nodoc:
         size = (percent * width).to_i
       end
       size = 1 if size.zero?
-      content_tag(:li, (size >= 10 ? layer.to_s[0, 1].capitalize : ''),
+      content_tag(:li, ((size >= 10 && layer != :other) ? layer.to_s[0, 1].capitalize : ''),
         :class => "tuneup-layer-#{layer}",
         :style => "width:#{size}px",
         :title => layer.to_s.titleize)
