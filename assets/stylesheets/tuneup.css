@@ -43,7 +43,7 @@ version: 2.5.1
 /* END YUI RESET */
 
 /* Styling */
-#tuneup { height: 50px; color: #ddd; background: #000 url(/images/tuneup/head.gif) 0 100% repeat-x; padding: 0 0 0 10px; font-family: "Helvetica Neue", "Lucida Grande", Calibri, Helvetica, Verdana, sans-serif; font-size: 12px; }
+#tuneup { height: 50px; color: #ddd; background: #000 url(/images/tuneup/head.gif) 0 100% repeat-x; padding: 0; font-family: "Helvetica Neue", "Lucida Grande", Calibri, Helvetica, Verdana, sans-serif; font-size: 12px; }
 #tuneup #tuneup-content { margin-left: 170px; color: #ddd; height: 50px; vertical-align: middle; text-align: left; }
 #tuneup #tuneup-root-bar { float: right; }
 #tuneup a, #tuneup a:visited, #tuneup a:active { color: #fff; text-decoration: underline; font-size: 12px; border: 0; }
@@ -173,6 +173,25 @@ version: 2.5.1
 #tuneup td { background: #111; padding: 4px; color: #ddd; font-size: 12px; text-align: left; border: 0; }
 
 #tuneup #tuneup-schema { display: none; position: absolute; top: 46px; right: 735px; padding: 9px; text-align: left; z-index: 10998; background: #000; opacity: 0.85; color: #ddd; overflow: hidden; -moz-border-radius: 6px; }
+
+#tuneup h1 {
+  background: transparent url(/images/tuneup/logo_clear.png) center left no-repeat;
+  border: 0;
+  color: white;
+  display: block;
+  float: left;
+  font-family: 'Helvetica Neue';
+  font-size: 18px;
+  font-weight: bold;
+  height: 50px;
+  letter-spacing: 1px;
+  line-height: 50px;
+  margin: 0 18px 0 18px;
+  padding: 0 0 0 38px;
+  text-shadow: rgb(0, 0, 0) -1px -1px 0px;
+  vertical-align: middle;
+}
+
 #tuneup #tuneup-schema h3 { color: #fff; font-weight: bold; font-size: 14px; margin-bottom: 5px; }
 #tuneup #tuneup-data:hover #tuneup-schema { display: block; }
 #tuneup #tuneup-schema table, #tuneup #tuneup-schema tr { background: transparent; }

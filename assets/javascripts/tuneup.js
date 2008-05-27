@@ -6,7 +6,7 @@ Event.observe(window, 'load', function() {
      e.style.top = (top + 50) + 'px'; 
     }
   })
-  new Insertion.Top(document.body, "<div id='tuneup'><a id='tuneup-logo' href='" + TuneUp.frontend_url + "'><img src='/images/tuneup/logo.gif' alt='TuneUp'/></a><div id='tuneup-content'></div></div><div id='tuneup-flash'></div>");
+  new Insertion.Top(document.body, "<div id='tuneup'><h1>FiveRuns TuneUp</h1><div id='tuneup-content'></div></div><div id='tuneup-flash'></div>");
   new Ajax.Request('/tuneup?uri=' + encodeURIComponent(document.location.href), {asynchronous:true, evalScripts:true});
 });
 
