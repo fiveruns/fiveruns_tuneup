@@ -69,7 +69,7 @@ version: 2.5.1
 
 #tuneup #tuneup-top { position: absolute; top: 0px; right: 10px; padding: 0; margin: 0;  z-index: 11000; }
 #tuneup #tuneup-top #tuneup-save-link { line-height: 45px; vertical-align: bottom; margin: 9px; text-align: center; font-weight: bold; padding-left: 20px; background: url(/images/tuneup/pointer.gif) 0 50% no-repeat; }
-#tuneup #tuneup-summary {float: right; padding: 9px; padding-bottom: 26px; margin: 3px; text-align: center; color: #ddd; -moz-border-radius: 6px; }
+#tuneup #tuneup-summary {float: right; padding: 9px; padding-bottom: 25px; margin: 3px; text-align: center; color: #ddd; -moz-border-radius: 6px; }
 
 #tuneup #tuneup-data:hover #tuneup-summary { /* h */
   border-bottom: 0px;

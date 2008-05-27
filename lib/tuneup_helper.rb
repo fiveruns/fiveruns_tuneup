@@ -94,7 +94,11 @@ module TuneupHelper #:nodoc:
       if percent == 0
         next
       else
-        size = (percent * width).to_i
+        begin
+          size = (percent * width).to_i
+        rescue
+          raise "Can't find percent for #{layer.inspect} from #{step.percentages_by_layer.inspect}"\
+        end
       end
       size = 1 if size.zero?
       content_tag(:li, ((size >= 10 && layer != :other) ? layer.to_s[0, 1].capitalize : ''),

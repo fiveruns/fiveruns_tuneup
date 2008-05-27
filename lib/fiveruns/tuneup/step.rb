@@ -7,7 +7,11 @@ module Fiveruns
       alias_method :id, :object_id # Avoid record identitication warnings
             
       def self.layers
-        [:model, :view, :controller, :other]
+        framework_layers + [:other]
+      end
+      
+      def self.framework_layers
+        [:model, :view, :controller]
       end
       
       def schemas
@@ -35,6 +39,10 @@ module Fiveruns
         @children ||= []
       end
       
+      def leaf?
+        children.blank?
+      end
+            
       def leaves
         @leaves ||= begin
           if children.blank?
@@ -45,33 +53,47 @@ module Fiveruns
         end
       end
       
+      def child_times_by_layer
+        @child_times_by_layer ||= children.inject(Hash.new(0)) do |totals, child|
+          child.percentages_by_layer.each do |layer, percentage|
+            totals[layer] += child.time * percentage
+          end
+          totals
+        end
+      end
+      
       def percentages_by_layer
         @percentages_by_layer ||= begin
-          percentages = self.class.layers.inject({}) do |map, layer|
-            map[layer] = if children.empty?
-              if respond_to?(:layer, true) && self.layer == layer
-                1.0
-              else
-                0
-              end
+          percentages = self.class.framework_layers.inject({}) do |map, layer|
+            map[layer] = if leaf?
+              self.layer == layer ? 1.0 : 0
             else
-              these = leaves.map { |c| c.layer == layer ? c.time : 0}.sum || 0
-              all = self.time
-              if all == 0
-                0 # shouldn't occur
-              else
-                (these / all.to_f)
-              end
+              child_times_by_layer[layer] / self.time
             end
             map
           end
-          if !leaves.blank?
-            total = self.time
-            known = leaves.map(&:time).sum || 0
-            other = total - known
-            percentages[:other] = (other / total.to_f)
+          fill percentages
+        end
+      end
+      
+      #######
+      private
+      #######
+
+      def fill(percentages)
+        returning percentages do
+          unless leaf?
+            child_total = children.map(&:time).sum || 0
+            disparity = time - child_total
+            if disparity > 0
+              if children.all? { |c| c.layer == layer }
+                percentages[layer] += disparity / self.time
+              else
+                percentages[:other] = disparity / self.time
+              end
+            end
           end
-          percentages
+          percentages[:other] ||= 0
         end
       end
       
@@ -129,8 +151,8 @@ module Fiveruns
             result.free
             add_schemas(connection)
             @valid = true
-        #  rescue Exception
-        #    @valid = false
+          rescue Exception
+            @valid = false
           end
           
           def valid?
