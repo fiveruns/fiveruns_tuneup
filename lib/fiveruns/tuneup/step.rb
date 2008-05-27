@@ -68,10 +68,12 @@ module Fiveruns
             end
             map
           end
-          total = self.time
-          known = children.map(&:time).sum || 0
-          unknown = total - known
-          percentages[:unknown] = (unknown / total.to_f)
+          if !children.blank?
+            total = self.time
+            known = children.map(&:time).sum || 0
+            unknown = total - known
+            percentages[:unknown] = (unknown / total.to_f)
+          end
           percentages
         end
       end
