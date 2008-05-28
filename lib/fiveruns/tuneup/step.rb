@@ -90,10 +90,13 @@ module Fiveruns
                 percentages[layer] += disparity / self.time
               else
                 percentages[:other] = disparity / self.time
+                puts "Adding disparity of #{disparity} to #{name} (time is #{time}, child total is #{child_total} for #{children.size} children), percentages are #{percentages.inspect}"
               end
             end
           end
           percentages[:other] ||= 0
+          total = percentages.values.sum
+          percentages[:other] += 1.0 - total
         end
       end
       
