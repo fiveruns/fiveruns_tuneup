@@ -84,6 +84,7 @@ class TuneupController < ActionController::Base
   def upload_run
     safely do
       http = Net::HTTP.new(upload_uri.host, upload_uri.port)
+      http.use_ssl = true if Fiveruns::Tuneup.collector_url =~ /^https/
       resp = nil
       # TODO: Support targeted upload
       filename = Fiveruns::Tuneup.last_filename_for_run_uri(params[:uri])
