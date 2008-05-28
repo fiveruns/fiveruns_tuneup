@@ -4,7 +4,7 @@ module Fiveruns
       
       def collector_url
         @collector_url ||= begin
-          url = ENV['TUNEUP_COLLECTOR'] || 'http://tuneup-collector.fiveruns.com'
+          url = ENV['TUNEUP_COLLECTOR'] || 'https://tuneup-collector.fiveruns.com'
           url = "http://#{url}" unless url =~ /^http/
           url
         end
