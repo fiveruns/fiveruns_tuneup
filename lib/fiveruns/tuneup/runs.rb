@@ -25,10 +25,21 @@ module Fiveruns
         filename_for(last_run_id_for(uri))
       end
       
+      def last_run
+        last_file = sorted_run_files.last
+        load_from_file(last_file)
+      end
+      
       #######
       private
       #######
       
+      def sorted_run_files
+        Dir[File.join(run_dir, '*/*.gz')].sort_by do |f|
+          File.basename(f).split('_').first.to_i
+        end
+      end
+            
       def trend_for(run_id)
         Dir[File.join(run_dir, File.dirname(run_id), "*.gz")].map do |filename|
           Integer(File.basename(filename, '.yml.gz').split('_').last)
