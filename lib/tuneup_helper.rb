@@ -124,7 +124,7 @@ module TuneupHelper #:nodoc:
   def tuneup_style_step_name(name)
     case name
     when /^Perform (\S+) action in (\S+Controller)$/
-      "<strong>#{h $1}</strong> action in <strong>#{h $2}</strong>"
+      "Perform <strong>#{h $1}</strong> action in <strong>#{h $2}</strong>"
     when /^Invoke (\S+) action$/
       "Invoke <strong>#{h $1}</strong> action"
     when /^(Find|Create|Delete|Update) ([A-Z]\S*)(.*?)$/
