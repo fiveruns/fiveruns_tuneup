@@ -67,8 +67,13 @@ module Fiveruns
           end
         end
         
-        def instrument_action_method(controller, action)
-          
+        def instrument_action_methods(controller)
+          klass = controller.class
+          actions_for(klass).each do |meth|
+            format = alias_format_for(meth)
+            next if controller.respond_to?(format % :with, true)
+            wrap(klass, format, meth, "Invoke #{meth} action", :controller)
+          end
         end
         
         def instrument_filters(controller)
@@ -76,14 +81,7 @@ module Fiveruns
           filters_for(klass).each do |filter|
             format = alias_format_for(filter.filter)
             next if controller.respond_to?(format % :with, true)
-            klass.class_eval <<-EOC
-              def #{format % :with}(*args, &block)
-                Fiveruns::Tuneup.step "#{filter.type.to_s.titleize} filter #{filter.filter}", :controller do
-                  #{format % :without}(*args, &block)
-                end
-              end
-              alias_method_chain #{filter.filter.inspect}, :fiveruns_tuneup
-            EOC
+            wrap(klass, format, filter.filter, "#{filter.type.to_s.titleize} filter #{filter.filter}", :controller)
           end
         end
         
@@ -91,8 +89,23 @@ module Fiveruns
         private
         #######
         
+        def wrap(klass, format, meth, name, layer)
+          klass.class_eval <<-EOC
+            def #{format % :with}(*args, &block)
+              Fiveruns::Tuneup.step "#{name}", :#{layer} do
+                #{format % :without}(*args, &block)
+              end
+            end
+            alias_method_chain :#{meth}, :fiveruns_tuneup
+          EOC
+        end
+        
         def alias_format_for(name)
           name.to_s =~ /^(.*?)(\?|!|=)$/ ? "#{$1}_%s_fiveruns_tuneup#{$2}" : "#{name}_%s_fiveruns_tuneup"
+        end
+        
+        def actions_for(klass)
+          klass.action_methods.reject { |meth| meth.to_s.include?('fiveruns') }
         end
         
         def filters_for(klass)

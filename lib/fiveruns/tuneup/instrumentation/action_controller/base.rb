@@ -22,8 +22,11 @@ module Fiveruns
             def perform_action_with_fiveruns_tuneup(*args, &block)
               Fiveruns::Tuneup.run(self, request) do
                 action = (request.parameters['action'] || 'index').to_s
-                Fiveruns::Tuneup.instrument_filters(self) if Fiveruns::Tuneup.recording?
-                result = Fiveruns::Tuneup.step "#{action.capitalize} action in #{self.class.name}", :controller, false do
+                if Fiveruns::Tuneup.recording?
+                  Fiveruns::Tuneup.instrument_filters(self) 
+                  Fiveruns::Tuneup.instrument_action_methods(self) 
+                end
+                result = Fiveruns::Tuneup.step "Perform #{action.capitalize} action in #{self.class.name}", :controller, false do
                   perform_action_without_fiveruns_tuneup(*args, &block)
                 end
               end

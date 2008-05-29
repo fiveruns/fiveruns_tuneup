@@ -54,7 +54,7 @@ module TuneupHelper #:nodoc:
   end
   
   def open_step?(step)
-    step.name =~ /^Around filter/
+     [/^Around filter/, /^Invoke/].any? { |pattern| step.name =~ pattern }
   end
   
   def tuneup_step_link(step)
@@ -123,14 +123,18 @@ module TuneupHelper #:nodoc:
   
   def tuneup_style_step_name(name)
     case name
-    when /^(\S+) action in (\S+Controller)$/
+    when /^Perform (\S+) action in (\S+Controller)$/
       "<strong>#{h $1}</strong> action in <strong>#{h $2}</strong>"
+    when /^Invoke (\S+) action$/
+      "Invoke <strong>#{h $1}</strong> action"
     when /^(Find|Create|Delete|Update) ([A-Z]\S*)(.*?)$/
       "#{h $1} <strong>#{h $2}</strong>#{h $3}"
     when /^(Render.*?)(\S+)$/
       "#{h $1}<strong>#{h $2}</strong>"
     when /^(\S+ filter )(.*?)$/
-      "#{$1}<strong>#{$2}</strong>"
+      "#{h $1}<strong>#{h $2}</strong>"
+    when 'Other'
+      "(<i>Other</i>)"
     else
       h(name)
     end

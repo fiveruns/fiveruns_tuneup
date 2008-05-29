@@ -35,6 +35,10 @@ module Fiveruns
         children.map(&:size).sum || 0
       end
       
+      def children_with_disparity
+        children + [Step.disparity(disparity, self)]
+      end
+      
       def children
         @children ||= []
       end
@@ -85,8 +89,6 @@ module Fiveruns
       def fill(percentages)
         returning percentages do
           unless leaf?
-            child_total = children.map(&:time).sum || 0
-            disparity = time - child_total
             if disparity > 0
               percentages[layer] += disparity / self.time
             end
@@ -99,6 +101,13 @@ module Fiveruns
         end
       end
       
+      def disparity
+        @disparity ||= begin
+          child_total = children.map(&:time).sum || 0
+          time - child_total
+        end
+      end
+      
     end
     
     class Step < RootStep
@@ -106,6 +115,13 @@ module Fiveruns
       attr_reader :name, :layer, :file, :line, :sql
       attr_accessor :table_name
       attr_writer :time, :depth
+      
+      def self.disparity(time, parent)
+        returning Step.new("Other", parent.layer) do |step|
+          step.time = time
+        end
+      end
+      
       def initialize(name, layer=nil, file=nil, line=nil, sql=nil)
         @name = name
         @layer = layer
