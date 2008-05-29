@@ -4,7 +4,7 @@ require 'open-uri'
 
 class TuneupController < ActionController::Base
   
-  logger.level = Logger::ERROR unless ENV['LOG_TUNEUP']
+  self.logger = Fiveruns::Tuneup::LOGGER
       
   def show
     render :update do |page|
