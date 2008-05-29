@@ -4,7 +4,7 @@ module Fiveruns
     module AssetTags
       
       def add_asset_tags_to(response)
-        return unless response.body
+        return unless show_for?(response)
         before, after = response.body.split(/<\/head>/i, 2)
         if after
           insertion = %(
@@ -21,6 +21,12 @@ module Fiveruns
           response.headers["Content-Length"] += insertion.size
           response.body.replace(before << insertion << '</head>' << after)
         end
+      end
+      
+      def show_for?(response)
+        return false unless response.body
+        return false unless response.headers['Status'] && response.headers['Status'].include?('200')
+        true
       end
       
       def insert_prototype

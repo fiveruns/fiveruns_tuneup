@@ -125,6 +125,8 @@ module TuneupHelper #:nodoc:
       "#{h $1} <strong>#{h $2}</strong>#{h $3}"
     when /^(Render.*?)(\S+)$/
       "#{h $1}<strong>#{h $2}</strong>"
+    when /^(\S+ filter )(.*?)$/
+      "#{$1}<strong>#{$2}</strong>"
     else
       h(name)
     end

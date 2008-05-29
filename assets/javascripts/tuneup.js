@@ -3,10 +3,11 @@ TuneUp.switchSchema = function(table) {
   var operation = element.visible() ? 'hide' : 'show';
   $$('#tuneup-schema .tuneup-schema-table').each(function(s) { s.hide(); })
   element[operation]();
-  Position.clone('tuneup-details', 'tuneup-schema', { setLeft: false, setTop: true, setWidth: false, setHeight: true });
-  var h = parseFloat(Element.getStyle('tuneup-schema', 'height'));
-  $('tuneup-schema').style.height = h - 18 + 'px';
   $('tuneup-schema')[operation]();
+  if (operation == 'show') {
+    var elements = $A([$('tuneup-details'), $('tuneup-schema')]).sortBy(function (e) { return e.clientHeight; });
+    Position.clone(elements[1], elements[0], { setLeft: false, setTop: true, setWidth: false, setHeight: true });
+  }  
 }
 TuneUp.Spinner = {
   start: function() { $('tuneup_spinner').show(); },
