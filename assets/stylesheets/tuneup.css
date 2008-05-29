@@ -109,6 +109,8 @@ version: 2.5.1
 
 #tuneup li .children { display: none; }
 
+#tuneup_spinner { position: absolute; z-index: 11002; top: 15px; right: 30px; }
+
 #tuneup #tuneup-details ul dd {
   margin: 0 0 0 410px;
   height: 20px;

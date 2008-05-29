@@ -4,7 +4,7 @@
       <%= tuneup_bar(tuneup_data.children.first, :id => 'tuneup-root-bar') %>
       <%= trend %> <%= tuneup_data.time.to_i %> ms 
     </div>
-    <%= link_to_remote "Upload this Run", :url => "/tuneup/upload?uri=#{CGI.escape(params[:uri])}", :html => {:id => 'tuneup-save-link'} %>
+    <%= link_to_upload %>
   </div>
   <%= render :partial => 'schema' %>
   <div id='tuneup-details'>
