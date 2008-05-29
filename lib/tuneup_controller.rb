@@ -3,6 +3,8 @@ require 'ostruct'
 require 'open-uri'
 
 class TuneupController < ActionController::Base
+  
+  logger.level = Logger::ERROR unless ENV['LOG_TUNEUP']
       
   def show
     render :update do |page|

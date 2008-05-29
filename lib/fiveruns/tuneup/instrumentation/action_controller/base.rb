@@ -4,7 +4,19 @@ module Fiveruns
       module ActionController
         module Base
           def self.included(base)
-            Fiveruns::Tuneup.instrument base, InstanceMethods
+            Fiveruns::Tuneup.instrument base, ClassMethods, InstanceMethods
+          end
+          module ClassMethods
+            def cache_page_with_fiveruns_tuneup(*args, &block)
+              Fiveruns::Tuneup.step "Cache page", :controller do
+                cache_page_without_fiveruns_tuneup(*args, &block)
+              end
+            end
+            def expire_page_with_fiveruns_tuneup(*args, &block)
+              Fiveruns::Tuneup.step "Expire cached page", :controller do
+                expire_page_without_fiveruns_tuneup(*args, &block)
+              end
+            end
           end
           module InstanceMethods
             def perform_action_with_fiveruns_tuneup(*args, &block)
@@ -22,6 +34,18 @@ module Fiveruns
               end
               result
             end
+            
+            def write_fragment_with_fiveruns_tuneup(*args, &block)
+              Fiveruns::Tuneup.step "Cache fragment", :controller do
+                write_fragment_without_fiveruns_tuneup(*args, &block)
+              end
+            end
+            def expire_fragment_with_fiveruns_tuneup(*args, &block)
+              Fiveruns::Tuneup.step "Expire fragment cache", :controller do
+                expire_fragment_without_fiveruns_tuneup(*args, &block)
+              end
+            end
+            
           end
         end
       end
