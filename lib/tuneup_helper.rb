@@ -63,6 +63,14 @@ module TuneupHelper #:nodoc:
     link << additional_step_links(step)
   end
   
+  def link_to_upload
+    link_to_remote "Upload this Run",
+      :url => "/tuneup/upload?uri=#{CGI.escape(params[:uri])}",
+      :loading => '$("tuneup-top").hide(); TuneUp.Spinner.start()',
+      :complete => ' TuneUp.Spinner.stop(); $("tuneup-top").show();',
+      :html => {:id => 'tuneup-save-link'}
+  end
+  
   def additional_step_links(step)
     returning '' do |text|
       text << sql_link(step) if step.sql
