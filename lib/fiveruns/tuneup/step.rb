@@ -69,7 +69,7 @@ module Fiveruns
               self.layer == layer ? 1.0 : 0
             else
               result = child_times_by_layer[layer] / self.time
-              result.is_a?(Fixnum) ? result : 0 # TODO: Fix issue at source
+              result.is_a?(Numeric) ? result : 0 # TODO: Fix issue at source
             end
             map
           end
