@@ -6,6 +6,8 @@ require 'zlib'
 
 module Fiveruns
   module Tuneup
+    
+    LOGGER = Logger.new('log/tuneup.log')
         
     class << self
       
@@ -82,7 +84,7 @@ module Fiveruns
       end
             
       def log(level, text)
-        RAILS_DEFAULT_LOGGER.send(level, "FiveRuns TuneUp (v#{Fiveruns::Tuneup::Version::STRING}): #{text}")
+        LOGGER.send(level, "FiveRuns TuneUp (v#{Fiveruns::Tuneup::Version::STRING}): #{text}")
       end
       
       #######
