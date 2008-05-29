@@ -68,7 +68,8 @@ module Fiveruns
             map[layer] = if leaf?
               self.layer == layer ? 1.0 : 0
             else
-              child_times_by_layer[layer] / self.time
+              result = child_times_by_layer[layer] / self.time
+              result.is_a?(Fixnum) ? result : 0 # TODO: Fix issue at source
             end
             map
           end
