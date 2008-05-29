@@ -23,7 +23,7 @@ module TuneupHelper #:nodoc:
     returning [] do |classes|
       if step.children.any?
         classes << 'with-children'
-        classes << 'tuneup-opened' if step.depth == 1
+        classes << 'tuneup-opened' if step.depth == 1 || open_step?(step)
       end
     end.join(' ')
   end
@@ -51,6 +51,10 @@ module TuneupHelper #:nodoc:
     tag(:img,
       :src => build_data_url("image/png",bumpspark(numbers)), :alt => '',
       :title => "Trend over last #{pluralize(numbers.size, 'run')}")
+  end
+  
+  def open_step?(step)
+    step.name =~ /^Around filter/
   end
   
   def tuneup_step_link(step)

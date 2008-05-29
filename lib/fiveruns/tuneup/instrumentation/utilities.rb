@@ -67,10 +67,14 @@ module Fiveruns
           end
         end
         
+        def instrument_action_method(controller, action)
+          
+        end
+        
         def instrument_filters(controller)
           klass = controller.class
           filters_for(klass).each do |filter|
-            format = filter.filter.to_s =~ /^(.*?)(\?|!|=)$/ ? "#{$1}_%s_fiveruns_tuneup#{$2}" : "#{filter.filter}_%s_fiveruns_tuneup"
+            format = alias_format_for(filter.filter)
             next if controller.respond_to?(format % :with, true)
             klass.class_eval <<-EOC
               def #{format % :with}(*args, &block)
@@ -87,8 +91,12 @@ module Fiveruns
         private
         #######
         
+        def alias_format_for(name)
+          name.to_s =~ /^(.*?)(\?|!|=)$/ ? "#{$1}_%s_fiveruns_tuneup#{$2}" : "#{name}_%s_fiveruns_tuneup"
+        end
+        
         def filters_for(klass)
-          klass.filter_chain.select { |f| f.filter.is_a?(Symbol) && f.type != :around }
+          klass.filter_chain.select { |f| f.filter.is_a?(Symbol) }
         end
 
         def install_instrumentation

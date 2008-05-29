@@ -4,10 +4,6 @@ TuneUp.switchSchema = function(table) {
   $$('#tuneup-schema .tuneup-schema-table').each(function(s) { s.hide(); })
   element[operation]();
   $('tuneup-schema')[operation]();
-  if (operation == 'show') {
-    var elements = $A([$('tuneup-details'), $('tuneup-schema')]).sortBy(function (e) { return e.clientHeight; });
-    Position.clone(elements[1], elements[0], { setLeft: false, setTop: true, setWidth: false, setHeight: true });
-  }  
 }
 TuneUp.Spinner = {
   start: function() { $('tuneup_spinner').show(); },

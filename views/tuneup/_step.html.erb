@@ -8,7 +8,7 @@
   </dl>
   <%= render :partial => 'sql', :object => step.sql, :locals => {:step => step} if step.sql %>
   <% if step.children.any? %>  
-    <ul id='<%= dom_id step, :children %>'<% if step.depth > 1 %> class='fiveruns_tuneup_children' style='display:none'<% end %>>
+    <ul id='<%= dom_id step, :children %>'<% if step.depth > 1 %> class='fiveruns_tuneup_children' <% unless open_step?(step) %>style='display:none'<% end %><% end %>>
       <%= render :partial => 'step', :collection => step.children %>
     </ul>
   <% end %>
