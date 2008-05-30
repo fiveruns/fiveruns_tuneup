@@ -3,10 +3,13 @@
 == Requirements
 
 * Rails 2.0.0+
+* Firefox 3rc1+, Safari 3+ (IE)
 
 == Synopsis
 
-TODO
+Display call stack information on Rails requests.
+
+THIS IS A BETA RELEASE; the normal disclaimers apply.
 
 == License
 
