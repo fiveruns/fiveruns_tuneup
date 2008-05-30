@@ -26,7 +26,6 @@ module Fiveruns
                   Fiveruns::Tuneup.instrument_filters(self) 
                   Fiveruns::Tuneup.instrument_action_methods(self) 
                   Fiveruns::Tuneup.instrument_custom_methods
-                  puts "INSTRUMENTED!"
                 end
                 result = Fiveruns::Tuneup.step "Perform #{action.capitalize} action in #{self.class.name}", :controller, false do
                   perform_action_without_fiveruns_tuneup(*args, &block)

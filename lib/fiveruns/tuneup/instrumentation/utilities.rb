@@ -126,7 +126,6 @@ module Fiveruns
             end
             alias_method_chain :#{meth}, :fiveruns_tuneup
           EOC
-          Fiveruns::Tuneup.log :debug, text
           begin
             klass.class_eval text
           rescue SyntaxError => e
