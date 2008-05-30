@@ -11,6 +11,15 @@ module Fiveruns
           @exclusion_stack ||= [0]
         end
         
+        def custom_methods
+          @custom_methods ||= {}
+        end
+        
+        def add_custom_methods(target, *methods)
+          custom_methods[target] = [] unless custom_methods.key?(target)
+          custom_methods[target].push(*methods)
+        end
+        
         def stopwatch
           start = Time.now.to_f
           yield
@@ -82,6 +91,25 @@ module Fiveruns
             format = alias_format_for(filter.filter)
             next if controller.respond_to?(format % :with, true)
             wrap(klass, format, filter.filter, "#{filter.type.to_s.titleize} filter #{filter.filter}", :controller)
+          end
+        end
+        
+        def instrument_custom_methods
+          custom_methods.each do |meth_target, meths|
+            lineage = meth_target.ancestors
+            layer = if lineage.include?(ActionController::Base)
+              :controller
+            elsif lineage.include?(ActiveRecord::Base)
+              :model
+            elsif lineage.include?(ActionView::Base)
+              :view
+            else
+              :other
+            end
+            meths.each do |meth|
+              format = alias_format_for(meth)
+              wrap(meth_target, format, meth, "Method #{meth}", layer)
+            end
           end
         end
         

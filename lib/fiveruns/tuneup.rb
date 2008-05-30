@@ -65,7 +65,7 @@ module Fiveruns
           else
             clear_stack
           end
-          yield            
+          yield
         else
           yield
         end
