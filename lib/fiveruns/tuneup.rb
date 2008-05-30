@@ -3,6 +3,7 @@ require File.dirname(__FILE__) << "/tuneup/step"
 require 'digest/sha1'
 require 'yaml'
 require 'zlib'
+require File.dirname(__FILE__) << '/tuneup/step'
 
 module Fiveruns
   module Tuneup

@@ -88,9 +88,9 @@ module Fiveruns
         def instrument_filters(controller)
           klass = controller.class
           filters_for(klass).each do |filter|
-            format = alias_format_for(filter.filter)
+            format = alias_format_for(name_of_filter(filter))
             next if controller.respond_to?(format % :with, true)
-            wrap(klass, format, filter.filter, "#{filter.type.to_s.titleize} filter #{filter.filter}", :controller)
+            wrap(klass, format, name_of_filter(filter), "#{filter.type.to_s.titleize} filter #{name_of_filter(filter)}", :controller)
           end
         end
         
@@ -143,7 +143,15 @@ module Fiveruns
         end
         
         def filters_for(klass)
-          klass.filter_chain.select { |f| f.filter.is_a?(Symbol) }
+          klass.filter_chain.select { |f| name_of_filter(f).is_a?(Symbol) }
+        end
+        
+        def name_of_filter(filter)
+          if filter.respond_to?(:filter)
+            filter.filter
+          else
+            filter.method
+          end
         end
 
         def install_instrumentation

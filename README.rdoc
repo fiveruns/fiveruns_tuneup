@@ -2,8 +2,8 @@
 
 == Requirements
 
-* Rails 2.0.0+
-* Firefox 3rc1+ (2 soon), Safari 3+.  IE support on the roadmap.
+* Rails 2.0.1+
+* Firefox 2.0+, Safari 3.1+.  IE support is on the roadmap.
 
 == Synopsis
 

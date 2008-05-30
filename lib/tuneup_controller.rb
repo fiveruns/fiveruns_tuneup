@@ -3,8 +3,6 @@ require 'ostruct'
 require 'open-uri'
 
 class TuneupController < ActionController::Base
-  
-  self.logger = Fiveruns::Tuneup::LOGGER
       
   def show
     render :update do |page|
@@ -100,7 +98,7 @@ class TuneupController < ActionController::Base
       when 201
         return resp.body.strip rescue nil
       else
-        Fiveruns::Tuneup.log :error, "Recieved bad response from service (#{resp.inspect})"
+        Fiveruns::Tuneup.log :error, "Received bad response from service (#{resp.inspect})"
         return false
       end
     end
@@ -116,7 +114,7 @@ class TuneupController < ActionController::Base
       when 200..299
         resp.body.strip rescue nil
       else
-        Fiveruns::Tuneup.log :error, "Recieved bad response from service (#{resp.inspect})"
+        Fiveruns::Tuneup.log :error, "Received bad response from service (#{resp.inspect})"
         false
       end
     end
