@@ -1,1 +1,3 @@
 = History
+
+* v0.8.1. First gem package with basic functionality

@@ -40,7 +40,6 @@ lib/tuneup_config.rb
 lib/tuneup_controller.rb
 lib/tuneup_helper.rb
 Manifest
-Manifest.txt
 rails/init.rb
 Rakefile
 README.rdoc

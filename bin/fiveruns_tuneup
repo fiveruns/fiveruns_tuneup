@@ -10,6 +10,8 @@ unless File.directory?(plugin_dir)
   abort "FiveRuns TuneUp: #{plugin_dir} does not exist; cannot install plugin"
 end
 
+FileUtils.rm_rf File.join(plugin_dir, 'fiveruns_tuneup') rescue nil
+
 File.readlines(File.dirname(__FILE__) << "/../Manifest").each do |line|
   stub = line.strip
   origin = File.dirname(__FILE__) << "/../#{stub}"

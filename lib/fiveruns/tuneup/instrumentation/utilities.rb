@@ -118,7 +118,7 @@ module Fiveruns
         #######
         
         def wrap(klass, format, meth, name, layer)
-          klass.class_eval <<-EOC
+          text = <<-EOC
             def #{format % :with}(*args, &block)
               Fiveruns::Tuneup.step "#{name}", :#{layer} do
                 #{format % :without}(*args, &block)
@@ -126,6 +126,13 @@ module Fiveruns
             end
             alias_method_chain :#{meth}, :fiveruns_tuneup
           EOC
+          Fiveruns::Tuneup.log :debug, text
+          begin
+            klass.class_eval text
+          rescue SyntaxError => e
+            # XXX: Catch-all for reports of oddly-named methods affecting dynamically generated code
+            log :warn, %[Bad syntax wrapping #{klass}##{meth}, "#{name}"]
+          end
         end
         
         def alias_format_for(name)
