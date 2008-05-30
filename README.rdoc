@@ -11,6 +11,13 @@ Display call stack information on Rails requests.
 
 THIS IS A BETA RELEASE; the normal disclaimers apply.
 
+== Known Issues
+
+The following issues have been seen from time to time on some apps:
+* Issues with fixed/absolute positioned elements overlapping the panel
+  and/or being pushed down too far.
+* Panel not showing up on the `root' route.
+
 == License
 
 (The FiveRuns License)
