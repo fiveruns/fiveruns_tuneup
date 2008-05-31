@@ -104,7 +104,8 @@ module Fiveruns
       def disparity
         @disparity ||= begin
           child_total = children.map(&:time).sum || 0
-          time - child_total
+          disparity = time - child_total
+          disparity > 0 ? disparity : 0
         end
       end
       

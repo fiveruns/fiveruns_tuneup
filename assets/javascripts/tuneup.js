@@ -10,7 +10,6 @@ TuneUp.Spinner = {
   stop: function() { $('tuneup_spinner').hide(); }
 }
 
-
 Event.observe(window, 'load', function() {
   $A($(document.body).descendants()).each(function(e){
     var pos = Element.getStyle(e, 'position');
