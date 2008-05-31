@@ -78,19 +78,36 @@ module Fiveruns
       end
       
       def start
-        log :info, "Starting..."
-        install_instrumentation
-        log :debug, "Using collector at #{collector_url}"
-        log :debug, "Using frontend at #{frontend_url}"
+        if supports_rails?
+          yield
+          log :info, "Starting..."
+          install_instrumentation
+          log :debug, "Using collector at #{collector_url}"
+          log :debug, "Using frontend at #{frontend_url}"
+        end
       end
             
       def log(level, text)
-        LOGGER.send(level, "FiveRuns TuneUp (v#{Fiveruns::Tuneup::Version::STRING}): #{text}")
+        message = "FiveRuns TuneUp (v#{Fiveruns::Tuneup::Version::STRING}): #{text}"
+        LOGGER.send(level, message)
+        STDERR.puts message if level == :error
       end
       
       #######
       private
       #######
+      
+      def supports_rails?
+        version = Rails::VERSION rescue nil
+        return true unless version
+        if version::MAJOR < 2
+          log :error, "Sorry, FiveRuns TuneUp does not currently support Rails < 2.0.0; aborting load."
+          false
+        else
+          log :info, "Rails version #{version::STRING} is supported, loading..."
+          true
+        end
+      end
       
       def clear_stack
         @stack = nil
