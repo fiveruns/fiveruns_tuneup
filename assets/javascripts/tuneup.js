@@ -10,28 +10,50 @@ TuneUp.Spinner = {
   stop: function() { $('tuneup_spinner').hide(); }
 }
 
-TuneUp.adjust_positioned_element = function(e) {
-	var pos = e.getStyle('position');
-	if (pos == 'absolute' || pos == 'fixed') {
-		var top = parseFloat(e.getStyle('top') || 0);
-    e.style.top = (top + 50) + 'px';
-		e.immediateDescendants().each(function(e) { TuneUp.adjust_positioned_element(e) });
-	}
-	else if (pos == 'relative') {
-		// do nothing
-	}
-	else {
-		e.immediateDescendants().each(function(e) { TuneUp.adjust_positioned_element(e) });
-	}
+TuneUp.adjustPositionedElement = function(e) {
+	e.immediateDescendants().each(function (e) {
+		var pos = e.getStyle('position');
+		if (pos == 'absolute' || pos == 'fixed') {
+			var top = parseFloat(e.getStyle('top') || 0);
+			var adjust = 0;
+
+			if ($('tuneup-flash').hasClassName('tuneup-show')) {
+				if (!e.hasClassName('tuneup-flash-adjusted')) {
+					adjust = 27;
+					e.addClassName('tuneup-flash-adjusted');
+				}
+			}
+			else {
+				if (e.hasClassName('tuneup-flash-adjusted')) {
+					adjust = -27;
+					e.removeClassName('tuneup-flash-adjusted');
+				}
+			}
+			
+			if (e.hasClassName('tuneup-adjusted'))
+				e.style.top = (top + adjust) + 'px';
+			else {
+				e.style.top = (top + 50 + adjust) + 'px';
+				e.addClassName('tuneup-adjusted')
+			}
+				
+			TuneUp.adjustPositionedElement(e);
+		}
+		else if (pos == 'relative') {
+			// do nothing
+		}
+		else {
+			TuneUp.adjustPositionedElement(e);
+		}
+	});
 }
 
 Event.observe(window, 'load', function() {
-	document.body.immediateDescendants().each(function(e) {
-		TuneUp.adjust_positioned_element(e);
-	});
-	
   new Insertion.Top(document.body, "<div id='tuneup'><h1>FiveRuns TuneUp</h1><img id='tuneup_spinner' style='display:none' src='/images/tuneup/spinner.gif' alt=''/><div id='tuneup-content'></div></div><div id='tuneup-flash'></div>");
-  new Ajax.Request('/tuneup?uri=' + encodeURIComponent(document.location.href),
+  
+	TuneUp.adjustPositionedElement(document.body);
+
+	new Ajax.Request('/tuneup?uri=' + encodeURIComponent(document.location.href),
     {
       asynchronous:true,
       evalScripts:true,
