@@ -7,9 +7,8 @@
     <%= link_to_upload %>
   </div>
   <%= render :partial => 'schema' %>
-  <div id='tuneup-details'>
-    <ul>
-      <%= render :partial => 'step', :collection => tuneup_data.children %>
-    </ul>
-  </div>
+  <ul id="tuneup-details">
+    <%= render :partial => 'step', :collection => tuneup_data.children %>
+		<li style="clear:both"></li>
+  </ul>
 </div>

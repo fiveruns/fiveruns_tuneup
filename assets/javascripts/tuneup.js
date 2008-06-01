@@ -61,7 +61,7 @@ TuneUp.adjustAbsoluteElements = function(e) {
 }
 
 Event.observe(window, 'load', function() {
-  new Insertion.Top(document.body, "<div id='tuneup'><h1>FiveRuns TuneUp</h1><img id='tuneup_spinner' style='display:none' src='/images/tuneup/spinner.gif' alt=''/><div id='tuneup-content'></div></div><div id='tuneup-flash'></div>");
+  new Insertion.Top(document.body, "<div id='tuneup'><h1>FiveRuns TuneUp</h1><img id='tuneup_spinner' style='display:none' src='/images/tuneup/spinner.gif' alt=''/><div id='tuneup-content' style='display:block'></div></div><div id='tuneup-flash'></div>");
   
 	TuneUp.adjustAbsoluteElements(document.body);
 	TuneUp.adjustFixedElements();
