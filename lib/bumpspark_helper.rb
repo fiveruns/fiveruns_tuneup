@@ -5,7 +5,7 @@ require 'zlib'
 # discussed and collaborated on at:
 #   http://redhanded.hobix.com/inspect/sparklinesForMinimalists.html
 # Many thanks to the various collaborators; _why (concept), MenTaLguY (transparency), and jzp (png)
-module BumpsparkHelper
+module BumpsparkHelper #:nodoc:
   
   def build_png_chunk(type,data)
       to_check = type + data

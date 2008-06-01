@@ -1,7 +1,7 @@
 module Fiveruns::Tuneup::CustomMethods
   
+  # Manually instrument methods
   def tuneup(*args)
-    options = args.last.is_a?(Hash) ? args.pop : {}
     Fiveruns::Tuneup.add_custom_methods(self, *args)
   end
   
