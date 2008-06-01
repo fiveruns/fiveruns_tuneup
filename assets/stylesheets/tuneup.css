@@ -52,7 +52,7 @@ version: 2.5.1
 #tuneup label { display: inline; font-size: 13px; font-weight: normal; color: #CCC; padding: 2px 2px; }
 #tuneup label, #tuneup button { margin: 0 6px 0 20px; }
 
-#tuneup #tuneup-content p.full { height: 50px; line-height: 50px; vertical-align: middle; padding: 0; }
+#tuneup #tuneup-content p.tuneup-full { height: 50px; line-height: 50px; vertical-align: middle; padding: 0; }
 #tuneup .small { font-size: 10px; color: #666; padding: 0 8px 0 8px;}
 
 
