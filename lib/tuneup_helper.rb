@@ -162,7 +162,8 @@ module TuneupHelper #:nodoc:
     update_page do |page|
       page['tuneup-flash'].removeClassName('tuneup-show');
       page['tuneup-content'].replace_html(render(:partial => "tuneup/panel/#{@config.state}"))
-      page << 'TuneUp.adjustPositionedElement(document.body);'
+      page << 'TuneUp.adjustAbsoluteElements(document.body);'
+      page << 'TuneUp.adjustFixedElements();'
     end
   end
   
@@ -175,7 +176,8 @@ module TuneupHelper #:nodoc:
         page['tuneup-flash'].removeClassName("tuneup-#{other_type}")
       end
       page['tuneup-flash'].addClassName("tuneup-#{type}");
-      page << 'TuneUp.adjustPositionedElement(document.body);'
+      page << 'TuneUp.adjustAbsoluteElements(document.body);'
+      page << 'TuneUp.adjustFixedElements();'
     end
   end
   
