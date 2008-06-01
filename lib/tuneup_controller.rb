@@ -3,6 +3,12 @@ require 'ostruct'
 require 'open-uri'
 
 class TuneupController < ActionController::Base
+  
+  def self.request_forgery_protection_options
+    ApplicationController.request_forgery_protection_options || {}
+  rescue
+    Hash.new
+  end
       
   def show
     render :update do |page|
