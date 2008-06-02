@@ -52,7 +52,7 @@ version: 2.5.1
 #tuneup label { display: inline; font-size: 13px; font-weight: normal; color: #CCC; padding: 2px 2px; }
 #tuneup label, #tuneup button { margin: 0 6px 0 20px; }
 
-#tuneup #tuneup-content p.tuneup-full { height: 50px; line-height: 50px; vertical-align: middle; padding: 0; }
+#tuneup #tuneup-content p.tuneup-full { height: 50px; line-height: 50px; vertical-align: middle; padding: 0; background-color: transparent; }
 #tuneup .small { font-size: 10px; color: #666; padding: 0 8px 0 8px;}
 
 
@@ -84,13 +84,13 @@ version: 2.5.1
   -moz-border-radius: 6px;
 }
 
-#tuneup #tuneup-details ul dl { margin: 0; padding: 0; width: 700; overflow: hidden; }
-#tuneup #tuneup-details ul dt { float: left; overflow: hidden; height: 20px; margin: 0 10px 0 0; padding: 0; color: #ddd; font-size: 12px; text-transform: none; font-weight: inherit;}
-#tuneup #tuneup-details ul dt p { }
-#tuneup #tuneup-details ul dt strong { color: #fff; font-weight: bold; }
-#tuneup #tuneup-details ul dt span.time { float: right; text-transform: none; font-size: 11px; font-weight: normal; margin-right: 0px; }
+#tuneup ul#tuneup-details ul.tuneup-step-info { margin: 0; padding: 0; }
+#tuneup ul#tuneup-details li.tuneup-title { float: left; overflow: hidden; height: 20px; margin: 0 10px 0 0; padding: 0; color: #ddd; font-size: 12px; text-transform: none; font-weight: inherit;}
+#tuneup ul#tuneup-details li.tuneup-title p { background-color: transparent; }
+#tuneup ul#tuneup-details li.tuneup-title strong { color: #fff; font-weight: bold; }
+#tuneup ul#tuneup-details li.tuneup-title span.time { float: right; text-transform: none; font-size: 11px; font-weight: normal; margin-right: 0px; }
 
-#tuneup #tuneup-details ul dt a, #tuneup-details ul dt a:active, #tuneup-details ul dt a:visited {
+#tuneup ul#tuneup-details li.tuneup-title a, ul#tuneup-details li.tuneup-title a:active, ul#tuneup-details li.tuneup-title a:visited {
   color: inherit;
   font-size: inherit;
   font-weight: inherit;
@@ -101,56 +101,45 @@ version: 2.5.1
 
 #tuneup .tuneup-bar li { text-align: center; }
 
-#tuneup #tuneup-details li.fiveruns_tuneup_step { padding-left: 4px; background: url(/images/tuneup/pip.gif) 4px 0 no-repeat; }
+#tuneup #tuneup-details li.fiveruns_tuneup_step { clear: left; padding: 0 0 0 4px; background: url(/images/tuneup/pip.gif) 4px 0 no-repeat; margin: 2px 0; }
 #tuneup #tuneup-details li.fiveruns_tuneup_step.with-children {  background: url(/images/tuneup/arrows.gif) 4px 0 no-repeat;}
 #tuneup #tuneup-details li.fiveruns_tuneup_step.with-children.tuneup-opened { background: url(/images/tuneup/arrows.gif) 4px -20px no-repeat; }
 
-#tuneup #tuneup-details ul { margin: 0; padding: 0; }
-#tuneup #tuneup-details ul span.time { margin-right: 12px; }
+#tuneup ul#tuneup-details span.time { margin-right: 12px; }
 
 #tuneup li .children { display: none; }
 
 #tuneup_spinner { position: absolute; z-index: 11002; top: 15px; right: 30px; }
 
-#tuneup #tuneup-details ul dd {
-  margin: 0 0 0 410px;
+#tuneup ul#tuneup-details li.tuneup-detail-bar {
+	float:left;
+  margin: 0 0 0 0;
   height: 20px;
+	width: 300px;
   padding: 0;
 }
-#tuneup #tuneup-details ul dt { padding-left: 16px; width: 400px; clear: left; }
+#tuneup ul#tuneup-details li.tuneup-title { padding-left: 16px; width: 400px; }
 
-#tuneup #tuneup-details ul ul.fiveruns_tuneup_children { background: #111; }
-#tuneup #tuneup-details ul ul dd { margin-left: 406px; }
-#tuneup #tuneup-details ul ul dt { width: 396px; }
+#tuneup ul#tuneup-details ul.fiveruns_tuneup_children { background: #111; }
+#tuneup ul#tuneup-details ul li.tuneup-title { width: 396px; }
 
-#tuneup #tuneup-details ul ul ul.fiveruns_tuneup_children { background: #222;}
-#tuneup #tuneup-details ul ul ul dd { margin-left: 402px; }
-#tuneup #tuneup-details ul ul ul dt { width: 392px; }
+#tuneup ul#tuneup-details ul ul.fiveruns_tuneup_children { background: #222;}
+#tuneup ul#tuneup-details ul ul li.tuneup-title { width: 392px; }
 
+#tuneup ul#tuneup-details ul ul ul.fiveruns_tuneup_children { background: #333;}
+#tuneup ul#tuneup-details ul ul ul li.tuneup-title { width: 388px; }
 
-#tuneup #tuneup-details ul ul ul ul.fiveruns_tuneup_children { background: #333;}
-#tuneup #tuneup-details ul ul ul ul dd { margin-left: 398px; }
-#tuneup #tuneup-details ul ul ul ul dt { width: 388px; }
+#tuneup ul#tuneup-details ul ul ul ul.fiveruns_tuneup_children { background: #444;}
+#tuneup ul#tuneup-details ul ul ul ul li.tuneup-title { width: 384px; }
 
+#tuneup ul#tuneup-details ul ul ul ul ul.fiveruns_tuneup_children { background: #555;}
+#tuneup ul#tuneup-details ul ul ul ul ul li.tuneup-title { width: 380px; }
 
-#tuneup #tuneup-details ul ul ul ul ul.fiveruns_tuneup_children { background: #444;}
-#tuneup #tuneup-details ul ul ul ul ul dd { margin-left: 394px; }
-#tuneup #tuneup-details ul ul ul ul ul dt { width: 384px; }
+#tuneup ul#tuneup-details ul ul ul ul ul ul.fiveruns_tuneup_children { background: #666;}
 
-
-#tuneup #tuneup-details ul ul ul ul ul ul.fiveruns_tuneup_children { background: #555;}
-#tuneup #tuneup-details ul ul ul ul ul ul dd { margin-left: 390px; }
-#tuneup #tuneup-details ul ul ul ul ul ul dt { width: 380px; }
-
-#tuneup #tuneup-details ul ul ul ul ul ul ul.fiveruns_tuneup_children { background: #666;}
-#tuneup #tuneup-details ul ul ul ul ul ul ul dd { margin-left: 386px; }
-#tuneup #tuneup-details ul ul ul ul ul ul ul dt { width: 376px; }
-
-#tuneup #tuneup-details ul ul ul ul ul ul ul ul dd { margin-left: 382px; }
-#tuneup #tuneup-details ul ul ul ul ul ul ul ul dt { width: 372px; }
-
-#tuneup #tuneup-details ul ul ul ul ul ul ul ul ul dd { margin-left: 378px; }
-#tuneup #tuneup-details ul ul ul ul ul ul ul ul ul dt { width: 368px; }
+#tuneup ul#tuneup-details ul ul ul ul ul ul li.tuneup-title { width: 376px; }
+#tuneup ul#tuneup-details ul ul ul ul ul ul ul li.tuneup-title { width: 372px; }
+#tuneup ul#tuneup-details ul ul ul ul ul ul ul ul li.tuneup-title { width: 368px; }
 
 #tuneup-flash { display: none; text-align: left; font-size: 12px; padding: 5px; color: #000; border-bottom: 1px #000 solid; }
 #tuneup-flash emph { color: #666; font-style: italic; }
@@ -161,8 +150,8 @@ version: 2.5.1
 #tuneup-flash.tuneup-error p { background:  url(/images/tuneup/warning.gif) 0 50% no-repeat; }
 #tuneup-flash.tuneup-notice { padding-left: 0; background: #E4FFDE; }
 
-#tuneup #tuneup-details .tuneup-bar { width: 300px; height: 20px; padding: 0; margin: 0 !important; overflow: hidden; }
-#tuneup #tuneup-details .tuneup-bar li { height: 18px; padding: 0; margin: 0  !important; }
+#tuneup #tuneup-details .tuneup-bar { width: 300px; height: 20px; padding: 0; margin: 0 !important; }
+#tuneup #tuneup-details .tuneup-bar li { height: 20px; padding: 0; margin: 0  !important; }
 
 #tuneup #tuneup-details a.tuneup-sql { color: 001999; margin-left: 10px; }
 #tuneup #tuneup-details a img { border: 0; }
@@ -175,7 +164,7 @@ version: 2.5.1
 #tuneup th { background: #000; padding: 4px; color: #fff; font-size: 12px; text-align: left; border: 0; font-weight: bold; border: 1px #333 solid; border-left: 0; border-top: 0; }
 #tuneup td { background: #111; padding: 4px; color: #ddd; font-size: 12px; text-align: left; border: 0; }
 
-#tuneup #tuneup-schema { display: none; position: absolute; top: 46px; right: 735px; padding: 9px; text-align: left; z-index: 10998; background: #000; opacity: 0.85; color: #ddd; overflow: hidden; -moz-border-radius: 6px; }
+#tuneup #tuneup-schema { display: none; position: absolute; top: 46px; right: 757px; padding: 9px; text-align: left; z-index: 10998; background: #000; opacity: 0.85; color: #ddd; overflow: hidden; -moz-border-radius: 6px; }
 
 #tuneup h1 {
   background: transparent url(/images/tuneup/logo_clear.png) center left no-repeat;
@@ -203,3 +192,5 @@ version: 2.5.1
 #tuneup #tuneup-trend { float: right; width: 100px; }
 
 #tuneup button { background: none; border: 0; margin: 0; padding: 0; height: 50px; line-height: 50px; vertical-align: middle; }
+
+a.tuneup-step-link { padding-left: 20px; margin-left: -20px; outline: none;}
