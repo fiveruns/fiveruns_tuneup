@@ -20,6 +20,9 @@ module Fiveruns
           )
           response.headers["Content-Length"] += insertion.size
           response.body.replace(before << insertion << '</head>' << after)
+          log :error, "Inserted asset tags"
+        else
+          log :error, "Could not find closing </head> tag for insertion"
         end
       end
       

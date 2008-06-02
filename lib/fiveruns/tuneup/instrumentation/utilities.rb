@@ -118,6 +118,7 @@ module Fiveruns
         #######
         
         def wrap(klass, format, meth, name, layer)
+          return if klass.instance_methods.include?(format % :with)
           text = <<-EOC
             def #{format % :with}(*args, &block)
               Fiveruns::Tuneup.step "#{name}", :#{layer} do

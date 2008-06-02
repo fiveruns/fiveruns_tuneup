@@ -3,7 +3,7 @@ module Fiveruns
     module Runs
       
       def run_dir
-        @run_dir ||= File.join(RAILS_ROOT, 'tmp', 'tuneup', 'runs')
+        @run_dir ||= File.join(RAILS_ROOT, 'tmp', 'tuneup', 'runs', RAILS_ENV)
       end
       
       def retrieve_run(run_id)

@@ -21,6 +21,7 @@ init.rb
 install.rb
 lib/bumpspark_helper.rb
 lib/fiveruns/tuneup/asset_tags.rb
+lib/fiveruns/tuneup/configuration.rb
 lib/fiveruns/tuneup/custom_methods.rb
 lib/fiveruns/tuneup/environment.rb
 lib/fiveruns/tuneup/instrumentation/action_controller/base.rb

@@ -15,7 +15,6 @@ Fiveruns::Tuneup.start do
   [ActionController::Base, ActiveRecord::Base, ActionView::Base].each do |target|
     target.extend Fiveruns::Tuneup::CustomMethods
   end
-
   ActionController::Base.append_view_path(File.dirname(__FILE__) << "/../views")
   require File.dirname(__FILE__) << "/../install" # Check for assets
 end

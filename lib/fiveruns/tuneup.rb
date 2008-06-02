@@ -33,6 +33,14 @@ module Fiveruns
         result
       end
       
+      def config(&block)
+        yield configuration
+      end
+      
+      def configuration
+        @configuration ||= ::Fiveruns::Tuneup::Configuration.new
+      end
+      
       def collecting
         if defined?(@collecting)
           @collecting
@@ -79,11 +87,16 @@ module Fiveruns
       
       def start
         if supports_rails?
-          yield
-          log :info, "Starting..."
-          install_instrumentation
-          log :debug, "Using collector at #{collector_url}"
-          log :debug, "Using frontend at #{frontend_url}"
+          load_configuration_file
+          if configuration.instrument?
+            yield
+            log :info, "Starting..."
+            install_instrumentation
+            log :debug, "Using collector at #{collector_url}"
+            log :debug, "Using frontend at #{frontend_url}"
+          else
+            log :warn, "Not configured to run in #{RAILS_ENV} environment, aborting."
+          end
         end
       end
             
@@ -96,6 +109,16 @@ module Fiveruns
       #######
       private
       #######
+            
+      def configuration_file
+        File.join(RAILS_ROOT, 'config/tuneup.rb')
+      end
+      
+      def load_configuration_file
+        if File.exists?(configuration_file)
+          require configuration_file
+        end
+      end
       
       def supports_rails?
         version = Rails::VERSION rescue nil

@@ -9,14 +9,39 @@
 
 Display call stack information on Rails requests.
 
-THIS IS A BETA RELEASE; the normal disclaimers apply.
+*THIS IS A BETA RELEASE*; the normal disclaimers apply.
+
+== Installation
+
+Install the gem:
+
+  sudo gem install fiveruns_tuneup
+  
+For Rails 2.0, install the plugin into +vendor/plugins+:
+  
+  fiveruns_tuneup /path/to/app
+  (or you can clone the GitHub repo into vendor/plugins)
+  
+For Rails 2.1, you can use it as a gem dependency instead; in your +environment.rb+:
+
+  config.gem 'fiveruns_tuneup'
+  
+Note: At the current time (as of the 2.1 release) there are issues in Rails that prevent
+the plugin running as an unpacked gem (via +rake gems:unpack+).
+  
+== Configuration
+
+By default, TuneUp only displays the panel and instruments your application
+in the +development+ environment.  If you'd like to configure it to run in the +production+
+environment (for testing), you can create a +RAILS_ROOT/config/tuneup.rb+ file:
+
+  Fiveruns::Tuneup.config do |config|
+    config.environments << :production
+  end
 
 == Known Issues
 
-The following issues have been seen from time to time on some apps:
-* Issues with fixed/absolute positioned elements overlapping the panel
-  and/or being pushed down too far.
-* Panel not showing up on the `root' route.
+See the notes at http://github.com/fiveruns/fiveruns_tuneup/wikis/known-issues
 
 == License
 
