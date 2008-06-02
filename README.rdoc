@@ -1,4 +1,4 @@
-= FiveRuns TuneUp Plugin
+= FiveRuns TuneUp Plugin (panel)
 
 == Requirements
 
@@ -38,6 +38,9 @@ environment (for testing), you can create a +RAILS_ROOT/config/tuneup.rb+ file:
   Fiveruns::Tuneup.config do |config|
     config.environments << :production
   end
+
+Note: The TuneUp panel does NOT currently work *in production mode* for Rails 2.1 apps, due to some internal
+changes to the way routes are handled.  This will be addressed in a future TuneUp panel release.
 
 == Known Issues
 
