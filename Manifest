@@ -16,6 +16,7 @@ assets/javascripts/prototype.js
 assets/javascripts/tuneup.js
 assets/stylesheets/tuneup.css
 bin/fiveruns_tuneup
+CHANGELOG
 History.rdoc
 init.rb
 install.rb
@@ -40,7 +41,6 @@ lib/fiveruns_tuneup.rb
 lib/tuneup_config.rb
 lib/tuneup_controller.rb
 lib/tuneup_helper.rb
-Manifest
 rails/init.rb
 Rakefile
 README.rdoc
@@ -56,3 +56,4 @@ views/tuneup/_sql.html.erb
 views/tuneup/_step.html.erb
 views/tuneup/panel/_registered.html.erb
 views/tuneup/panel/_unregistered.html.erb
+Manifest
