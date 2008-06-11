@@ -2,7 +2,7 @@ require 'net/https'
 require 'ostruct'
 require 'open-uri'
 
-class TuneupController < ActionController::Base
+class TuneupController < ActionController::Base 
   
   def self.request_forgery_protection_options
     ApplicationController.request_forgery_protection_options || {}
@@ -11,9 +11,12 @@ class TuneupController < ActionController::Base
   end
       
   def show
+    debug_rjs = response.template.debug_rjs
+    response.template.debug_rjs = false
     render :update do |page|
       page << tuneup_reload_panel
     end
+    response.template.debug_rjs = debug_rjs
   end
   
   def update

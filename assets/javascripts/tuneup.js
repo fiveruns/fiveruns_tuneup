@@ -46,6 +46,9 @@ TuneUp.adjustFixedElements = function(e) {
 
 TuneUp.adjustAbsoluteElements = function(e) {
 	e.immediateDescendants().each(function (e) {
+		if (e.id == "tuneup") {
+			return;
+		}
 		var pos = e.getStyle('position');
 		if (pos == 'absolute') {
 			TuneUp.adjustElement(e);
