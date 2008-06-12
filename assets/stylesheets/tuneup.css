@@ -164,7 +164,7 @@ version: 2.5.1
 #tuneup th { background: #000; padding: 4px; color: #fff; font-size: 12px; text-align: left; border: 0; font-weight: bold; border: 1px #333 solid; border-left: 0; border-top: 0; }
 #tuneup td { background: #111; padding: 4px; color: #ddd; font-size: 12px; text-align: left; border: 0; }
 
-#tuneup #tuneup-schema { display: none; position: absolute; top: 46px; right: 757px; padding: 9px; text-align: left; z-index: 10998; background: #000; opacity: 0.85; color: #ddd; overflow: hidden; -moz-border-radius: 6px; }
+#tuneup #tuneup-schema { display: none; position: absolute; top: 46px; right: 754px; padding: 9px; text-align: left; z-index: 10998; background: #000; opacity: 0.85; color: #ddd; overflow: hidden; -moz-border-radius: 6px; }
 
 #tuneup h1 {
   background: transparent url(/images/tuneup/logo_clear.png) center left no-repeat;
