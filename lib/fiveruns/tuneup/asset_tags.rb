@@ -9,15 +9,12 @@ module Fiveruns
         if after
           insertion = %(
           <!-- START FIVERUNS TUNEUP ASSETS -->
-          <link rel='stylesheet' type='text/css' href='/stylesheets/tuneup/tuneup.css'/>
-          #{insert_prototype unless response.body.include?('prototype.js')}
-          <script type='text/javascript'>
-            var TuneUp = {};
-            TuneUp.frontend_url = "#{Fiveruns::Tuneup.frontend_url}";
-          </script>
-          <script type='text/javascript' src='/javascripts/tuneup/tuneup.js'></script>
+          <link rel="stylesheet" type="text/css" href="/stylesheets/tuneup/tuneup.css" />
+          <script type="text/javascript"> var TuneUp = { frontend_url : '#{Fiveruns::Tuneup.frontend_url}'}; </script>
+          <script type="text/javascript" src="/javascripts/tuneup/init.js"></script>
           <!-- END FIVERUNS TUNEUP ASSETS -->
           )
+          
           response.headers["Content-Length"] += insertion.size
           response.body.replace(before << insertion << '</head>' << after)
           log :error, "Inserted asset tags"

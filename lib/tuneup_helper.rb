@@ -12,7 +12,7 @@ module TuneupHelper #:nodoc:
   
   def tuneup_collection_link
     state = tuneup_collecting? ? :off : :on
-    link_to_remote "Turn #{state.to_s.titleize}", :url => "/tuneup/#{state}"
+    %|<a onclick="new TuneUpSandbox.Ajax.Request('/tuneup/#{state}', {asynchronous:true, evalScripts:true}); return false;" href="#">Turn #{state.to_s.titleize}</a>|
   end
   
   def tuneup_recording?
@@ -60,7 +60,7 @@ module TuneupHelper #:nodoc:
   def tuneup_step_link(step)
     name = tuneup_style_step_name(tuneup_truncate_step_name(step))
     link = if step.children.any?
-      link_to_function(name, "$('#{dom_id(step, :children)}').toggle();$('#{dom_id(step)}').toggleClassName('tuneup-opened');", :class => "tuneup-step-link")
+      link_to_function(name, "TuneUpSandbox.$('#{dom_id(step, :children)}').toggle();TuneUpSandbox.$('#{dom_id(step)}').toggleClassName('tuneup-opened');", :class => "tuneup-step-link")
     else
       name
     end
@@ -68,11 +68,7 @@ module TuneupHelper #:nodoc:
   end
   
   def link_to_upload
-    link_to_remote "Upload this Run",
-      :url => "/tuneup/upload?uri=#{CGI.escape(params[:uri])}",
-      :loading => '$("tuneup-top").hide(); TuneUp.Spinner.start()',
-      :complete => ' TuneUp.Spinner.stop(); $("tuneup-top").show();',
-      :html => {:id => 'tuneup-save-link'}
+     %|<a onclick="new TuneUpSandbox.Ajax.Request('/tuneup/upload?uri=#{CGI.escape(params[:uri])}', {asynchronous:true, evalScripts:true, onComplete:function(request){ TuneUp.Spinner.stop(); TuneUpSandbox.$('tuneup-top').show();}, onLoading:function(request){TuneUpSandbox.$('tuneup-top').hide(); TuneUp.Spinner.start()}}); return false;" id="tuneup-save-link" href="#">Upload this Run</a>|
   end
   
   def additional_step_links(step)
@@ -162,7 +158,7 @@ module TuneupHelper #:nodoc:
     update_page do |page|
       page['tuneup-flash'].removeClassName('tuneup-show');
       page['tuneup-content'].replace_html(render(:partial => "tuneup/panel/#{@config.state}"))
-      page << 'TuneUp.adjustAbsoluteElements(document.body);'
+      page << 'TuneUp.adjustAbsoluteElements(_document.body);'
       page << 'TuneUp.adjustFixedElements();'
     end
   end
@@ -176,7 +172,7 @@ module TuneupHelper #:nodoc:
         page['tuneup-flash'].removeClassName("tuneup-#{other_type}")
       end
       page['tuneup-flash'].addClassName("tuneup-#{type}");
-      page << 'TuneUp.adjustAbsoluteElements(document.body);'
+      page << 'TuneUp.adjustAbsoluteElements(_document.body);'
       page << 'TuneUp.adjustFixedElements();'
     end
   end
