@@ -13,8 +13,10 @@ class TuneupController < ActionController::Base
   def show
     debug_rjs = response.template.debug_rjs
     response.template.debug_rjs = false
-    render :update do |page|
-      page << tuneup_reload_panel
+    ActionController::Base.silence do
+      render :update do |page|
+        page << tuneup_reload_panel
+      end
     end
     response.template.debug_rjs = debug_rjs
   end
@@ -76,6 +78,12 @@ class TuneupController < ActionController::Base
   #######
   private
   #######
+  
+  def log_processing
+    Fiveruns::Tuneup.log :info, "\n\nProcessing #{controller_class_name}\##{action_name} (for #{request_origin}) [#{request.method.to_s.upcase}]"
+    Fiveruns::Tuneup.log :info, "  Session ID: #{@_session.session_id}" if @_session and @_session.respond_to?(:session_id)
+    Fiveruns::Tuneup.log :info, "  Parameters: #{respond_to?(:filter_parameters) ? filter_parameters(params).inspect : params.inspect}"
+  end
   
   def collect(state)
     Fiveruns::Tuneup.collecting = state
