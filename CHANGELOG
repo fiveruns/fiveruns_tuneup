@@ -1,3 +1,5 @@
+v0.8.6. Performance optimizations, CSS fixes that prevents some layout issues that occurred when system doesn't have tuneup's preferred fonts.
+
 v0.8.5. Handle valid content types other than text/html (like strict XHTML with content type application/xhmtl+xml).
 
 v0.8.4. Alert notices push down absolute/fixed elements.
