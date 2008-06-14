@@ -1,7 +1,7 @@
 // setTimeout will not be called untilled the DOM is loaded
 setTimeout(function() {
 	var ifr = document.createElement('iframe');
-	ifr.src = '/tuneup/tuneup/sandbox.html';
+	ifr.src = '/javascripts/tuneup/sandbox.html';
 	
 	var style        = ifr.style;
 	style.visibility = 'hidden';

@@ -1,4 +1,4 @@
-v0.8.7. Sandboxed the javascript.  Site that use frameworks other than Prototype won't get errors.
+v0.8.7. Sandboxed javascript for non-Prototype apps (Thanks, Howard Rauscher).
 
 v0.8.6. Performance optimizations, CSS fixes that prevents some layout issues that occurred when system doesn't have tuneup's preferred fonts.
 
