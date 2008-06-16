@@ -75,6 +75,10 @@ class TuneupController < ActionController::Base
     collect false
   end
   
+  def sandbox
+    
+  end
+  
   #######
   private
   #######

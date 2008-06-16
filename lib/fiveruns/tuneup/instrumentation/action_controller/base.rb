@@ -34,7 +34,7 @@ module Fiveruns
             end
             def process_with_fiveruns_tuneup(request, response, *args, &block)
               result = process_without_fiveruns_tuneup(request, response, *args, &block)
-              if !request.xhr? && response.content_type && response.content_type.include?('html')
+              if !request.xhr? && response.content_type && response.content_type.include?('html') && controller_name != 'tuneup'
                 Fiveruns::Tuneup.add_asset_tags_to(response)
               end
               result
