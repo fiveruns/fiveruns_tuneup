@@ -68,7 +68,7 @@ module TuneupHelper #:nodoc:
   end
   
   def link_to_upload
-     %|<a onclick="new TuneUpSandbox.Ajax.Request('/tuneup/upload?uri=#{CGI.escape(params[:uri])}', {asynchronous:true, evalScripts:true, onComplete:function(request){ TuneUp.Spinner.stop(); TuneUpSandbox.$('tuneup-top').show();}, onLoading:function(request){TuneUpSandbox.$('tuneup-top').hide(); TuneUp.Spinner.start()}}); return false;" id="tuneup-save-link" href="#">Upload this Run</a>|
+     %|<a onclick="new TuneUpSandbox.Ajax.Request('/tuneup/upload?uri=#{CGI.escape(params[:uri])}', {asynchronous:true, evalScripts:true, onComplete:function(request){ TuneUp.Spinner.stop(); TuneUpSandbox.$('tuneup-top').show();}, onLoading:function(request){TuneUpSandbox.$('tuneup-top').hide(); TuneUp.Spinner.start()}}); return false;" id="tuneup-save-link" href="#">Share this Run</a>|
   end
   
   def additional_step_links(step)
