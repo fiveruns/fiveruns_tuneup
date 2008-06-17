@@ -1,7 +1,11 @@
-v0.8.7. Sandboxed javascript for non-Prototype apps (Thanks, Howard Rauscher).
+v0.8.7. Sandboxed javascript for non-Prototype apps (Thanks, Howard Rauscher). The tuneup.log now written explicitly to RAILS_ROOT/log.  Removed History.rdoc in favor of CHANGELOG.
 
 v0.8.6. Performance optimizations, CSS fixes that prevents some layout issues that occurred when system doesn't have tuneup's preferred fonts.
 
 v0.8.5. Handle valid content types other than text/html (like strict XHTML with content type application/xhmtl+xml).
 
-v0.8.4. Alert notices push down absolute/fixed elements.
+v0.8.4. Fixes for forgery protection breaking the panel, significant work on display issues (including CSS isolation concerns and alert notices pushing down absolute/fixed elements), and support for environmental configuration.  Support for Rails 2.1 development mode as a gem dependency.
+
+v0.8.3. Beta release.
+
+v0.8.1. First gem package with basic functionality

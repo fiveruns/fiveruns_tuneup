@@ -1,7 +1,0 @@
-= History
-
-* v0.8.4. Fixes for forgery protection breaking the panel, significant work on display issues including CSS isolation concerns, and support for environmental configuration.  Support for Rails 2.1 development mode as a gem dependency.
-
-* v0.8.3. Beta release.
-
-* v0.8.1. First gem package with basic functionality

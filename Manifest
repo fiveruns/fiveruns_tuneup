@@ -12,12 +12,13 @@ assets/images/schema.png
 assets/images/signin.gif
 assets/images/spinner.gif
 assets/images/warning.gif
+assets/javascripts/init.js
 assets/javascripts/prototype.js
 assets/javascripts/tuneup.js
 assets/stylesheets/tuneup.css
 bin/fiveruns_tuneup
 CHANGELOG
-History.rdoc
+CONTRIBUTORS
 init.rb
 install.rb
 lib/bumpspark_helper.rb
@@ -41,6 +42,7 @@ lib/fiveruns_tuneup.rb
 lib/tuneup_config.rb
 lib/tuneup_controller.rb
 lib/tuneup_helper.rb
+Manifest
 rails/init.rb
 Rakefile
 README.rdoc
@@ -56,4 +58,4 @@ views/tuneup/_sql.html.erb
 views/tuneup/_step.html.erb
 views/tuneup/panel/_registered.html.erb
 views/tuneup/panel/_unregistered.html.erb
-Manifest
+views/tuneup/sandbox.html.erb
