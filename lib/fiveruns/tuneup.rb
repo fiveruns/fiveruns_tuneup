@@ -8,7 +8,7 @@ require File.dirname(__FILE__) << '/tuneup/step'
 module Fiveruns
   module Tuneup
     
-    LOGGER = Logger.new('log/tuneup.log')
+    LOGGER = Logger.new(File.join(RAILS_ROOT || '', "log/tuneup.log"))
         
     class << self
       
