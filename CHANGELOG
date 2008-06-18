@@ -1,3 +1,5 @@
+v0.8.8. Fixed login broken when serving pages as xhtml strict.  Filtered params logged to tuneup.log.  TuneUp partials now rendered with exlicit extensions (.html.erb).
+
 v0.8.7. Sandboxed javascript for non-Prototype apps (Thanks, Howard Rauscher). The tuneup.log now written explicitly to RAILS_ROOT/log.  Removed History.rdoc in favor of CHANGELOG.
 
 v0.8.6. Performance optimizations, CSS fixes that prevents some layout issues that occurred when system doesn't have tuneup's preferred fonts.
