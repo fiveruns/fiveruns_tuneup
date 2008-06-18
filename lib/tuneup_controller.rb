@@ -3,7 +3,9 @@ require 'ostruct'
 require 'open-uri'
 
 class TuneupController < ActionController::Base 
-  
+
+ filter_parameter_logging :password
+   
   def self.request_forgery_protection_options
     ApplicationController.request_forgery_protection_options || {}
   rescue
@@ -91,7 +93,7 @@ class TuneupController < ActionController::Base
   
   def collect(state)
     Fiveruns::Tuneup.collecting = state
-    render(:update) { |p| p['tuneup-panel'].replace(render(:partial => 'tuneup/panel/registered')) }
+    render(:update) { |p| p['tuneup-panel'].replace(render(:partial => 'tuneup/panel/registered.html.erb')) }
   end
 
   def find_config
