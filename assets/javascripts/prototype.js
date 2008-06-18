@@ -1112,9 +1112,9 @@ Element.extend = function(element) {
   if (!element._extended && element.tagName && element != window) {
     var methods = Object.clone(Element.Methods), cache = Element.extend.cache;
 
-    if (element.tagName == 'FORM')
+    if (element.tagName.toUpperCase() == 'FORM')
       Object.extend(methods, Form.Methods);
-    if (['INPUT', 'TEXTAREA', 'SELECT'].include(element.tagName))
+    if (['INPUT', 'TEXTAREA', 'SELECT'].include(element.tagName.toUpperCase()))
       Object.extend(methods, Form.Element.Methods);
 
     Object.extend(methods, Element.Methods.Simulated);
