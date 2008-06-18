@@ -1,4 +1,4 @@
-<form onsubmit="new TuneUpSandbox.Ajax.Request('/tuneup/signin', {asynchronous:true, evalScripts:true, onComplete:function(request){TuneUp.Spinner.stop()}, onLoading:function(request){TuneUp.Spinner.start()}, parameters:Form.serialize(this)}); return false;" method="post" action="/tuneup/signin">
+<form onsubmit="new TuneUpSandbox.Ajax.Request('/tuneup/signin', {asynchronous:true, evalScripts:true, onComplete:function(request){TuneUp.Spinner.stop()}, onLoading:function(request){TuneUp.Spinner.start()}, parameters:TuneUpSandbox.Form.serialize(this)}); return false;" method="post" action="/tuneup/signin">
   <p class='tuneup-full'>
     <label for='email'>Email</label>
     <%= text_field_tag :email, nil, :size => 20 %>

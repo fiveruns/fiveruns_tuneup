@@ -9,4 +9,4 @@ setTimeout(function() {
 	style.height     = '0';
 	
 	document.body.appendChild(ifr);
-}, 0);
+}, 50);
