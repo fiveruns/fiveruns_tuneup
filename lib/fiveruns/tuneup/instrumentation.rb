@@ -160,20 +160,20 @@ module Fiveruns
         mod = Module.new(&block)
         target.send(:include, mod)
         extracted_from(mod.instance_methods).each do |meth|
-          Fiveruns::Manage.log :debug, "Wrapping #{target} #{meth}"
+          Fiveruns::Tuneup.log :debug, "Wrapping #{target} #{meth}"
           format = chain_format(meth)
           unless (target.instance_methods + target.private_instance_methods).include?(format % :without)
-            target.alias_method_chain meth, :fiveruns_manage
+            target.alias_method_chain meth, :fiveruns_tuneup
           end
         end
       end
 
       def chain_format(meth)
-        meth.to_s =~ /^(.*?)(\?|!|=)$/ ? "#{$1}_%s_fiveruns_manage#{$2}" : "#{meth}_%s_fiveruns_manage"
+        meth.to_s =~ /^(.*?)(\?|!|=)$/ ? "#{$1}_%s_fiveruns_tuneup#{$2}" : "#{meth}_%s_fiveruns_tuneup"
       end
 
       def extracted_from(meths)
-        meths.grep(/_with_fiveruns_manage/).map { |meth| meth.sub('_with_fiveruns_manage', '') }
+        meths.grep(/_with_fiveruns_tuneup/).map { |meth| meth.sub('_with_fiveruns_tuneup', '') }
       end
         
     end
