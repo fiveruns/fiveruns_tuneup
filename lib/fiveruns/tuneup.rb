@@ -15,7 +15,7 @@ module Fiveruns
       include Fiveruns::Tuneup::Urls
       include Fiveruns::Tuneup::AssetTags
       include Fiveruns::Tuneup::Runs
-      include Fiveruns::Tuneup::Instrumentation::Utilities
+      include Fiveruns::Tuneup::Instrumentation
       include Fiveruns::Tuneup::Environment
       include Fiveruns::Tuneup::Schema
       
