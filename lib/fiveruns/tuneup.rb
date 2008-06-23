@@ -7,9 +7,7 @@ require File.dirname(__FILE__) << '/tuneup/step'
 
 module Fiveruns
   module Tuneup
-    
-    LOGGER = Logger.new(File.join(RAILS_ROOT || '', "log/tuneup.log"))
-        
+            
     class << self
       
       include Fiveruns::Tuneup::Urls
@@ -22,6 +20,13 @@ module Fiveruns
       attr_writer :collecting
       attr_accessor :running
       attr_reader :trend
+      
+      def logger
+        @logger ||= returning Logger.new(log_file) do |l|
+          RAILS_DEFAULT_LOGGER.info(log_format % "Logging in #{log_file}")
+          l.level = Logger::INFO
+        end
+      end
       
       def run(controller, request)
         @running = (!controller.is_a?(TuneupController) && !request.xhr?)
@@ -90,10 +95,10 @@ module Fiveruns
           load_configuration_file
           if configuration.instrument?
             yield
-            log :info, "Starting..."
             install_instrumentation
             log :debug, "Using collector at #{collector_url}"
             log :debug, "Using frontend at #{frontend_url}"
+            log :info, "Started."
           else
             log :warn, "Not configured to run in #{RAILS_ENV} environment, aborting."
           end
@@ -101,14 +106,22 @@ module Fiveruns
       end
             
       def log(level, text)
-        message = "FiveRuns TuneUp (v#{Fiveruns::Tuneup::Version::STRING}): #{text}"
-        LOGGER.send(level, message)
+        message = log_format % text
+        logger.send(level, message)
         STDERR.puts message if level == :error
       end
       
       #######
       private
       #######
+      
+      def log_file
+        File.join(configuration.log_directory, "tuneup.log")
+      end
+      
+      def log_format
+        "FiveRuns TuneUp (v#{Fiveruns::Tuneup::Version::STRING}): %s"
+      end
             
       def configuration_file
         File.join(RAILS_ROOT, 'config/tuneup.rb')
