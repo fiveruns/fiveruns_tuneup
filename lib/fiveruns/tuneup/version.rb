@@ -30,6 +30,8 @@ module Fiveruns
     # +tiny+ (or +patch+) number.
     class Version
     
+      include Comparable
+      
       # A convenience method for instantiating a new Version instance with the
       # given +major+, +minor+, and +tiny+ components.
       def self.[](major, minor, tiny)

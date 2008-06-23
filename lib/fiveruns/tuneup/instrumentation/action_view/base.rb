@@ -43,7 +43,7 @@ module Fiveruns
               path = case options
               when String
                 # Pre-Rails 2.1, don't record this as it causes duplicate records 
-                if (Fiveruns::Tuneup::Version.rails <=> Fiveruns::Tuneup::Version.new(2,1,0)) == -1
+                if Fiveruns::Tuneup::Version.rails < Fiveruns::Tuneup::Version.new(2,1,0)
                   record = false
                 else
                   "Render #{options}"                  
@@ -56,7 +56,7 @@ module Fiveruns
                   "Render #{options[:file]}"
                 elsif options[:partial]
                   # Pre-Rails 2.1, don't record this as it causes duplicate records                                      
-                  if (Fiveruns::Tuneup::Version.rails <=> Fiveruns::Tuneup::Version.new(2,1,0)) == -1
+                  if Fiveruns::Tuneup::Version.rails < Fiveruns::Tuneup::Version.new(2,1,0)
                     record = false
                   else
                     # TODO: normalize this partial path
