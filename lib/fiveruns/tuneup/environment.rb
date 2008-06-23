@@ -15,7 +15,7 @@ module Fiveruns
       end
       
       def rails_version
-        ::Rails::VERSION::STRING rescue 'unknown Rails version'
+        Fiveruns::Tuneup::Version.rails.to_s
       end
       
       def application_name
