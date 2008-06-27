@@ -83,7 +83,9 @@ module TuneupHelper #:nodoc:
   end
   
   def sql_link(step)
-    link_to_function(image_tag('/images/tuneup/magnify.png', :alt => 'Query'), :class => 'tuneup-sql tuneup-halo', :title => 'View Query') { |p| p[dom_id(step, :sql)].toggle }
+    link_to_function(image_tag('/images/tuneup/magnify.png', :alt => 'Query'), :class => 'tuneup-sql tuneup-halo', :title => 'View Query') do |page| 
+      page << %(TuneUpSandbox.$("#{dom_id(step, :sql)}").toggle(); return false;)
+    end
   end
   
   def link_to_schema(text, table, html_options={})
