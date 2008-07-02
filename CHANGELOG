@@ -1,3 +1,5 @@
+v0.8.10. Fixed TextMate links to be xhtml strict 1.0 compliant.
+
 v0.8.9. Fixed broken rendering of TuneUp stack information when serving xhtml strict pages with a content-type of application/xhtml+xml.
 
 v0.8.8. Fixed login broken when serving pages as xhtml strict.  Filtered params logged to tuneup.log.  TuneUp partials now rendered with exlicit extensions (.html.erb).
