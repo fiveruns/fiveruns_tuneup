@@ -181,7 +181,7 @@ module TuneupHelper #:nodoc:
   
   def link_to_edit_step(step)
     return nil unless step.file && step.line && RUBY_PLATFORM.include?('darwin')
-    link_to(image_tag('/images/tuneup/edit.png', :alt => 'Edit'), "txmt://open?url=file://#{CGI.escape step.file}&line=#{step.line}", :class => 'tuneup-edit tuneup-halo', :title => 'Open in TextMate')
+    link_to(image_tag('/images/tuneup/edit.png', :alt => 'Edit'), "txmt://open?url=file://#{CGI.escape step.file}&amp;line=#{step.line}", :class => 'tuneup-edit tuneup-halo', :title => 'Open in TextMate')
   end
     
 end
