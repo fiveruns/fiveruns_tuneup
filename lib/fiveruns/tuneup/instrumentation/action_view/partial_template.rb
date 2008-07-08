@@ -15,7 +15,7 @@ module Fiveruns
           module InstanceMethods
 
             def render_with_fiveruns_tuneup(*args, &block)
-              Fiveruns::Tuneup.step path, :view do
+              Fiveruns::Tuneup.step "Render partial #{path}", :view do
                 render_without_fiveruns_tuneup(*args, &block)
               end
             end
