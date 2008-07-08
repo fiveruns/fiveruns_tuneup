@@ -55,13 +55,7 @@ module Fiveruns
                 if options[:file]
                   "Render #{options[:file]}"
                 elsif options[:partial]
-                  # Pre-Rails 2.1, don't record this as it causes duplicate records                                      
-                  if Fiveruns::Tuneup::Version.rails < Fiveruns::Tuneup::Version.new(2,1,0)
-                    record = false
-                  else
-                    # TODO: normalize this partial path
-                    "Render partial #{options[:partial]}"
-                  end
+                  record = false
                 elsif options[:inline]
                   "Render inline"
                 elsif options[:text]

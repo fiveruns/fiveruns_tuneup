@@ -160,8 +160,11 @@ module Fiveruns
           Dir[File.join(instrumentation_path, '/*/**/*.rb')].each do |filename|
             constant_path = filename[(instrumentation_path.size + 1)..-4]
             constant_name = path_to_constant_name(constant_path)
-            if (constant = constant_name.constantize rescue nil)
-              instrumentation = "Fiveruns::Tuneup::Instrumentation::#{constant_name}".constantize
+            
+            instrumentation = "Fiveruns::Tuneup::Instrumentation::#{constant_name}".constantize            
+            next if instrumentation.respond_to?(:relevant?) && !instrumentation.relevant?
+              
+            if (constant = constant_name.constantize rescue nil)             
               constant.__send__(:include, instrumentation)
             else
               log :debug, "#{constant_name} not found; skipping instrumentation."
