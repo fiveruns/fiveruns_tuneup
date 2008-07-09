@@ -1,4 +1,5 @@
 <div id='tuneup-panel'>
+<% puts "blank data? #{tuneup_data.blank?}       collecting? #{tuneup_collecting?}" %>
   <%= render(:partial => 'data.html.erb') if !tuneup_data.blank? && tuneup_collecting? %>
   <%= render :partial => 'link.html.erb' %>
 </div>

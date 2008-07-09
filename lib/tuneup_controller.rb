@@ -13,6 +13,7 @@ class TuneupController < ActionController::Base
   end
       
   def show
+    session['fiveruns_tuneup_last_uri'] = params[:uri]
     debug_rjs = response.template.debug_rjs
     response.template.debug_rjs = false
     ActionController::Base.silence do
@@ -29,6 +30,14 @@ class TuneupController < ActionController::Base
     redirect_to :action => 'show'
   end
   
+  def register
+    render(:update) do |p| 
+      p['tuneup-panel'].hide
+      p.insert_html(:bottom, 'tuneup-content', :partial => 'tuneup/panel/register.html.erb')
+    end
+  end
+  
+  
   def signin
     if api_key = retrieve_api_key
       @config['api_key'] = api_key
@@ -36,7 +45,8 @@ class TuneupController < ActionController::Base
     end
     render :update do |page|
       if api_key
-        page << tuneup_reload_panel
+        page.replace('tuneup-save-link', link_to_upload)
+        page << redisplay_last_run(false)
       else
         page << tuneup_show_flash(:error,
                   :header => "TuneUp encountered an error",
@@ -93,7 +103,7 @@ class TuneupController < ActionController::Base
   
   def collect(state)
     Fiveruns::Tuneup.collecting = state
-    render(:update) { |p| p['tuneup-panel'].replace(render(:partial => 'tuneup/panel/registered.html.erb')) }
+    render(:update) { |p| p['tuneup-panel'].replace(render(:partial => 'tuneup/panel/show.html.erb')) }
   end
 
   def find_config

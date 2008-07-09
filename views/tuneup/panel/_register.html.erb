@@ -1,0 +1,14 @@
+<form id='tuneup-signin-form' onsubmit="new TuneUpSandbox.Ajax.Request('/tuneup/signin', {asynchronous:true, evalScripts:true, onComplete:function(request){TuneUp.Spinner.stop()}, onLoading:function(request){TuneUp.Spinner.start()}, parameters:TuneUpSandbox.Form.serialize(this)}); return false;" method="post" action="/tuneup/signin">
+  <p class='tuneup-full'>
+    <%= link_to_show %>
+    <label for='email'>Email</label>
+    <%= text_field_tag :email, nil, :size => 20 %>
+  
+    <label for='password'>Password</label>
+    <%= password_field_tag %>
+  
+    <button><%= image_tag '/images/tuneup/signin.gif', :alt => 'Sign In' %></button>
+    or  
+    <%= link_to "Sign Up for an Account", tuneup_signup_url, :target => '_blank' %>
+  </p>
+</form>
