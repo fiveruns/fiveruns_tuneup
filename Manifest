@@ -28,6 +28,7 @@ lib/fiveruns/tuneup/custom_methods.rb
 lib/fiveruns/tuneup/environment.rb
 lib/fiveruns/tuneup/instrumentation/action_controller/base.rb
 lib/fiveruns/tuneup/instrumentation/action_view/base.rb
+lib/fiveruns/tuneup/instrumentation/action_view/partial_template.rb
 lib/fiveruns/tuneup/instrumentation/active_record/base.rb
 lib/fiveruns/tuneup/instrumentation/cgi/session.rb
 lib/fiveruns/tuneup/instrumentation/utilities.rb
@@ -56,6 +57,6 @@ views/tuneup/_link.html.erb
 views/tuneup/_schema.html.erb
 views/tuneup/_sql.html.erb
 views/tuneup/_step.html.erb
-views/tuneup/panel/_registered.html.erb
-views/tuneup/panel/_unregistered.html.erb
+views/tuneup/panel/_register.html.erb
+views/tuneup/panel/_show.html.erb
 views/tuneup/sandbox.html.erb
