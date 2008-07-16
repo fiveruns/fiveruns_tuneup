@@ -1,3 +1,5 @@
+v0.8.12. Added some inline branding.
+
 v0.8.11. Signup and login for the TuneUp hosted service is now only required if the user wants to share a run (privately or publicly).
 
 v0.8.10. Fixed TextMate links to be xhtml strict 1.0 compliant.
