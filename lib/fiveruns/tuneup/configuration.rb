@@ -7,6 +7,8 @@ module Fiveruns::Tuneup
       @log_directory ||= begin
         rails_log = RAILS_DEFAULT_LOGGER.instance_eval { @log.path rescue @logdev.filename }
         File.dirname(rails_log)
+      rescue
+        Dir::tmpdir
       end
     end
     
