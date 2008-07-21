@@ -1,1 +1,3 @@
+* 2008-07-21: Bryan Liles; merged fallback log dir code from git://github.com/bryanl/fiveruns_tuneup.git (master:e5838f47f)
+
 * 2008-06-14: Howard Rauscher; merged javascript sandboxing code from git://github.com/howardr/fiveruns_tuneup.git (master:8cc558dbe)
