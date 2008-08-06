@@ -26,6 +26,7 @@ lib/fiveruns/tuneup/asset_tags.rb
 lib/fiveruns/tuneup/configuration.rb
 lib/fiveruns/tuneup/custom_methods.rb
 lib/fiveruns/tuneup/environment.rb
+lib/fiveruns/tuneup/ext/route_set.rb
 lib/fiveruns/tuneup/instrumentation/action_controller/base.rb
 lib/fiveruns/tuneup/instrumentation/action_view/base.rb
 lib/fiveruns/tuneup/instrumentation/action_view/partial_template.rb
@@ -33,6 +34,7 @@ lib/fiveruns/tuneup/instrumentation/active_record/base.rb
 lib/fiveruns/tuneup/instrumentation/cgi/session.rb
 lib/fiveruns/tuneup/instrumentation/utilities.rb
 lib/fiveruns/tuneup/multipart.rb
+lib/fiveruns/tuneup/routes.rb
 lib/fiveruns/tuneup/runs.rb
 lib/fiveruns/tuneup/schema.rb
 lib/fiveruns/tuneup/step.rb
