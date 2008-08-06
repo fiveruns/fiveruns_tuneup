@@ -16,10 +16,12 @@ module Fiveruns
       include Fiveruns::Tuneup::Instrumentation::Utilities
       include Fiveruns::Tuneup::Environment
       include Fiveruns::Tuneup::Schema
+      include Fiveruns::Tuneup::Routes     
       
       attr_writer :collecting
       attr_accessor :running
       attr_reader :trend
+      attr_accessor :routes_set
       
       def logger
         @logger ||= returning Logger.new(log_file) do |l|

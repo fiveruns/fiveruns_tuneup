@@ -5,6 +5,9 @@ module Fiveruns
         module Base
           def self.included(base)
             Fiveruns::Tuneup.instrument base, ClassMethods, InstanceMethods
+            class << base
+              attr_accessor :loaded_tuneup_routes
+            end
           end
           module ClassMethods
             def cache_page_with_fiveruns_tuneup(*args, &block)
@@ -21,6 +24,7 @@ module Fiveruns
           module InstanceMethods
             def perform_action_with_fiveruns_tuneup(*args, &block)
               Fiveruns::Tuneup.run(self, request) do
+                self.class.loaded_tuneup_routes ||= Fiveruns::Tuneup.add_routes
                 action = (request.parameters['action'] || 'index').to_s
                 if Fiveruns::Tuneup.recording?
                   Fiveruns::Tuneup.instrument_filters(self) 

@@ -5,6 +5,11 @@ require 'open-uri'
 class TuneupController < ActionController::Base 
 
  filter_parameter_logging :password
+ 
+  def self.setup
+    filter_chain.clear
+    before_filter :find_config, :except => :index
+  end
    
   def self.request_forgery_protection_options
     ApplicationController.request_forgery_protection_options || {}

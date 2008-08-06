@@ -60,9 +60,9 @@ module TuneupHelper #:nodoc:
   def tuneup_step_link(step)
     name = tuneup_style_step_name(tuneup_truncate_step_name(step))
     link = if step.children.any?
-      link_to_function(name, "TuneUpSandbox.$('#{dom_id(step, :children)}').toggle();TuneUpSandbox.$('#{dom_id(step)}').toggleClassName('tuneup-opened');", :class => "tuneup-step-link", :title => step.name)
+      link_to_function(name, "TuneUpSandbox.$('#{dom_id(step, :children)}').toggle();TuneUpSandbox.$('#{dom_id(step)}').toggleClassName('tuneup-opened');", :class => "tuneup-step-link")
     else
-      content_tag(:span, name, :title => step.name)
+      name
     end
     link << additional_step_links(step)
   end
