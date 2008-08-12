@@ -1,13 +1,8 @@
 Fiveruns::Tuneup.start do
   require 'dispatcher'
-  Dispatcher.to_prepare :tuneup_route do
-    ActionController::Routing::Routes.add_route '/tuneup', :controller => 'tuneup', :action => 'show'
-    ActionController::Routing::Routes.add_route '/tuneup/:action', :controller => 'tuneup'
-    2.times do
-      route = ActionController::Routing::Routes.routes.pop
-      ActionController::Routing::Routes.routes.unshift(route)
-    end
-  end
+  
+  Fiveruns::Tuneup::Routing.install
+      
   Dispatcher.to_prepare :tuneup_controller_filters do
     TuneupController.filter_chain.clear
     TuneupController.before_filter :find_config, :except => :index
