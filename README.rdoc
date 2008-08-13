@@ -39,9 +39,6 @@ environment (for testing), you can create a +RAILS_ROOT/config/tuneup.rb+ file:
     config.environments << :production
   end
 
-Note: The TuneUp panel does NOT currently work *in production mode* for Rails 2.1 apps, due to some internal
-changes to the way routes are handled.  This will be addressed in a future TuneUp panel release.
-
 == Known Issues
 
 See the notes at http://github.com/fiveruns/fiveruns_tuneup/wikis/known-issues
