@@ -42,10 +42,13 @@ module Fiveruns
               step.table_name = table_name
               stack.last << step
               stack << step
-              handle_exclusions_in step do
-                step.time = stopwatch { result = yield(sql) }
+              begin
+                handle_exclusions_in step do
+                  step.time = stopwatch { result = yield(sql) }
+                end
+              ensure
+                stack.pop
               end
-              stack.pop
             end
             result
           else
