@@ -10,8 +10,6 @@ module Fiveruns
             
     class << self
       
-      include Fiveruns::Tuneup::Urls
-      include Fiveruns::Tuneup::AssetTags
       include Fiveruns::Tuneup::Runs
       include Fiveruns::Tuneup::Instrumentation::Utilities
       include Fiveruns::Tuneup::Environment
@@ -29,7 +27,7 @@ module Fiveruns
       end
       
       def run(controller, request)
-        @running = (!controller.is_a?(TuneupController) && !request.xhr?)
+        @running = !request.xhr?
         result = nil
         record controller, request do
           result = yield
@@ -46,15 +44,8 @@ module Fiveruns
         @configuration ||= ::Fiveruns::Tuneup::Configuration.new
       end
       
-      def collecting
-        if defined?(@collecting)
-          @collecting
-        else
-          @collecting = true
-        end
-      end
-      
       def record(controller, request)
+        log :info, "Checking recording"
         if recording?
           @stack = [Fiveruns::Tuneup::RootStep.new]
           @trend = nil
@@ -87,17 +78,15 @@ module Fiveruns
       end
       
       def recording?
-        @running && @collecting
+        @running
       end
       
       def start
         if supports_rails?
           load_configuration_file
           if configuration.instrument?
-            yield
+            yield if block_given?
             install_instrumentation
-            log :debug, "Using collector at #{collector_url}"
-            log :debug, "Using frontend at #{frontend_url}"
             log :info, "Started."
           else
             log :warn, "Not configured to run in #{RAILS_ENV} environment, aborting."

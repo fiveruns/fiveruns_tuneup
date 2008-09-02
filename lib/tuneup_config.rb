@@ -5,7 +5,7 @@ class TuneupConfig
   delegate :[], :[]=, :each, :update, :to => :data
 
   def self.defaults
-    { 'api_key' => nil }
+    {}
   end
   
   def save!
@@ -20,10 +20,6 @@ class TuneupConfig
     
   def config_file
     File.join(RAILS_ROOT, 'config', 'fiveruns_tuneup.yml')
-  end
-  
-  def state
-    data['api_key'] ? :registered : :unregistered
   end
   
 end
