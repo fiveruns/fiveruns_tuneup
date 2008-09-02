@@ -1,0 +1,15 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>Trend Information</title>
+  </head>
+  <body>
+    <ul>
+      <% pages.each do |name, uri_id| %>
+        <li><a href='<%= uri_id %>.html'><%= name %></a></li>
+      <% end %>
+    </ul>
+  </body>
+</html>
