@@ -172,8 +172,8 @@ module TuneupHelper #:nodoc:
   
   def tuneup_reload_panel
     update_page do |page|
-      page['tuneup-flash'].removeClassName('tuneup-show');
-      page['tuneup-content'].replace_html(render(:partial => "tuneup/panel/show.html.erb"))
+      page << "$('tuneup-flash').removeClassName('tuneup-show');"
+      page << %[$('tuneup-content').update("#{escape_javascript(render(:partial => 'tuneup/panel/show.html.erb'))}");]
       page << 'TuneUp.adjustAbsoluteElements(_document.body);'
       page << 'TuneUp.adjustFixedElements();'
     end
@@ -182,12 +182,12 @@ module TuneupHelper #:nodoc:
   def tuneup_show_flash(type, locals)
     types = [:error, :notice].reject { |t| t == type }
     update_page do |page|
-      page['tuneup-flash'].replace_html(render(:partial => 'flash.html.erb', :locals => locals.merge(:type => type)))
-      page['tuneup-flash'].addClassName('tuneup-show');
+      page << %[$('tuneup-flash').update("#{escape_javascript(render(:partial => 'flash.html.erb', :locals => locals.merge(:type => type)))}");]
+      page << "$('tuneup-flash').addClassName('tuneup-show')"
       types.each do |other_type|
-        page['tuneup-flash'].removeClassName("tuneup-#{other_type}")
+        page << "$('tuneup-flash').removeClassName('tuneup-#{other_type}')"
       end
-      page['tuneup-flash'].addClassName("tuneup-#{type}");
+      page << "$('tuneup-flash').addClassName('tuneup-#{type}')"
       page << 'TuneUp.adjustAbsoluteElements(_document.body);'
       page << 'TuneUp.adjustFixedElements();'
     end

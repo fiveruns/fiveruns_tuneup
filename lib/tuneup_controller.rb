@@ -31,9 +31,9 @@ class TuneupController < ActionController::Base
   end
   
   def register
-    render(:update) do |p| 
-      p['tuneup-panel'].hide
-      p.insert_html(:bottom, 'tuneup-content', :partial => 'tuneup/panel/register.html.erb')
+    render :update do |page| 
+      page << "$('tuneup-panel').hide();"
+      page << %[new Insertion.Bottom('tuneup-content', "#{escape_javascript(render(:partial => 'tuneup/panel/register.html.erb'))}");]
     end
   end
   
@@ -45,7 +45,7 @@ class TuneupController < ActionController::Base
     end
     render :update do |page|
       if api_key
-        page.replace('tuneup-save-link', link_to_upload)
+        page << "$('tuneup-save-link').replace('#{escape_javascript(link_to_upload)}');"
         page << redisplay_last_run(false)
       else
         page << tuneup_show_flash(:error,
@@ -103,7 +103,9 @@ class TuneupController < ActionController::Base
   
   def collect(state)
     Fiveruns::Tuneup.collecting = state
-    render(:update) { |p| p['tuneup-panel'].replace(render(:partial => 'tuneup/panel/show.html.erb')) }
+    render :update do |page|
+      page << %[$('tuneup-panel').update("#{escape_javascript(render(:partial => 'tuneup/panel/show.html.erb'))}")]
+    end
   end
 
   def find_config

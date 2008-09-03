@@ -1,3 +1,5 @@
+v0.8.14. Removed use of all Rails JS helpers, this fixes an issue when jrails is used in the app (Thanks, Chris Zelenak) 
+
 v0.8.12. Added some inline branding.
 
 v0.8.11. Signup and login for the TuneUp hosted service is now only required if the user wants to share a run (privately or publicly).
