@@ -1,3 +1,5 @@
+v0.8.15. Removed use of all Rails JS helpers, this fixes an issue when jrails is used in the app (Thanks, Chris Zelenak) 
+
 v0.8.13. Improved unobtrusive branding.
 
 v0.8.12. Added some inline branding.
