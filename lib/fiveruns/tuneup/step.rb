@@ -132,7 +132,8 @@ module Fiveruns
       end
       
       def time
-        @time || 0
+        # FIXME: rank hack to get around weird JRuby YAML bug
+        @time.respond_to?(:value) ? @time.value.to_f : @time || 0
       end
             
       def size
