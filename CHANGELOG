@@ -1,29 +1,16 @@
-v0.8.17. Clean build to work around 0.8.16 build snafu (built from a non-clean clone)
-
-v0.8.16. JRuby bug fix
-
-v0.8.15. Removed use of all Rails JS helpers, this fixes an issue when jrails is used in the app (Thanks, Chris Zelenak) 
-
-v0.8.13. Improved unobtrusive branding.
-
-v0.8.12. Added some inline branding.
-
-v0.8.11. Signup and login for the TuneUp hosted service is now only required if the user wants to share a run (privately or publicly).
-
-v0.8.10. Fixed TextMate links to be xhtml strict 1.0 compliant.
-
-v0.8.9. Fixed broken rendering of TuneUp stack information when serving xhtml strict pages with a content-type of application/xhtml+xml.
-
-v0.8.8. Fixed login broken when serving pages as xhtml strict.  Filtered params logged to tuneup.log.  TuneUp partials now rendered with exlicit extensions (.html.erb).
-
-v0.8.7. Sandboxed javascript for non-Prototype apps (Thanks, Howard Rauscher). The tuneup.log now written explicitly to RAILS_ROOT/log.  Removed History.rdoc in favor of CHANGELOG.
-
-v0.8.6. Performance optimizations, CSS fixes that prevents some layout issues that occurred when system doesn't have tuneup's preferred fonts.
-
-v0.8.5. Handle valid content types other than text/html (like strict XHTML with content type application/xhmtl+xml).
-
-v0.8.4. Fixes for forgery protection breaking the panel, significant work on display issues (including CSS isolation concerns and alert notices pushing down absolute/fixed elements), and support for environmental configuration.  Support for Rails 2.1 development mode as a gem dependency.
-
-v0.8.3. Beta release.
-
-v0.8.1. First gem package with basic functionality
+* v0.9.0. Reseat on fiveruns_tuneup_core gem, renamed to fiveruns_tuneup_rails
+* v0.8.17. Clean build to work around 0.8.16 build snafu (built from a non-clean clone)
+* v0.8.16. JRuby bug fix
+* v0.8.15. Removed use of all Rails JS helpers, this fixes an issue when jrails is used in the app (Thanks, Chris Zelenak) 
+* v0.8.13. Improved unobtrusive branding.
+* v0.8.12. Added some inline branding.
+* v0.8.11. Signup and login for the TuneUp hosted service is now only required if the user wants to share a run (privately or publicly).
+* v0.8.10. Fixed TextMate links to be xhtml strict 1.0 compliant.
+* v0.8.9. Fixed broken rendering of TuneUp stack information when serving xhtml strict pages with a content-type of application/xhtml+xml.
+* v0.8.8. Fixed login broken when serving pages as xhtml strict.  Filtered params logged to tuneup.log.  TuneUp partials now rendered with exlicit extensions (.html.erb).
+* v0.8.7. Sandboxed javascript for non-Prototype apps (Thanks, Howard Rauscher). The tuneup.log now written explicitly to RAILS_ROOT/log.  Removed History.rdoc in favor of CHANGELOG.
+* v0.8.6. Performance optimizations, CSS fixes that prevents some layout issues that occurred when system doesn't have tuneup's preferred fonts.
+* v0.8.5. Handle valid content types other than text/html (like strict XHTML with content type application/xhmtl+xml).
+* v0.8.4. Fixes for forgery protection breaking the panel, significant work on display issues (including CSS isolation concerns and alert notices pushing down absolute/fixed elements), and support for environmental configuration.  Support for Rails 2.1 development mode as a gem dependency.
+* v0.8.3. Beta release.
+* v0.8.1. First gem package with basic functionality
