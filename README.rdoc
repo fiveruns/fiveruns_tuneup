@@ -22,12 +22,12 @@ For Rails 2.0, install the plugin into +vendor/plugins+:
   fiveruns_tuneup /path/to/app
   (or you can clone the GitHub repo into vendor/plugins)
   
-For Rails 2.1, you can use it as a gem dependency instead; in your +environment.rb+:
+For Rails 2.1+, you can use it as a gem dependency instead; in your +environment.rb+:
 
   config.gem 'fiveruns_tuneup'
   
-Note: At the current time (as of the 2.1 release) there are issues in Rails that prevent
-the plugin running as an unpacked gem (via +rake gems:unpack+).
+*Note*: There is an issue in Rails 2.1 that prevents the plugin running as an unpacked 
+gem (via +rake gems:unpack+).
   
 == Configuration
 
