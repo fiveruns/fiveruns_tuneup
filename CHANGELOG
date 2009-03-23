@@ -1,3 +1,5 @@
+v0.8.20. Rails 2.3 support, remove old bin/fiveruns_tuneup executable.
+
 v0.8.18. Fix deprecated use of Dependencies.
 
 v0.8.17. Clean build to work around 0.8.16 build snafu (built from a non-clean clone)
