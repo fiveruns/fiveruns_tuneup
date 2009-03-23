@@ -14,8 +14,7 @@ module Fiveruns
           <script type="text/javascript" src="/javascripts/tuneup/init.js"></script>
           <!-- END FIVERUNS TUNEUP ASSETS -->
           )
-          
-          response.headers["Content-Length"] += insertion.size
+          add_content_length(response, insertion.size)
           response.body.replace(before << insertion << '</head>' << after)
           log :error, "Inserted asset tags"
         else
@@ -31,6 +30,20 @@ module Fiveruns
       
       def insert_prototype
         "<script type='text/javascript' src='/javascripts/tuneup/prototype.js'></script>"
+      end
+      
+      # Modify the Content-Length header, regardless if String/Fixnum, and
+      # keep it the same type
+      def add_content_length(response, delta)
+        length = response.headers["Content-Length"]
+        response.headers["Content-Length"] = case length
+        when Fixnum
+          length + delta
+        when String
+          (length.to_i + delta).to_s
+        else
+          length # Shouldn't happen
+        end
       end
       
     end
