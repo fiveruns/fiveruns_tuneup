@@ -24,6 +24,7 @@ module Fiveruns
       
       def show_for?(response)
         return false unless response.body
+        return true if response.headers['ETag'] && response.headers['Content-Type'].to_s.include?('html')
         return false unless response.headers['Status'] && response.headers['Status'].include?('200')
         true
       end
