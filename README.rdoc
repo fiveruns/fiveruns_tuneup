@@ -9,25 +9,21 @@
 
 Display call stack information on Rails requests.
 
-*THIS IS A BETA RELEASE*; the normal disclaimers apply.
-
 == Installation
+
+For Rails 2.1+, you can use it as a gem dependency (recommended).
 
 Install the gem:
 
   sudo gem install fiveruns_tuneup
-  
-For Rails 2.0, install the plugin into +vendor/plugins+:
-  
-  fiveruns_tuneup /path/to/app
-  (or you can clone the GitHub repo into vendor/plugins)
-  
-For Rails 2.1+, you can use it as a gem dependency instead; in your +environment.rb+:
+
+In your +environment.rb+:
 
   config.gem 'fiveruns_tuneup'
   
-*Note*: There is an issue in Rails 2.1 that prevents the plugin running as an unpacked 
-gem (via +rake gems:unpack+).
+*Note*: There is an issue in Rails 2.1 that prevents the plugin running as an unpacked gem (via +rake gems:unpack+).
+
+TuneUp can also be used from +vendor/plugins+.
   
 == Configuration
 

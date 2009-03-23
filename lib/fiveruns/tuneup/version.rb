@@ -75,7 +75,7 @@ module Fiveruns
 
       MAJOR = 0
       MINOR = 8
-      TINY  = 19
+      TINY  = 20
 
       # The current version as a Version instance
       CURRENT = new(MAJOR, MINOR, TINY)
