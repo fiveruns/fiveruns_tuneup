@@ -168,7 +168,6 @@ version: 2.5.1
 #tuneup #tuneup-schema { display: none; position: absolute; top: 46px; right: 754px; padding: 9px; text-align: left; z-index: 10998; background: #000; opacity: 0.85; color: #ddd; overflow: hidden; -moz-border-radius: 6px; }
 
 #tuneup h1 {
-  background: transparent url(/images/tuneup/logo_clear.png) center left no-repeat;
   border: 0;
   color: white;
   display: block;

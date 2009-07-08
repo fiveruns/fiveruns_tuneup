@@ -4,13 +4,10 @@
       <%= tuneup_bar(tuneup_data.children.first, :id => 'tuneup-root-bar') %>
       <%= trend %> <%= tuneup_data.time.to_i %> ms 
     </div>
-    <%= link_to_upload %>
   </div>
   <%= render :partial => 'schema.html.erb' %>
   <ul id="tuneup-details">
     <%= render :partial => 'step.html.erb', :collection => tuneup_data.children %>
 		<li style="clear:both"></li>
-		<li style="padding-top:10px;font-style:italic;float:right;font-size:0.8em;color:#ccc;">For production technical and business metrics, try 
-		  <a href="http://dash.fiveruns.com/?utm_source=TuneUpBar&amp;utm_medium=DashURL&amp;utm_campaign=Dash" target="_blank" style="font-style:italic">FiveRuns Dash</a></li>
   </ul>
 </div>
